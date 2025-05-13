@@ -48,7 +48,7 @@
             <nav class="navbar navbar-light navbar-expand-lg py-1">
                 <a href="index.html" class="navbar-brand">
                     <img src="img/JKP-Paints Full-LOGO.png" alt="JKP Paints Logo"
-                        style="margin-left: -15px; width: auto; max-width: 250px;">
+                        style="margin-left: -15px; width: auto; max-width: 300px;">
                 </a>
                 <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarCollapse">
@@ -56,11 +56,11 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto py-3 pe-4">
-                        <a href="index.html" class="nav-item nav-link active">Home</a>
+                        <a href="index.html" class="nav-item nav-link">Home</a>
                         <a href="about.html" class="nav-item nav-link">About</a>
                         <a href="productRange.html" class="nav-item nav-link">Product Range</a>
                         <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">All Products</a>
+                            <a href="#" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown">All Products</a>
                             <div class="dropdown-menu bg-light">
                                 <a href="interior.html" class="dropdown-item">Luxury Interior Paints</a>
                                 <a href="exterior.html" class="dropdown-item">Exterior Coatings</a>
@@ -68,7 +68,7 @@
                                 <a href="distemper.html" class="dropdown-item">Distempers</a>
                                 <a href="enamel.html" class="dropdown-item">Enamel Paints</a>
                                 <a href="elastomeric.html" class="dropdown-item">Elastomeric Coatings</a>
-                                <a href="textured.html" class="dropdown-item">Textured Finishes</a>
+                                <a href="textured.html" class="dropdown-item active">Textured Finishes</a>
                                 <a href="industrial.html" class="dropdown-item">Industrial Coatings</a>
                                 <a href="aluminium.html" class="dropdown-item">Aluminium Paints</a>
                                 <a href="fire.html" class="dropdown-item">Fire-Resistant Paints</a>
@@ -123,27 +123,13 @@
 
 
     <!-- Hero Start -->
-    <div class="container-fluid bg-light py-6 my-6 mb-0 mt-0"
-        style="background: url('img/heroJkp.png') no-repeat center center; background-size: cover;">
-        <div class="container">
-            <div class="row g-5 align-items-center">
-                <div class="col-lg-7 col-md-12 animated bounceInDown"
-                    style="background: rgb(255, 255, 255,0.4); backdrop-filter: blur(5px); border-radius: 10px; padding: 20px;">
-                    <small
-                        class="d-inline-block fw-bold text-dark text-uppercase bg-light border border-primary rounded-pill px-4 py-1 mb-4 animated bounceInDown">Welcome
-                        to JKP PAINTS</small>
-                    <h1 class="display-1 mb-4 animated bounceInDown" style="color: #210073;"><span
-                            style="color: red;">Color </span>
-                        Your World with Shades of Imagination</h1>
-                    <a href=""
-                        class="btn btn-primary border-0 rounded-pill py-3 px-4 px-md-5 me-4 animated bounceInLeft">Book
-                        Now</a>
-                    <a href=""
-                        class="btn btn-primary border-0 rounded-pill py-3 px-4 px-md-5 animated bounceInLeft">Know
-                        More</a>
-                </div>
-
-            </div>
+    <div class="container-fluid bg-light py-6 my-6 mt-0">
+        <div class="container text-center animated bounceInDown">
+            <h1 class="display-1 mb-4">Product Range</h1>
+            <ol class="breadcrumb justify-content-center mb-0 animated bounceInDown">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item text-dark" aria-current="page">Product Range</li>
+            </ol>
         </div>
     </div>
     <!-- Hero End -->
@@ -167,9 +153,7 @@
                             clients
                         </h1>
                     </div>
-                    <p class="mb-4" style="background: linear-gradient(to right, #ff7e5f, red ,blue); -webkit-background-clip: text; color: transparent;">Since 2011, <span
-                                style="color: #210073; font-weight: bold;">JKP
-                            </span><span style="color: #fc0509; font-weight: bold;">Paints</span> India Pvt. Ltd. has been a leading provider of high-quality,
+                    <p class="mb-4">Since 2011, JKP Paints India Pvt. Ltd. has been a leading provider of high-quality,
                         cost-effective paint solutions. Our diverse product portfolio includes interior and exterior
                         emulsions, primers, distempers, and specialty paints for industrial and marine applications.
                         With a strong foundation in the minerals and raw materials industry, we prioritize innovation,
@@ -237,8 +221,7 @@
                     </div>
                 </div>
                 <div class="col-lg-5 wow bounceInUp" data-wow-delay="0.1s">
-                    <div class="video" style="background-image: url('img/video-bg.png');
-">
+                    <div class="video">
                         <button type="button" class="btn-play" data-bs-toggle="modal"
                             data-src="https://www.youtube-nocookie.com/embed/kDoedcT6tWw?si=ihho4sr1lAad5NLJ&t=9"
                             data-bs-target="#videoModal">
@@ -429,10 +412,9 @@
 
 
 
-    <!-- Decorative Paint Products Start -->
+    <!-- Deco Paint Products Start -->
     <div class="container-fluid bg-light event py-6 mt-0 mb-0">
         <div class="container">
-            <!-- Section Heading -->
             <div class="text-center wow bounceInUp" data-wow-delay="0.1s">
                 <small
                     class="d-inline-block fw-bold text-dark text-uppercase bg-light border border-primary rounded-pill px-4 py-1 mb-3">
@@ -440,66 +422,270 @@
                 </small>
                 <h1 class="display-5 mb-5">Explore Our Decorative Paint Range</h1>
             </div>
-
-            <!-- Decorative Paint Tabs -->
-            <div class="tab-class deco-tab text-center">
-                <!-- Tab Navigation -->
+            <div class="tab-class text-center">
                 <ul class="nav nav-pills d-inline-flex justify-content-center mb-5 wow bounceInUp"
                     data-wow-delay="0.1s">
-                    <!-- Each tab is clickable and uses data-tab attribute -->
                     <li class="nav-item p-2">
                         <a class="d-flex mx-2 py-2 border border-primary bg-light rounded-pill active"
-                            data-tab="deco-all">
+                            data-bs-toggle="pill" href="#tab-1">
                             <span class="text-dark" style="width: 150px;">All Products</span>
                         </a>
                     </li>
                     <li class="nav-item p-2">
-                        <a class="d-flex py-2 mx-2 border border-primary bg-light rounded-pill" data-tab="interior">
+                        <a class="d-flex py-2 mx-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill"
+                            href="#tab-2">
                             <span class="text-dark" style="width: 150px;">Interior Paints</span>
                         </a>
                     </li>
                     <li class="nav-item p-2">
-                        <a class="d-flex mx-2 py-2 border border-primary bg-light rounded-pill" data-tab="exterior">
+                        <a class="d-flex mx-2 py-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill"
+                            href="#tab-3">
                             <span class="text-dark" style="width: 150px;">Exterior Paints</span>
                         </a>
                     </li>
                     <li class="nav-item p-2">
-                        <a class="d-flex mx-2 py-2 border border-primary bg-light rounded-pill" data-tab="primer">
+                        <a class="d-flex mx-2 py-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill"
+                            href="#tab-4">
                             <span class="text-dark" style="width: 150px;">Primer</span>
                         </a>
                     </li>
                     <li class="nav-item p-2">
-                        <a class="d-flex mx-2 py-2 border border-primary bg-light rounded-pill" data-tab="distemper">
+                        <a class="d-flex mx-2 py-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill"
+                            href="#tab-5">
                             <span class="text-dark" style="width: 150px;">Distemper</span>
                         </a>
                     </li>
                     <li class="nav-item p-2">
-                        <a class="d-flex mx-2 py-2 border border-primary bg-light rounded-pill" data-tab="deco-bullet">
+                        <a class="d-flex mx-2 py-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill"
+                            href="#tab-14">
                             <span class="text-dark" style="width: 150px;">Bullet enamel</span>
                         </a>
                     </li>
                     <li class="nav-item p-2">
-                        <a class="d-flex mx-2 py-2 border border-primary bg-light rounded-pill"
-                            data-tab="deco-fireproof">
+                        <a class="d-flex mx-2 py-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill"
+                            href="#tab-6">
                             <span class="text-dark" style="width: 150px;">Fireproof Paint</span>
                         </a>
                     </li>
                 </ul>
 
-                <!-- Decorative Tab Content Container -->
-                <div id="tab-content" class="tab-content">
-                    <!-- Content gets injected here via JavaScript -->
+                <div class="tab-content">
+                    <!-- All Products -->
+                    <div id="tab-1" class="tab-pane fade show p-0 active">
+                        <div class="row g-4">
+                            <div class="col-lg-12">
+                                <div class="row g-4">
+                                    <div class="col-md-6 col-lg-3 wow bounceInUp" data-wow-delay="0.1s">
+                                        <div class="event-img position-relative">
+                                            <img class="img-fluid rounded w-100" src="img/event-1.jpg" alt="">
+                                            <div class="event-overlay d-flex flex-column p-4">
+                                                <h4 class="me-auto">Interior Paints</h4>
+                                                <a href="img/event-1.jpg" data-lightbox="paint" class="my-auto"><i
+                                                        class="fas fa-search-plus text-dark fa-2x"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-lg-3 wow bounceInUp" data-wow-delay="0.1s">
+                                        <div class="event-img position-relative">
+                                            <img class="img-fluid rounded w-100" src="img/event-1.jpg" alt="">
+                                            <div class="event-overlay d-flex flex-column p-4">
+                                                <h4 class="me-auto">Interior Paints</h4>
+                                                <a href="img/event-1.jpg" data-lightbox="paint" class="my-auto"><i
+                                                        class="fas fa-search-plus text-dark fa-2x"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-lg-3 wow bounceInUp" data-wow-delay="0.3s">
+                                        <div class="event-img position-relative">
+                                            <img class="img-fluid rounded w-100" src="img/event-2.jpg" alt="">
+                                            <div class="event-overlay d-flex flex-column p-4">
+                                                <h4 class="me-auto">Exterior Paints</h4>
+                                                <a href="img/event-2.jpg" data-lightbox="paint" class="my-auto"><i
+                                                        class="fas fa-search-plus text-dark fa-2x"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-lg-3 wow bounceInUp" data-wow-delay="0.5s">
+                                        <div class="event-img position-relative">
+                                            <img class="img-fluid rounded w-100" src="img/event-3.jpg" alt="">
+                                            <div class="event-overlay d-flex flex-column p-4">
+                                                <h4 class="me-auto">Primer</h4>
+                                                <a href="img/event-3.jpg" data-lightbox="paint" class="my-auto"><i
+                                                        class="fas fa-search-plus text-dark fa-2x"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-lg-3 wow bounceInUp" data-wow-delay="0.7s">
+                                        <div class="event-img position-relative">
+                                            <img class="img-fluid rounded w-100" src="img/event-4.jpg" alt="">
+                                            <div class="event-overlay d-flex flex-column p-4">
+                                                <h4 class="me-auto">Distemper</h4>
+                                                <a href="img/event-4.jpg" data-lightbox="paint" class="my-auto"><i
+                                                        class="fas fa-search-plus text-dark fa-2x"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-lg-3 wow bounceInUp" data-wow-delay="0.9s">
+                                        <div class="event-img position-relative">
+                                            <img class="img-fluid rounded w-100" src="img/event-5.jpg" alt="">
+                                            <div class="event-overlay d-flex flex-column p-4">
+                                                <h4 class="me-auto">Bullet enamel</h4>
+                                                <a href="img/event-5.jpg" data-lightbox="paint" class="my-auto"><i
+                                                        class="fas fa-search-plus text-dark fa-2x"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-lg-3 wow bounceInUp" data-wow-delay="0.9s">
+                                        <div class="event-img position-relative">
+                                            <img class="img-fluid rounded w-100" src="img/event-5.jpg" alt="">
+                                            <div class="event-overlay d-flex flex-column p-4">
+                                                <h4 class="me-auto">Fireproof Paint</h4>
+                                                <a href="img/event-5.jpg" data-lightbox="paint" class="my-auto"><i
+                                                        class="fas fa-search-plus text-dark fa-2x"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Interior Paints -->
+                    <div id="tab-2" class="tab-pane fade show p-0">
+                        <div class="row g-4">
+                            <div class="col-md-6 col-lg-3 ">
+                                <div class="event-img position-relative">
+                                    <img class="img-fluid rounded w-100" src="img/event-1.jpg" alt="">
+                                    <div class="event-overlay d-flex flex-column p-4">
+                                        <h4 class="me-auto">Interior Paints</h4>
+                                        <a href="img/event-1.jpg" data-lightbox="paint" class="my-auto"><i
+                                                class="fas fa-search-plus text-dark fa-2x"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-3 ">
+                                <div class="event-img position-relative">
+                                    <img class="img-fluid rounded w-100" src="img/event-1.jpg" alt="">
+                                    <div class="event-overlay d-flex flex-column p-4">
+                                        <h4 class="me-auto">Interior Paints</h4>
+                                        <a href="img/event-1.jpg" data-lightbox="paint" class="my-auto"><i
+                                                class="fas fa-search-plus text-dark fa-2x"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-3">
+                                <div class="event-img position-relative">
+                                    <img class="img-fluid rounded w-100" src="img/event-2.jpg" alt="">
+                                    <div class="event-overlay d-flex flex-column p-4">
+                                        <h4 class="me-auto">Exterior Paints</h4>
+                                        <a href="img/event-2.jpg" data-lightbox="paint" class="my-auto"><i
+                                                class="fas fa-search-plus text-dark fa-2x"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-3">
+                                <div class="event-img position-relative">
+                                    <img class="img-fluid rounded w-100" src="img/event-3.jpg" alt="">
+                                    <div class="event-overlay d-flex flex-column p-4">
+                                        <h4 class="me-auto">Primer</h4>
+                                        <a href="img/event-3.jpg" data-lightbox="paint" class="my-auto"><i
+                                                class="fas fa-search-plus text-dark fa-2x"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Exterior Paints -->
+                    <div id="tab-3" class="tab-pane fade show p-0">
+                        <div class="row g-4">
+                            <div class="col-md-6 col-lg-3">
+                                <div class="event-img position-relative">
+                                    <img class="img-fluid rounded w-100" src="img/event-2.jpg" alt="">
+                                    <div class="event-overlay d-flex flex-column p-4">
+                                        <h4 class="me-auto">Exterior Paints</h4>
+                                        <a href="img/event-2.jpg" data-lightbox="paint-3" class="my-auto"><i
+                                                class="fas fa-search-plus text-dark fa-2x"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Primer -->
+                    <div id="tab-4" class="tab-pane fade show p-0">
+                        <div class="row g-4">
+                            <div class="col-md-6 col-lg-3">
+                                <div class="event-img position-relative">
+                                    <img class="img-fluid rounded w-100" src="img/event-3.jpg" alt="">
+                                    <div class="event-overlay d-flex flex-column p-4">
+                                        <h4 class="me-auto">Primer</h4>
+                                        <a href="img/event-3.jpg" data-lightbox="paint-4" class="my-auto"><i
+                                                class="fas fa-search-plus text-dark fa-2x"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Distemper -->
+                    <div id="tab-5" class="tab-pane fade show p-0">
+                        <div class="row g-4">
+                            <div class="col-md-6 col-lg-3">
+                                <div class="event-img position-relative">
+                                    <img class="img-fluid rounded w-100" src="img/event-4.jpg" alt="">
+                                    <div class="event-overlay d-flex flex-column p-4">
+                                        <h4 class="me-auto">Distemper</h4>
+                                        <a href="img/event-4.jpg" data-lightbox="paint-5" class="my-auto"><i
+                                                class="fas fa-search-plus text-dark fa-2x"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Fireproof Paint -->
+                    <div id="tab-6" class="tab-pane fade show p-0">
+                        <div class="row g-4">
+                            <div class="col-md-6 col-lg-3">
+                                <div class="event-img position-relative">
+                                    <img class="img-fluid rounded w-100" src="img/event-5.jpg" alt="">
+                                    <div class="event-overlay d-flex flex-column p-4">
+                                        <h4 class="me-auto">Fireproof Paint</h4>
+                                        <a href="img/event-5.jpg" data-lightbox="paint-6" class="my-auto"><i
+                                                class="fas fa-search-plus text-dark fa-2x"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bullet enamel -->
+                    <div id="tab-14" class="tab-pane fade show p-0">
+                        <div class="row g-4">
+                            <div class="col-md-6 col-lg-3">
+                                <div class="event-img position-relative">
+                                    <img class="img-fluid rounded w-100" src="img/event-5.jpg" alt="">
+                                    <div class="event-overlay d-flex flex-column p-4">
+                                        <h4 class="me-auto">Bullet enamel</h4>
+                                        <a href="img/event-5.jpg" data-lightbox="paint-6" class="my-auto"><i
+                                                class="fas fa-search-plus text-dark fa-2x"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /Individual Tabs -->
                 </div>
             </div>
         </div>
     </div>
-    <!-- Decorative Paint Products End -->
-
+    <!-- Deco Paint Products End -->
 
     <!-- Industrial & Specialty Paints Start -->
-    <div class="container-fluid bg-light event py-6 mt-0 mb-0">
+    <div class="container-fluid event py-6 mt-0 mb-0">
         <div class="container">
-            <!-- Section Heading -->
             <div class="text-center wow bounceInUp" data-wow-delay="0.1s">
                 <small
                     class="d-inline-block fw-bold text-dark text-uppercase bg-light border border-primary rounded-pill px-4 py-1 mb-3">
@@ -507,221 +693,226 @@
                 </small>
                 <h1 class="display-5 mb-5">Explore Our Industrial & Specialty Paint Range</h1>
             </div>
-
-            <!-- Industrial Paint Tabs -->
-            <div class="tab-class industrial-tab text-center">
-                <!-- Tab Navigation -->
+            <div class="tab-class text-center">
                 <ul class="nav nav-pills d-inline-flex justify-content-center mb-5 wow bounceInUp"
                     data-wow-delay="0.1s">
-                    <!-- Each tab uses a data-tab attribute to identify what to show -->
                     <li class="nav-item p-2">
                         <a class="d-flex mx-2 py-2 border border-primary bg-light rounded-pill active"
-                            data-tab="industry-all">
+                            data-bs-toggle="pill" href="#tab-13">
                             <span class="text-dark" style="width: 150px;">All Products</span>
                         </a>
                     </li>
                     <li class="nav-item p-2">
-                        <a class="d-flex py-2 mx-2 border border-primary bg-light rounded-pill" data-tab="industrial">
+                        <a class="d-flex py-2 mx-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill"
+                            href="#tab-7">
                             <span class="text-dark" style="width: 150px;">Industrial Paints</span>
                         </a>
                     </li>
                     <li class="nav-item p-2">
-                        <a class="d-flex mx-2 py-2 border border-primary bg-light rounded-pill" data-tab="marine">
+                        <a class="d-flex mx-2 py-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill"
+                            href="#tab-8">
                             <span class="text-dark" style="width: 150px;">Marine Paints</span>
                         </a>
                     </li>
                     <li class="nav-item p-2">
-                        <a class="d-flex mx-2 py-2 border border-primary bg-light rounded-pill" data-tab="oxide">
+                        <a class="d-flex mx-2 py-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill"
+                            href="#tab-9">
                             <span class="text-dark" style="width: 150px;">Red Oxide Primers</span>
                         </a>
                     </li>
                     <li class="nav-item p-2">
-                        <a class="d-flex mx-2 py-2 border border-primary bg-light rounded-pill" data-tab="bullet">
+                        <a class="d-flex mx-2 py-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill"
+                            href="#tab-10">
                             <span class="text-dark" style="width: 150px;">Bullet Enamel</span>
                         </a>
                     </li>
                     <li class="nav-item p-2">
-                        <a class="d-flex mx-2 py-2 border border-primary bg-light rounded-pill" data-tab="aluminum">
+                        <a class="d-flex mx-2 py-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill"
+                            href="#tab-11">
                             <span class="text-dark" style="width: 150px;">Aluminum Paint</span>
                         </a>
                     </li>
                     <li class="nav-item p-2">
-                        <a class="d-flex mx-2 py-2 border border-primary bg-light rounded-pill" data-tab="fireproof">
+                        <a class="d-flex mx-2 py-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill"
+                            href="#tab-12">
                             <span class="text-dark" style="width: 150px;">Fireproof Paint</span>
                         </a>
                     </li>
                 </ul>
 
-                <!-- Industrial Tab Content Container -->
-                <div id="industrial-tab-content" class="tab-content">
-                    <!-- Content gets injected here via JavaScript -->
+                <div class="tab-content">
+                    <!-- All Products -->
+                    <div id="tab-13" class="tab-pane fade show p-0 active">
+                        <div class="row g-4">
+                            <div class="col-lg-12">
+                                <div class="row g-4">
+                                    <div class="col-md-6 col-lg-3 wow bounceInUp" data-wow-delay="0.1s">
+                                        <div class="event-img position-relative">
+                                            <img class="img-fluid rounded w-100" src="img/event-1.jpg" alt="">
+                                            <div class="event-overlay d-flex flex-column p-4">
+                                                <h4 class="me-auto">Industrial Paints</h4>
+                                                <a href="img/event-1.jpg" data-lightbox="paint" class="my-auto"><i
+                                                        class="fas fa-search-plus text-dark fa-2x"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-lg-3 wow bounceInUp" data-wow-delay="0.3s">
+                                        <div class="event-img position-relative">
+                                            <img class="img-fluid rounded w-100" src="img/event-2.jpg" alt="">
+                                            <div class="event-overlay d-flex flex-column p-4">
+                                                <h4 class="me-auto">Marine Paints</h4>
+                                                <a href="img/event-2.jpg" data-lightbox="paint" class="my-auto"><i
+                                                        class="fas fa-search-plus text-dark fa-2x"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-lg-3 wow bounceInUp" data-wow-delay="0.5s">
+                                        <div class="event-img position-relative">
+                                            <img class="img-fluid rounded w-100" src="img/event-3.jpg" alt="">
+                                            <div class="event-overlay d-flex flex-column p-4">
+                                                <h4 class="me-auto">Red Oxide Primers</h4>
+                                                <a href="img/event-3.jpg" data-lightbox="paint" class="my-auto"><i
+                                                        class="fas fa-search-plus text-dark fa-2x"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-lg-3 wow bounceInUp" data-wow-delay="0.7s">
+                                        <div class="event-img position-relative">
+                                            <img class="img-fluid rounded w-100" src="img/event-4.jpg" alt="">
+                                            <div class="event-overlay d-flex flex-column p-4">
+                                                <h4 class="me-auto">Bullet Enamel</h4>
+                                                <a href="img/event-4.jpg" data-lightbox="paint" class="my-auto"><i
+                                                        class="fas fa-search-plus text-dark fa-2x"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-lg-3 wow bounceInUp" data-wow-delay="0.9s">
+                                        <div class="event-img position-relative">
+                                            <img class="img-fluid rounded w-100" src="img/event-5.jpg" alt="">
+                                            <div class="event-overlay d-flex flex-column p-4">
+                                                <h4 class="me-auto">Aluminum Paint</h4>
+                                                <a href="img/event-5.jpg" data-lightbox="paint" class="my-auto"><i
+                                                        class="fas fa-search-plus text-dark fa-2x"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-lg-3 wow bounceInUp" data-wow-delay="1.1s">
+                                        <div class="event-img position-relative">
+                                            <img class="img-fluid rounded w-100" src="img/event-5.jpg" alt="">
+                                            <div class="event-overlay d-flex flex-column p-4">
+                                                <h4 class="me-auto">Fireproof Paint</h4>
+                                                <a href="img/event-5.jpg" data-lightbox="paint" class="my-auto"><i
+                                                        class="fas fa-search-plus text-dark fa-2x"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Individual Tabs -->
+                    <div id="tab-7" class="tab-pane fade show p-0">
+                        <div class="row g-4">
+                            <div class="col-md-6 col-lg-3">
+                                <div class="event-img position-relative">
+                                    <img class="img-fluid rounded w-100" src="img/event-1.jpg" alt="">
+                                    <div class="event-overlay d-flex flex-column p-4">
+                                        <h4 class="me-auto">Industrial Paints</h4>
+                                        <a href="img/event-1.jpg" data-lightbox="paint" class="my-auto"><i
+                                                class="fas fa-search-plus text-dark fa-2x"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="tab-8" class="tab-pane fade show p-0">
+                        <div class="row g-4">
+                            <div class="col-md-6 col-lg-3">
+                                <div class="event-img position-relative">
+                                    <img class="img-fluid rounded w-100" src="img/event-2.jpg" alt="">
+                                    <div class="event-overlay d-flex flex-column p-4">
+                                        <h4 class="me-auto">Marine Paints</h4>
+                                        <a href="img/event-2.jpg" data-lightbox="paint" class="my-auto"><i
+                                                class="fas fa-search-plus text-dark fa-2x"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="tab-9" class="tab-pane fade show p-0">
+                        <div class="row g-4">
+                            <div class="col-md-6 col-lg-3">
+                                <div class="event-img position-relative">
+                                    <img class="img-fluid rounded w-100" src="img/event-3.jpg" alt="">
+                                    <div class="event-overlay d-flex flex-column p-4">
+                                        <h4 class="me-auto">Red Oxide Primers</h4>
+                                        <a href="img/event-3.jpg" data-lightbox="paint" class="my-auto"><i
+                                                class="fas fa-search-plus text-dark fa-2x"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="tab-10" class="tab-pane fade show p-0">
+                        <div class="row g-4">
+                            <div class="col-md-6 col-lg-3">
+                                <div class="event-img position-relative">
+                                    <img class="img-fluid rounded w-100" src="img/event-4.jpg" alt="">
+                                    <div class="event-overlay d-flex flex-column p-4">
+                                        <h4 class="me-auto">Bullet Enamel</h4>
+                                        <a href="img/event-4.jpg" data-lightbox="paint" class="my-auto"><i
+                                                class="fas fa-search-plus text-dark fa-2x"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="tab-11" class="tab-pane fade show p-0">
+                        <div class="row g-4">
+                            <div class="col-md-6 col-lg-3">
+                                <div class="event-img position-relative">
+                                    <img class="img-fluid rounded w-100" src="img/event-5.jpg" alt="">
+                                    <div class="event-overlay d-flex flex-column p-4">
+                                        <h4 class="me-auto">Aluminum Paint</h4>
+                                        <a href="img/event-5.jpg" data-lightbox="paint" class="my-auto"><i
+                                                class="fas fa-search-plus text-dark fa-2x"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="tab-12" class="tab-pane fade show p-0">
+                        <div class="row g-4">
+                            <div class="col-md-6 col-lg-3">
+                                <div class="event-img position-relative">
+                                    <img class="img-fluid rounded w-100" src="img/event-5.jpg" alt="">
+                                    <div class="event-overlay d-flex flex-column p-4">
+                                        <h4 class="me-auto">Fireproof Paint</h4>
+                                        <a href="img/event-5.jpg" data-lightbox="paint" class="my-auto"><i
+                                                class="fas fa-search-plus text-dark fa-2x"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /Individual Tabs -->
                 </div>
             </div>
         </div>
     </div>
     <!-- Industrial & Specialty Paints End -->
 
-    <!-- JavaScript to handle tab switching and content rendering -->
-    <script>
-        // Decorative Paint Data
-        const tabData = {
-            "deco-all": [
-                //interior
-                { title: "AURA Interior Paint", page: "interior.html", img: "img/Buckets/Interior/AURA1.png" },
-                // { title: "Intouch Interior Paint", page: "interior.html", img: "img/Buckets/Interior/Intouch1.png" },
-                // { title: "Royal Touch Interior Paint", page: "interior.html", img: "img/Buckets/Interior/Royal Touch1.png" },
-
-                //exterior
-                { title: "Champion Exterior Paint", page: "exterior.html", img: "img/Buckets/Exterior/Champion1.png" },
-                // { title: "Proshine Exterior Paint", page: "exterior.html", img: "img/Buckets/Exterior/Proshine1.png" },
-                // { title: "Wondershield Exterior Paint", page: "exterior.html", img: "img/Buckets/Exterior/Wondershield1.png" },
-
-                //primer
-                // { title: "Trubond Exterior Primer", page: "primer.html", img: "img/Buckets/Primer/Trubond-ex1.png" },
-                { title: "Truebond Interior Primer", page: "primer.html", img: "img/Buckets/Primer/Truebond-in1.png" },
-                { title: "Ultrabond Exterior Primer", page: "primer.html", img: "img/Buckets/Primer/Ultrabond-ex1.png" },
-                // { title: "Ultrabond Interior Primer", page: "primer.html", img: "img/Buckets/Primer/Ultrabond-in1.png" },
-                { title: "Universal Primer", page: "primer.html", img: "img/Buckets/Primer/Universal Primer1.png" },
-
-                //distemper
-                { title: "Tiger Distemper", page: "distemper.html", img: "img/Buckets/Distemper/Tiger-Distemper1.png" },
-
-                //enamel
-                { title: "Bullet Enamel", page: "enamel.html", img: "img/Buckets/Enamel/Bullet-Enamel1.png" },
-
-                //fireproof
-                { title: "Fireproof Paint", page: "fire.html", img: "img/Buckets/Fireproof/Fire-Guard1.png" }
-            ],
-            "interior": [
-                { title: "AURA Interior Paint", page: "interior.html", img: "img/Buckets/Interior/AURA1.png" },
-                { title: "Intouch Interior Paint", page: "interior.html", img: "img/Buckets/Interior/Intouch1.png" },
-                { title: "Royal Touch Interior Paint", page: "interior.html", img: "img/Buckets/Interior/Royal Touch1.png" }
-            ],
-            "exterior": [
-                { title: "Champion Exterior Paint", page: "exterior.html", img: "img/Buckets/Exterior/Champion1.png" },
-                { title: "Proshine Exterior Paint", page: "exterior.html", img: "img/Buckets/Exterior/Proshine1.png" },
-                { title: "Wondershield Exterior Paint", page: "exterior.html", img: "img/Buckets/Exterior/Wondershield1.png" }
-            ],
-            "primer": [
-                { title: "Trubond Exterior Primer", page: "primer.html", img: "img/Buckets/Primer/Trubond-ex1.png" },
-                { title: "Truebond Interior Primer", page: "primer.html", img: "img/Buckets/Primer/Truebond-in1.png" },
-                { title: "Ultrabond Exterior Primer", page: "primer.html", img: "img/Buckets/Primer/Ultrabond-ex1.png" },
-                { title: "Ultrabond Interior Primer", page: "primer.html", img: "img/Buckets/Primer/Ultrabond-in1.png" },
-                { title: "Universal Primer", page: "primer.html", img: "img/Buckets/Primer/Universal Primer1.png" }
-            ],
-            "distemper": [
-                { title: "Tiger Distemper", page: "distemper.html", img: "img/Buckets/Distemper/Tiger-Distemper1.png" }
-            ],
-            "deco-bullet": [
-                { title: "Bullet Enamel", page: "enamel.html", img: "img/Buckets/Enamel/Bullet-Enamel1.png" }
-            ],
-            "deco-fireproof": [
-                { title: "Fireproof Paint", page: "fire.html", img: "img/Buckets/Fireproof/Fire-Guard1.png" }
-            ]
-        };
-
-        // Industrial Paint Data
-        const industrialTabData = {
-            "industry-all": [
-
-                //industrial
-                { title: "Industrial Paints", page: "industrial.html", img: "img/Buckets/Industrial/Industrial-Paint1.png" },
-
-                //marine
-                { title: "Marine Paints", page: "marine.html", img: "img/Buckets/Marine/Marine-Guard1.png" },
-
-                //redoxide
-                { title: "Red Oxide Primers", page: "primer.html", img: "img/Buckets/Red-Oxide/Red Oxide Primer1.png" },
-
-                //enamel
-                { title: "Bullet Enamel", page: "enamel.html", img: "img/Buckets/Enamel/Bullet-Enamel1.png" },
-
-                //aluminum
-                { title: "Aluminum Paint", page: "aluminium.html", img: "img/Buckets/Aluminum/Aluminium-paint1.png" },
-
-                //fireproof
-                { title: "Fireproof Paint", page: "fire.html", img: "img/Buckets/Fireproof/Fire-Guard1.png" }
-            ],
-            "industrial": [
-                { title: "Industrial Paints", page: "industrial.html", img: "img/Buckets/Industrial/Industrial-Paint1.png" }
-            ],
-            "marine": [
-                { title: "Marine Paints", page: "marine.html", img: "img/Buckets/Marine/Marine-Guard1.png" }
-            ],
-            "oxide": [
-                { title: "Red Oxide Primers", page: "primer.html", img: "img/Buckets/Red-Oxide/Red Oxide Primer1.png" }
-            ],
-            "bullet": [
-                { title: "Bullet Enamel", page: "enamel.html", img: "img/Buckets/Enamel/Bullet-Enamel1.png" }
-            ],
-            "aluminum": [
-                { title: "Aluminum Paint", page: "aluminium.html", img: "img/Buckets/Aluminum/Aluminium-paint1.png" }
-            ],
-            "fireproof": [
-                { title: "Fireproof Paint", page: "fire.html", img: "img/Buckets/Fireproof/Fire-Guard1.png" }
-            ]
-        };
-
-        // Function to render tab content based on selected tab
-        function renderTabContent(containerId, data, tabId) {
-            const container = document.getElementById(containerId);
-            container.innerHTML = ""; // Clear previous content
-
-            const items = data[tabId] || [];
-            const row = document.createElement("div");
-            row.className = "row g-4";
-
-            // Create cards for each item
-            items.forEach(item => {
-                const col = document.createElement("div");
-                col.className = "col-md-6 col-lg-3";
-                col.innerHTML = `
-                <div class="event-img position-relative wow bounceInUp" data-wow-delay="0.1s">
-                    <img class="img-fluid rounded w-100" src="${item.img}" alt="${item.title}">
-                    <div class="event-overlay d-flex flex-column p-4">
-                        <h4 class="me-auto">${item.title}</h4>
-                        <a href="${item.page}" class="my-auto">
-                            <i class="fas fa-cart-plus text-dark fa-2x"></i>
-                        </a>
-                    </div>
-                </div>
-            `;
-                row.appendChild(col);
-            });
-
-            container.appendChild(row); // Append to container
-        }
-
-        // Decorative tab click handlers
-        document.querySelectorAll(".deco-tab .nav-item a").forEach(tab => {
-            tab.addEventListener("click", function () {
-                // Remove active class from all
-                document.querySelectorAll(".deco-tab .nav-item a").forEach(el => el.classList.remove("active"));
-                this.classList.add("active");
-                renderTabContent("tab-content", tabData, this.getAttribute("data-tab"));
-            });
-        });
-
-        // Industrial tab click handlers
-        document.querySelectorAll(".industrial-tab .nav-item a").forEach(tab => {
-            tab.addEventListener("click", function () {
-                document.querySelectorAll(".industrial-tab .nav-item a").forEach(el => el.classList.remove("active"));
-                this.classList.add("active");
-                renderTabContent("industrial-tab-content", industrialTabData, this.getAttribute("data-tab"));
-            });
-        });
-
-        // Initialize with default tab content
-        renderTabContent("tab-content", tabData, "deco-all");
-        renderTabContent("industrial-tab-content", industrialTabData, "industry-all");
-    </script>
-
-
 
 
     <!-- Book Us Start -->
-    <div class="container-fluid contact py-5 wow bounceInUp" data-wow-delay="0.1s"
-        style="background-image:url(img/form-bg.png); ">
+    <div class="container-fluid contact py-6 wow bounceInUp" data-wow-delay="0.1s"
+        style="background-image:url(./img/hero4.png);">
         <div class="container">
             <div class="row g-0">
 
@@ -972,45 +1163,39 @@
 
 
     <!-- Partners Start -->
-    <div class="container-fluid team py-2" style="margin-bottom: -100px;">
+    <div class="container-fluid team py-6">
         <div class="container">
             <div class="text-center wow bounceInUp" data-wow-delay="0.1s">
                 <small
                     class="d-inline-block fw-bold text-dark text-uppercase bg-light border border-primary rounded-pill px-4 py-1 mb-3">Our
                     Partners</small>
-                <h1 class="display-5 mb-2">Trusted By Leading Brands</h1>
+                <h1 class="display-5 mb-5">Trusted By Leading Brands</h1>
             </div>
             <div class="owl-carousel owl-theme dtestimonial-carousel testimonial-carousel-3 wow bounceInUp"
                 data-wow-delay="0.2s">
                 <div>
-                    <img src="img/Partners/Shalimar_Paints.png" style="height: 200px; width: 200px; " alt="">
+                    <img src="img/blog-1.jpg" style="height: 200px; width: 200px; " alt="">
                 </div>
                 <div>
-                    <img src="img/Partners/asin ppg.png" style="height: 200px; width: 200px; " alt="">
+                    <img src="img/blog-1.jpg" style="height: 200px; width: 200px; " alt="">
                 </div>
                 <div>
-                    <img src="img/Partners/growel.png" style="height: 200px; width: 200px; " alt="">
+                    <img src="img/blog-1.jpg" style="height: 200px; width: 200px; " alt="">
                 </div>
                 <div>
-                    <img src="img/Partners/kansai-nerolac.png" style="height: 200px; width: 200px; " alt="">
+                    <img src="img/blog-1.jpg" style="height: 200px; width: 200px; " alt="">
                 </div>
                 <div>
-                    <img src="img/Partners/asian-paints.png" style="height: 200px; width: 200px; " alt="">
+                    <img src="img/blog-1.jpg" style="height: 200px; width: 200px; " alt="">
                 </div>
                 <div>
-                    <img src="img/Partners/berger-paints.png" style="height: 200px; width: 200px; " alt="">
+                    <img src="img/blog-1.jpg" style="height: 200px; width: 200px; " alt="">
                 </div>
                 <div>
-                    <img src="img/Partners/ppg-logo.png" style="height: 200px; width: 200px; " alt="">
+                    <img src="img/blog-1.jpg" style="height: 200px; width: 200px; " alt="">
                 </div>
                 <div>
-                    <img src="img/Partners/jsw-paints.png" style="height: 200px; width: 200px; " alt="">
-                </div>
-                <div>
-                    <img src="img/Partners/kansai-paint.png" style="height: 200px; width: 200px; " alt="">
-                </div>
-                <div>
-                    <img src="img/Partners/LL-Products.png" style="height: 200px; width: 200px; " alt="">
+                    <img src="img/blog-1.jpg" style="height: 200px; width: 200px; " alt="">
                 </div>
             </div>
         </div>
@@ -1030,14 +1215,13 @@
                 data-wow-delay="0.1s">
                 <div class="testimonial-item rounded bg-light">
                     <div class="d-flex mb-3">
-                        <img src="img/testimonials/Shree_Laxmi.png" class="img-fluid rounded-circle flex-shrink-0"
-                            alt="">
+                        <img src="img/testimonial-1.jpg" class="img-fluid rounded-circle flex-shrink-0" alt="">
                         <div class="position-absolute" style="top: 15px; right: 20px;">
                             <i class="fa fa-quote-right fa-2x"></i>
                         </div>
                         <div class="ps-3 my-auto">
-                            <h4 class="mb-0">Shree Laxmi Interiors</h4>
-                            <p class="m-0">Interior Designer</p>
+                            <h4 class="mb-0">Person Name</h4>
+                            <p class="m-0">Profession</p>
                         </div>
                     </div>
                     <div class="testimonial-content">
@@ -1048,20 +1232,19 @@
                             <i class="fas fa-star text-primary"></i>
                             <i class="fas fa-star text-primary"></i>
                         </div>
-                        <p class="fs-5 m-0 pt-3">We've trusted JKP Paints' interior emulsions for over 5 years the
-                            finish, coverage, and durability are top-notch. Clients love the smooth, luxurious look.</p>
+                        <p class="fs-5 m-0 pt-3">Lorem ipsum dolor sit amet elit, sed do eiusmod tempor ut labore et
+                            dolore magna aliqua.</p>
                     </div>
                 </div>
                 <div class="testimonial-item rounded bg-light">
                     <div class="d-flex mb-3">
-                        <img src="img/testimonials/Sunbeam_Constructions.png"
-                            class="img-fluid rounded-circle flex-shrink-0" alt="">
+                        <img src="img/testimonial-2.jpg" class="img-fluid rounded-circle flex-shrink-0" alt="">
                         <div class="position-absolute" style="top: 15px; right: 20px;">
                             <i class="fa fa-quote-right fa-2x"></i>
                         </div>
                         <div class="ps-3 my-auto">
-                            <h4 class="mb-0">Sunbeam Constructions Pvt. Ltd.</h4>
-                            <p class="m-0">Builder</p>
+                            <h4 class="mb-0">Person Name</h4>
+                            <p class="m-0">Profession</p>
                         </div>
                     </div>
                     <div class="testimonial-content">
@@ -1072,20 +1255,19 @@
                             <i class="fas fa-star text-primary"></i>
                             <i class="fas fa-star text-primary"></i>
                         </div>
-                        <p class="fs-5 m-0 pt-3">JKP’s exterior paints have stood the test of harsh weather and time.
-                            Their durability and fade resistance give our projects a premium touch that lasts.</p>
+                        <p class="fs-5 m-0 pt-3">Lorem ipsum dolor sit amet elit, sed do eiusmod tempor ut labore et
+                            dolore magna aliqua.</p>
                     </div>
                 </div>
                 <div class="testimonial-item rounded bg-light">
                     <div class="d-flex mb-3">
-                        <img src="img/testimonials/Surya_Traders.png" class="img-fluid rounded-circle flex-shrink-0"
-                            alt="">
+                        <img src="img/testimonial-3.jpg" class="img-fluid rounded-circle flex-shrink-0" alt="">
                         <div class="position-absolute" style="top: 15px; right: 20px;">
                             <i class="fa fa-quote-right fa-2x"></i>
                         </div>
                         <div class="ps-3 my-auto">
-                            <h4 class="mb-0">Surya Traders</h4>
-                            <p class="m-0">Paint Distributor</p>
+                            <h4 class="mb-0">Person Name</h4>
+                            <p class="m-0">Profession</p>
                         </div>
                     </div>
                     <div class="testimonial-content">
@@ -1096,20 +1278,19 @@
                             <i class="fas fa-star text-primary"></i>
                             <i class="fas fa-star text-primary"></i>
                         </div>
-                        <p class="fs-5 m-0 pt-3">The primer range from JKP Paints is always in high demand. Contractors
-                            trust its quality and ease of application & timely delivery makes our job easier.</p>
+                        <p class="fs-5 m-0 pt-3">Lorem ipsum dolor sit amet elit, sed do eiusmod tempor ut labore et
+                            dolore magna aliqua.</p>
                     </div>
                 </div>
                 <div class="testimonial-item rounded bg-light">
                     <div class="d-flex mb-3">
-                        <img src="img/testimonials/Gupta_Hardware.png" class="img-fluid rounded-circle flex-shrink-0"
-                            alt="">
+                        <img src="img/testimonial-4.jpg" class="img-fluid rounded-circle flex-shrink-0" alt="">
                         <div class="position-absolute" style="top: 15px; right: 20px;">
                             <i class="fa fa-quote-right fa-2x"></i>
                         </div>
                         <div class="ps-3 my-auto">
-                            <h4 class="mb-0">Gupta Paint & Hardware</h4>
-                            <p class="m-0">Retail Trader</p>
+                            <h4 class="mb-0">Person Name</h4>
+                            <p class="m-0">Profession</p>
                         </div>
                     </div>
                     <div class="testimonial-content">
@@ -1120,119 +1301,21 @@
                             <i class="fas fa-star text-primary"></i>
                             <i class="fas fa-star text-primary"></i>
                         </div>
-                        <p class="fs-5 m-0 pt-3">Distempers from JKP Paints offer excellent value for budget-conscious
-                            customers without compromising on finish. It’s a fast-moving product in our shop.</p>
-                    </div>
-                </div>
-                <div class="testimonial-item rounded bg-light">
-                    <div class="d-flex mb-3">
-                        <img src="img/testimonials/Bhavani_Industries.png"
-                            class="img-fluid rounded-circle flex-shrink-0" alt="">
-                        <div class="position-absolute" style="top: 15px; right: 20px;">
-                            <i class="fa fa-quote-right fa-2x"></i>
-                        </div>
-                        <div class="ps-3 my-auto">
-                            <h4 class="mb-0">Jai Bhavani Industries</h4>
-                            <p class="m-0">Industrial Manufacturer</p>
-                        </div>
-                    </div>
-                    <div class="testimonial-content">
-                        <div class="d-flex">
-                            <i class="fas fa-star text-primary"></i>
-                            <i class="fas fa-star text-primary"></i>
-                            <i class="fas fa-star text-primary"></i>
-                            <i class="fas fa-star text-primary"></i>
-                            <i class="fas fa-star text-primary"></i>
-                        </div>
-                        <p class="fs-5 m-0 pt-3">We rely on JKP’s industrial paints for our machinery. The coating is
-                            tough, chemical-resistant, and enhances equipment life. Great job on industrial solutions!
-                        </p>
-                    </div>
-                </div>
-                <div class="testimonial-item rounded bg-light">
-                    <div class="d-flex mb-3">
-                        <img src="img/testimonials/Oceanic_Shipbuilders.png"
-                            class="img-fluid rounded-circle flex-shrink-0" alt="">
-                        <div class="position-absolute" style="top: 15px; right: 20px;">
-                            <i class="fa fa-quote-right fa-2x"></i>
-                        </div>
-                        <div class="ps-3 my-auto">
-                            <h4 class="mb-0">Oceanic Shipbuilders Ltd.</h4>
-                            <p class="m-0">Marine Contractor</p>
-                        </div>
-                    </div>
-                    <div class="testimonial-content">
-                        <div class="d-flex">
-                            <i class="fas fa-star text-primary"></i>
-                            <i class="fas fa-star text-primary"></i>
-                            <i class="fas fa-star text-primary"></i>
-                            <i class="fas fa-star text-primary"></i>
-                            <i class="fas fa-star text-primary"></i>
-                        </div>
-                        <p class="fs-5 m-0 pt-3">We were impressed by the performance of JKP’s marine paints. Even under
-                            saline and high-moisture conditions, the coatings remain strong and intact.</p>
-                    </div>
-                </div>
-                <div class="testimonial-item rounded bg-light">
-                    <div class="d-flex mb-3">
-                        <img src="img/testimonials/Pranav_Developers.png" class="img-fluid rounded-circle flex-shrink-0"
-                            alt="">
-                        <div class="position-absolute" style="top: 15px; right: 20px;">
-                            <i class="fa fa-quote-right fa-2x"></i>
-                        </div>
-                        <div class="ps-3 my-auto">
-                            <h4 class="mb-0">Pranav Developers</h4>
-                            <p class="m-0">Construction Company</p>
-                        </div>
-                    </div>
-                    <div class="testimonial-content">
-                        <div class="d-flex">
-                            <i class="fas fa-star text-primary"></i>
-                            <i class="fas fa-star text-primary"></i>
-                            <i class="fas fa-star text-primary"></i>
-                            <i class="fas fa-star text-primary"></i>
-                            <i class="fas fa-star text-primary"></i>
-                        </div>
-                        <p class="fs-5 m-0 pt-3">JKP Paints has become our go-to brand for both interior and exterior
-                            finishes. The customized color options really help bring our design vision to life.</p>
-                    </div>
-                </div>
-                <div class="testimonial-item rounded bg-light">
-                    <div class="d-flex mb-3">
-                        <img src="img/testimonials/Kalpana_Coatings.png" class="img-fluid rounded-circle flex-shrink-0"
-                            alt="">
-                        <div class="position-absolute" style="top: 15px; right: 20px;">
-                            <i class="fa fa-quote-right fa-2x"></i>
-                        </div>
-                        <div class="ps-3 my-auto">
-                            <h4 class="mb-0">Kalpana Coatings</h4>
-                            <p class="m-0">Distributor</p>
-                        </div>
-                    </div>
-                    <div class="testimonial-content">
-                        <div class="d-flex">
-                            <i class="fas fa-star text-primary"></i>
-                            <i class="fas fa-star text-primary"></i>
-                            <i class="fas fa-star text-primary"></i>
-                            <i class="fas fa-star text-primary"></i>
-                            <i class="fas fa-star text-primary"></i>
-                        </div>
-                        <p class="fs-5 m-0 pt-3">Bullet Enamel from JKP is one of the finest in the market. The gloss
-                            retention and fast drying time are ideal for heavy-duty applications.</p>
+                        <p class="fs-5 m-0 pt-3">Lorem ipsum dolor sit amet elit, sed do eiusmod tempor ut labore et
+                            dolore magna aliqua.</p>
                     </div>
                 </div>
             </div>
             <div class="owl-carousel testimonial-carousel testimonial-carousel-2 wow bounceInUp" data-wow-delay="0.3s">
                 <div class="testimonial-item rounded bg-light">
                     <div class="d-flex mb-3">
-                        <img src="img/testimonials/Vishwakarma_Constructions.png"
-                            class="img-fluid rounded-circle flex-shrink-0" alt="">
+                        <img src="img/testimonial-1.jpg" class="img-fluid rounded-circle flex-shrink-0" alt="">
                         <div class="position-absolute" style="top: 15px; right: 20px;">
                             <i class="fa fa-quote-right fa-2x"></i>
                         </div>
                         <div class="ps-3 my-auto">
-                            <h4 class="mb-0">Vishwakarma Constructions</h4>
-                            <p class="m-0">Builder</p>
+                            <h4 class="mb-0">Person Name</h4>
+                            <p class="m-0">Profession</p>
                         </div>
                     </div>
                     <div class="testimonial-content">
@@ -1243,20 +1326,19 @@
                             <i class="fas fa-star text-primary"></i>
                             <i class="fas fa-star text-primary"></i>
                         </div>
-                        <p class="fs-5 m-0 pt-3">The red oxide primer from JKP Paints provides excellent rust protection
-                            for our steel structures. It has significantly improved our maintenance cycles.</p>
+                        <p class="fs-5 m-0 pt-3">Lorem ipsum dolor sit amet elit, sed do eiusmod tempor ut labore et
+                            dolore magna aliqua.</p>
                     </div>
                 </div>
                 <div class="testimonial-item rounded bg-light">
                     <div class="d-flex mb-3">
-                        <img src="img/testimonials/MPH_Painthouse.png" class="img-fluid rounded-circle flex-shrink-0"
-                            alt="">
+                        <img src="img/testimonial-2.jpg" class="img-fluid rounded-circle flex-shrink-0" alt="">
                         <div class="position-absolute" style="top: 15px; right: 20px;">
                             <i class="fa fa-quote-right fa-2x"></i>
                         </div>
                         <div class="ps-3 my-auto">
-                            <h4 class="mb-0">Mehta Paint House</h4>
-                            <p class="m-0">Retail Paint Dealer</p>
+                            <h4 class="mb-0">Person Name</h4>
+                            <p class="m-0">Profession</p>
                         </div>
                     </div>
                     <div class="testimonial-content">
@@ -1267,19 +1349,19 @@
                             <i class="fas fa-star text-primary"></i>
                             <i class="fas fa-star text-primary"></i>
                         </div>
-                        <p class="fs-5 m-0 pt-3">Customers love the vibrant colors and smooth finish of JKP’s interior
-                            paints. We’ve seen repeat buyers come back asking specifically for this brand.</p>
+                        <p class="fs-5 m-0 pt-3">Lorem ipsum dolor sit amet elit, sed do eiusmod tempor ut labore et
+                            dolore magna aliqua.</p>
                     </div>
                 </div>
                 <div class="testimonial-item rounded bg-light">
                     <div class="d-flex mb-3">
-                        <img src="img/testimonials/ECM.png" class="img-fluid rounded-circle flex-shrink-0" alt="">
+                        <img src="img/testimonial-3.jpg" class="img-fluid rounded-circle flex-shrink-0" alt="">
                         <div class="position-absolute" style="top: 15px; right: 20px;">
                             <i class="fa fa-quote-right fa-2x"></i>
                         </div>
                         <div class="ps-3 my-auto">
-                            <h4 class="mb-0">Eastern Cargo & Marine Pvt. Ltd.</h4>
-                            <p class="m-0">Marine Logistics</p>
+                            <h4 class="mb-0">Person Name</h4>
+                            <p class="m-0">Profession</p>
                         </div>
                     </div>
                     <div class="testimonial-content">
@@ -1290,20 +1372,19 @@
                             <i class="fas fa-star text-primary"></i>
                             <i class="fas fa-star text-primary"></i>
                         </div>
-                        <p class="fs-5 m-0 pt-3">JKP’s marine-grade coatings helped us refurbish our fleet. The
-                            performance under constant exposure to saltwater is remarkable.</p>
+                        <p class="fs-5 m-0 pt-3">Lorem ipsum dolor sit amet elit, sed do eiusmod tempor ut labore et
+                            dolore magna aliqua.</p>
                     </div>
                 </div>
                 <div class="testimonial-item rounded bg-light">
                     <div class="d-flex mb-3">
-                        <img src="img/testimonials/Trivedi_Engineringworks.png"
-                            class="img-fluid rounded-circle flex-shrink-0" alt="">
+                        <img src="img/testimonial-4.jpg" class="img-fluid rounded-circle flex-shrink-0" alt="">
                         <div class="position-absolute" style="top: 15px; right: 20px;">
                             <i class="fa fa-quote-right fa-2x"></i>
                         </div>
                         <div class="ps-3 my-auto">
-                            <h4 class="mb-0">Trivedi Engineering Works</h4>
-                            <p class="m-0">Industrial Contractor</p>
+                            <h4 class="mb-0">Person Name</h4>
+                            <p class="m-0">Profession</p>
                         </div>
                     </div>
                     <div class="testimonial-content">
@@ -1314,108 +1395,10 @@
                             <i class="fas fa-star text-primary"></i>
                             <i class="fas fa-star text-primary"></i>
                         </div>
-                        <p class="fs-5 m-0 pt-3">For factory floors and equipment, we trust JKP Paints’ industrial
-                            range. The durability and abrasion resistance are spot on for our needs.</p>
+                        <p class="fs-5 m-0 pt-3">Lorem ipsum dolor sit amet elit, sed do eiusmod tempor ut labore et
+                            dolore magna aliqua.</p>
                     </div>
                 </div>
-                <div class="testimonial-item rounded bg-light">
-                    <div class="d-flex mb-3">
-                        <img src="img/testimonials/Devika_Builders.png" class="img-fluid rounded-circle flex-shrink-0"
-                            alt="">
-                        <div class="position-absolute" style="top: 15px; right: 20px;">
-                            <i class="fa fa-quote-right fa-2x"></i>
-                        </div>
-                        <div class="ps-3 my-auto">
-                            <h4 class="mb-0">Devika Builders & Promoters</h4>
-                            <p class="m-0">Real Estate Developer</p>
-                        </div>
-                    </div>
-                    <div class="testimonial-content">
-                        <div class="d-flex">
-                            <i class="fas fa-star text-primary"></i>
-                            <i class="fas fa-star text-primary"></i>
-                            <i class="fas fa-star text-primary"></i>
-                            <i class="fas fa-star text-primary"></i>
-                            <i class="fas fa-star text-primary"></i>
-                        </div>
-                        <p class="fs-5 m-0 pt-3">The fireproof paint solution from JKP Paints gives us peace of mind
-                            while also meeting safety codes. It’s an essential addition to our high-rise projects.</p>
-                    </div>
-                </div>
-                <div class="testimonial-item rounded bg-light">
-                    <div class="d-flex mb-3">
-                        <img src="img/testimonials/Omsai_Traders.png" class="img-fluid rounded-circle flex-shrink-0"
-                            alt="">
-                        <div class="position-absolute" style="top: 15px; right: 20px;">
-                            <i class="fa fa-quote-right fa-2x"></i>
-                        </div>
-                        <div class="ps-3 my-auto">
-                            <h4 class="mb-0">Om Sai Traders</h4>
-                            <p class="m-0">Paint Trader</p>
-                        </div>
-                    </div>
-                    <div class="testimonial-content">
-                        <div class="d-flex">
-                            <i class="fas fa-star text-primary"></i>
-                            <i class="fas fa-star text-primary"></i>
-                            <i class="fas fa-star text-primary"></i>
-                            <i class="fas fa-star text-primary"></i>
-                            <i class="fas fa-star text-primary"></i>
-                        </div>
-                        <p class="fs-5 m-0 pt-3">JKP’s aluminum paint has an excellent sheen and heat resistance. It’s
-                            very popular for industrial roofing and pipes in our region.</p>
-                    </div>
-                </div>
-                <div class="testimonial-item rounded bg-light">
-                    <div class="d-flex mb-3">
-                        <img src="img/testimonials/Ashirwad_Constructions.png"
-                            class="img-fluid rounded-circle flex-shrink-0" alt="">
-                        <div class="position-absolute" style="top: 15px; right: 20px;">
-                            <i class="fa fa-quote-right fa-2x"></i>
-                        </div>
-                        <div class="ps-3 my-auto">
-                            <h4 class="mb-0">Ashirwad Constructions</h4>
-                            <p class="m-0">Contractor</p>
-                        </div>
-                    </div>
-                    <div class="testimonial-content">
-                        <div class="d-flex">
-                            <i class="fas fa-star text-primary"></i>
-                            <i class="fas fa-star text-primary"></i>
-                            <i class="fas fa-star text-primary"></i>
-                            <i class="fas fa-star text-primary"></i>
-                            <i class="fas fa-star text-primary"></i>
-                        </div>
-                        <p class="fs-5 m-0 pt-3">Whether it’s for a bungalow or a commercial complex, JKP’s primer
-                            ensures a strong foundation for any topcoat. It’s a must-have for quality results.</p>
-                    </div>
-                </div>
-                <div class="testimonial-item rounded bg-light">
-                    <div class="d-flex mb-3">
-                        <img src="img/testimonials/Supreme_Infratech.png" class="img-fluid rounded-circle flex-shrink-0"
-                            alt="">
-                        <div class="position-absolute" style="top: 15px; right: 20px;">
-                            <i class="fa fa-quote-right fa-2x"></i>
-                        </div>
-                        <div class="ps-3 my-auto">
-                            <h4 class="mb-0">Supreme Infratech Pvt. Ltd.</h4>
-                            <p class="m-0">Infra Developer</p>
-                        </div>
-                    </div>
-                    <div class="testimonial-content">
-                        <div class="d-flex">
-                            <i class="fas fa-star text-primary"></i>
-                            <i class="fas fa-star text-primary"></i>
-                            <i class="fas fa-star text-primary"></i>
-                            <i class="fas fa-star text-primary"></i>
-                            <i class="fas fa-star text-primary"></i>
-                        </div>
-                        <p class="fs-5 m-0 pt-3">From fireproof solutions to marine-grade coatings, JKP Paints delivers
-                            consistently across all categories. We’re proud to be associated with them for our pan-India
-                            projects.</p>
-                    </div>
-                </div>
-
             </div>
         </div>
     </div>
@@ -1472,8 +1455,7 @@
                                         class="fa fa-check text-primary me-2"></i>Industrial Paints</a>
                                 <a class="text-body mb-3" href=""><i class="fa fa-check text-primary me-2"></i>Marine
                                     Paints</a>
-                                <a class="text-body mb-3" href=""><i class="fa fa-check text-primary me-2"></i>Red
-                                    Oxide
+                                <a class="text-body mb-3" href=""><i class="fa fa-check text-primary me-2"></i>Red Oxide
                                     Primer</a>
                                 <a class="text-body mb-3" href=""><i class="fa fa-check text-primary me-2"></i>Aluminum
                                     Paint</a>

@@ -1,0 +1,29 @@
+C:\Users\HP\Downloads\JKP Paints\img\Buckets\Aluminum
+C:\Users\HP\Downloads\JKP Paints\img\Buckets\Distemper
+C:\Users\HP\Downloads\JKP Paints\img\Buckets\Enamel
+C:\Users\HP\Downloads\JKP Paints\img\Buckets\Exterior
+C:\Users\HP\Downloads\JKP Paints\img\Buckets\filelist.txt
+C:\Users\HP\Downloads\JKP Paints\img\Buckets\Fireproof
+C:\Users\HP\Downloads\JKP Paints\img\Buckets\Industrial
+C:\Users\HP\Downloads\JKP Paints\img\Buckets\Interior
+C:\Users\HP\Downloads\JKP Paints\img\Buckets\Marine
+C:\Users\HP\Downloads\JKP Paints\img\Buckets\Primer
+C:\Users\HP\Downloads\JKP Paints\img\Buckets\Red-Oxide
+C:\Users\HP\Downloads\JKP Paints\img\Buckets\Aluminum\Aluminium-paint1.png
+C:\Users\HP\Downloads\JKP Paints\img\Buckets\Distemper\Tiger-Distemper1.png
+C:\Users\HP\Downloads\JKP Paints\img\Buckets\Enamel\Bullet-Enamel1.png
+C:\Users\HP\Downloads\JKP Paints\img\Buckets\Exterior\Champion1.png
+C:\Users\HP\Downloads\JKP Paints\img\Buckets\Exterior\Proshine1.png
+C:\Users\HP\Downloads\JKP Paints\img\Buckets\Exterior\Wondershield1.png
+C:\Users\HP\Downloads\JKP Paints\img\Buckets\Fireproof\Fire-Guard1.png
+C:\Users\HP\Downloads\JKP Paints\img\Buckets\Industrial\Industrial-Paint1.png
+C:\Users\HP\Downloads\JKP Paints\img\Buckets\Interior\AURA1.png
+C:\Users\HP\Downloads\JKP Paints\img\Buckets\Interior\Intouch1.png
+C:\Users\HP\Downloads\JKP Paints\img\Buckets\Interior\Royal Touch1.png
+C:\Users\HP\Downloads\JKP Paints\img\Buckets\Marine\Marine-Guard1.png
+C:\Users\HP\Downloads\JKP Paints\img\Buckets\Primer\Trubond-ex1.png
+C:\Users\HP\Downloads\JKP Paints\img\Buckets\Primer\Truebond-in1.png
+C:\Users\HP\Downloads\JKP Paints\img\Buckets\Primer\Ultrabond-ex1.png
+C:\Users\HP\Downloads\JKP Paints\img\Buckets\Primer\Ultrabond-in1.png
+C:\Users\HP\Downloads\JKP Paints\img\Buckets\Primer\Universal Primer1.png
+C:\Users\HP\Downloads\JKP Paints\img\Buckets\Red-Oxide\Red Oxide Primer1.png
