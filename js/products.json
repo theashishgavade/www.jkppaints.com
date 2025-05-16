@@ -1,0 +1,236 @@
+[
+    {
+        "name": "Royal Touch",
+        "category": "Interior Emulsion",
+        "qualities": [
+            "Luxury High Sheen Finish",
+            "Excellent Stain & Scrub Resistance",
+            "Smooth Application",
+            "Superb Hiding & Coverage"
+        ],
+        "description": "Premium interior emulsion with pure acrylic formula offering a silky, stain-resistant finish.",
+        "image": "img/Buckets/Interior/Royal Touch1.png",
+        "email": "mailto:sales@jkppaints.com",
+        "whatsapp": "https://wa.me/919999999999"
+    },
+    {
+        "name": "Intouch",
+        "category": "Interior Emulsion",
+        "qualities": [
+            "Excellent Washability",
+            "Color Retention",
+            "Anti-Algae & Fungal",
+            "Lead-Free"
+        ],
+        "description": "Smooth sheen interior paint with high washability and excellent color stability.",
+        "image": "img/Buckets/Interior/Intouch1.png",
+        "email": "mailto:sales@jkppaints.com",
+        "whatsapp": "https://wa.me/919999999999"
+    },
+    {
+        "name": "Aura",
+        "category": "Interior Emulsion",
+        "qualities": [
+            "Smooth Matt Finish",
+            "Slight Sheen",
+            "Good Coverage",
+            "Washable"
+        ],
+        "description": "Modified acrylic emulsion offering an even finish with a slight sheen for interior walls.",
+        "image": "img/Buckets/Interior/AURA1.png",
+        "email": "mailto:sales@jkppaints.com",
+        "whatsapp": "https://wa.me/919999999999"
+    },
+    {
+        "name": "Wondershield",
+        "category": "Exterior Emulsion",
+        "qualities": [
+            "All-Weather Protection",
+            "Anti-Fungal",
+            "Fade & Peel Resistant",
+            "Slight Sheen"
+        ],
+        "description": "High-quality exterior emulsion with vibrant finish and excellent protection against weather and algae.",
+        "image": "img/Buckets/Exterior/Wondershield1.png",
+        "email": "mailto:sales@jkppaints.com",
+        "whatsapp": "https://wa.me/919999999999"
+    },
+    {
+        "name": "Champion",
+        "category": "Exterior Emulsion",
+        "qualities": [
+            "Advanced Dirt Pickup Resistance",
+            "UV Resistant",
+            "Algae Protection",
+            "Long-Lasting Colors"
+        ],
+        "description": "Super premium exterior emulsion engineered for harsh weather and UV protection.",
+        "image": "img/Buckets/Exterior/Champion1.png",
+        "email": "mailto:sales@jkppaints.com",
+        "whatsapp": "https://wa.me/919999999999"
+    },
+    {
+        "name": "Proshine",
+        "category": "Exterior Emulsion",
+        "qualities": [
+            "Good Weather Resistance",
+            "Alkali & Fungal Protection",
+            "Economical"
+        ],
+        "description": "Budget-friendly exterior emulsion with decent resistance against weather and fungal growth.",
+        "image": "img/Buckets/Exterior/Proshine1.png",
+        "email": "mailto:sales@jkppaints.com",
+        "whatsapp": "https://wa.me/919999999999"
+    },
+    {
+        "name": "Truebond Exterior Primer",
+        "category": "Primer",
+        "qualities": [
+            "High Whiteness",
+            "Strong Adhesion",
+            "Good Sealing",
+            "Reduces Porosity"
+        ],
+        "description": "Exterior wall primer offering excellent opacity and strong foundation for topcoats.",
+        "image": "img/Buckets/Primer/Trubond-ex1.png",
+        "email": "mailto:sales@jkppaints.com",
+        "whatsapp": "https://wa.me/919999999999"
+    },
+    {
+        "name": "Truebond Interior Primer",
+        "category": "Primer",
+        "qualities": [
+            "Good Coverage",
+            "Brightens Finish",
+            "Matt Base",
+            "Easy to Apply"
+        ],
+        "description": "Interior primer designed for enhancing the wall finish and improving paint adhesion.",
+        "image": "img/Buckets/Primer/Truebond-in1.png",
+        "email": "mailto:sales@jkppaints.com",
+        "whatsapp": "https://wa.me/919999999999"
+    },
+    {
+        "name": "Ultrabond Exterior Primer",
+        "category": "Primer",
+        "qualities": [
+            "Good Adhesion",
+            "Crack Resistance",
+            "Durable Finish"
+        ],
+        "description": "Exterior primer with durable bonding strength and high coverage, ideal for topcoat durability.",
+        "image": "img/Buckets/Primer/Ultrabond-ex1.png",
+        "email": "mailto:sales@jkppaints.com",
+        "whatsapp": "https://wa.me/919999999999"
+    },
+    {
+        "name": "Ultrabond Interior Primer",
+        "category": "Primer",
+        "qualities": [
+            "Smooth Base",
+            "Pocket Friendly",
+            "Enhances Topcoat Look"
+        ],
+        "description": "Interior primer offering a smooth matt base and bright finish at economical cost.",
+        "image": "img/Buckets/Primer/Ultrabond-in1.png",
+        "email": "mailto:sales@jkppaints.com",
+        "whatsapp": "https://wa.me/919999999999"
+    },
+    {
+        "name": "Tiger Distemper",
+        "category": "Distemper",
+        "qualities": [
+            "High Whiteness",
+            "Seals Surface",
+            "Good Opacity",
+            "Economical"
+        ],
+        "description": "A traditional distemper with excellent sealing properties and brightness for interior walls.",
+        "image": "img/Buckets/Distemper/Tiger-Distemper1.png",
+        "email": "mailto:sales@jkppaints.com",
+        "whatsapp": "https://wa.me/919999999999"
+    },
+    {
+        "name": "Bullet Enamel",
+        "category": "Enamel Paint",
+        "qualities": [
+            "Glossy Finish",
+            "Weatherproof",
+            "Corrosion Resistance",
+            "For Wood & Metal"
+        ],
+        "description": "High-gloss enamel suitable for wood and metal surfaces, with strong protection against rain and heat.",
+        "image": "img/Buckets/Enamel/Bullet-Enamel1.png",
+        "email": "mailto:sales@jkppaints.com",
+        "whatsapp": "https://wa.me/919999999999"
+    },
+    {
+        "name": "Fire Guard",
+        "category": "Fireproof Paint",
+        "qualities": [
+            "Explosion & Fire Resistant",
+            "Cryo-Immersion Resistant",
+            "Multi-Surface Use"
+        ],
+        "description": "Fire-retardant paint that delays the spread of flames and provides critical escape time.",
+        "image": "img/Buckets/Fireproof/Fire-Guard1.png",
+        "email": "mailto:sales@jkppaints.com",
+        "whatsapp": "https://wa.me/919999999999"
+    },
+    {
+        "name": "Aluminium Paint",
+        "category": "Metal Paint",
+        "qualities": [
+            "Metallic Luster",
+            "Corrosion Protection",
+            "Weatherproof",
+            "Heat Reflective"
+        ],
+        "description": "A high-performance aluminium-based paint offering luster and protection for metal surfaces.",
+        "image": "img/Buckets/Aluminum/Aluminium-paint1.png",
+        "email": "mailto:sales@jkppaints.com",
+        "whatsapp": "https://wa.me/919999999999"
+    },
+    {
+        "name": "Marine Guard",
+        "category": "Marine Paint",
+        "qualities": [
+            "Antifouling",
+            "Saltwater Resistant",
+            "Corrosion Protection",
+            "Long-Lasting"
+        ],
+        "description": "Marine coating designed for boats and ships with superior saltwater and algae resistance.",
+        "image": "img/Buckets/Marine/Marine-Guard1.png",
+        "email": "mailto:sales@jkppaints.com",
+        "whatsapp": "https://wa.me/919999999999"
+    },
+    {
+        "name": "Industrial Paint",
+        "category": "Industrial Coating",
+        "qualities": [
+            "Heavy-Duty Protection",
+            "Corrosion Resistant",
+            "UV Stable",
+            "Meets Global Standards"
+        ],
+        "description": "High-performance industrial coating designed for plants, equipment, and infrastructure.",
+        "image": "img/Buckets/Industrial/Industrial-Paint1.png",
+        "email": "mailto:sales@jkppaints.com",
+        "whatsapp": "https://wa.me/919999999999"
+    },
+    {
+        "name": "Red Oxide Primer",
+        "category": "Primer",
+        "qualities": [
+            "Rust Protection",
+            "Strong Adhesion",
+            "Metal Surface Ready",
+            "Long-Lasting Finish"
+        ],
+        "description": "Red oxide primer protects metal surfaces from rust and prepares them for final coatings.",
+        "image": "img/Buckets/Red-Oxide/Red Oxide Primer1.png",
+        "email": "mailto:sales@jkppaints.com",
+        "whatsapp": "https://wa.me/919999999999"
+    }
+]
