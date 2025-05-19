@@ -18,6 +18,9 @@
     <!-- Icon Font Stylesheet -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- Libraries Stylesheet -->
     <link href="lib/animate/animate.min.css" rel="stylesheet">
@@ -48,7 +51,7 @@
             <nav class="navbar navbar-light navbar-expand-lg py-1">
                 <a href="index.html" class="navbar-brand">
                     <img src="img/JKP-Paints Full-LOGO.png" alt="JKP Paints Logo"
-                        style="margin-left: -15px; width: auto; max-width: 300px;">
+                        style="margin-left: -15px; width: auto; max-width: 250px;">
                 </a>
                 <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarCollapse">
@@ -60,18 +63,20 @@
                         <a href="about.html" class="nav-item nav-link">About</a>
                         <a href="productRange.html" class="nav-item nav-link">Product Range</a>
                         <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown">All Products</a>
+                            <a href="#" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown">All
+                                Products</a>
                             <div class="dropdown-menu bg-light">
-                                <a href="interior.html" class="dropdown-item">Luxury Interior Paints</a>
+                                <a href="interior.html" class="dropdown-item active">Luxury Interior Paints</a>
                                 <a href="exterior.html" class="dropdown-item">Exterior Coatings</a>
                                 <a href="primer.html" class="dropdown-item">Primers</a>
                                 <a href="distemper.html" class="dropdown-item">Distempers</a>
                                 <a href="enamel.html" class="dropdown-item">Enamel Paints</a>
-                                <a href="elastomeric.html" class="dropdown-item">Elastomeric Coatings</a>
-                                <a href="textured.html" class="dropdown-item">Textured Finishes</a>
-                                <a href="industrial.html" class="dropdown-item active">Industrial Coatings</a>
+                                <a href="industrial.html" class="dropdown-item">Industrial Coatings</a>
+                                <a href="marine.html" class="dropdown-item">Marine Paints</a>
                                 <a href="aluminium.html" class="dropdown-item">Aluminium Paints</a>
                                 <a href="fire.html" class="dropdown-item">Fire-Resistant Paints</a>
+                                <a href="textured.html" class="dropdown-item">Textured Finishes</a>
+                                <a href="elastomeric.html" class="dropdown-item">Elastomeric Coatings</a>
                             </div>
                         </div>
                         <a href="contact.html" class="nav-item nav-link">Contact</a>
@@ -109,1119 +114,381 @@
                     <h5 class="modal-title" id="exampleModalLabel">Search by keyword</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body d-flex align-items-center">
-                    <div class="input-group w-75 mx-auto d-flex">
-                        <input type="search" class="form-control bg-transparent p-3" placeholder="keywords"
-                            aria-describedby="search-icon-1">
+                <div class="modal-body d-flex align-items-center flex-column">
+                    <div class="input-group w-75 mx-auto d-flex mb-3">
+                        <input id="searchInput" type="search" class="form-control bg-transparent p-3"
+                            placeholder="keywords" aria-describedby="search-icon-1" autocomplete="off">
                         <span id="search-icon-1" class="input-group-text p-3"><i class="fa fa-search"></i></span>
                     </div>
+                    <div id="searchResults" class="w-75 mx-auto"></div>
                 </div>
             </div>
         </div>
     </div>
+    <script>
+        // List of pages to search
+        const pages = [
+            { name: "Home", url: "index.html" },
+            { name: "About", url: "about.html" },
+            { name: "Product Range", url: "productRange.html" },
+            { name: "Luxury Interior Paints", url: "interior.html" },
+            { name: "Exterior Coatings", url: "exterior.html" },
+            { name: "Primers", url: "primer.html" },
+            { name: "Distempers", url: "distemper.html" },
+            { name: "Enamel Paints", url: "enamel.html" },
+            { name: "Industrial Coatings", url: "industrial.html" },
+            { name: "Marine Paints", url: "marine.html" },
+            { name: "Aluminium Paints", url: "aluminium.html" },
+            { name: "Fire-Resistant Paints", url: "fire.html" },
+            { name: "Textured Finishes", url: "textured.html" },
+            { name: "Elastomeric Coatings", url: "elastomeric.html" },
+            { name: "Contact", url: "contact.html" },
+            { name: "Careers", url: "careers.html" }
+        ];
+
+        // Search function
+        function searchPages(keyword) {
+            if (!keyword) return [];
+            keyword = keyword.toLowerCase();
+            return pages.filter(page => page.name.toLowerCase().includes(keyword));
+        }
+
+        // Render search results
+        function renderSearchResults(results) {
+            const container = document.getElementById('searchResults');
+            if (!results.length) {
+                container.innerHTML = '<div class="text-muted text-center">No results found.</div>';
+                return;
+            }
+            container.innerHTML = `
+                <ul class="list-group">
+                    ${results.map(r => `<li class="list-group-item"><a href="${r.url}" class="text-decoration-none">${r.name}</a></li>`).join('')}
+                </ul>
+            `;
+        }
+
+        // Event listener for search input
+        document.addEventListener('DOMContentLoaded', function () {
+            const input = document.getElementById('searchInput');
+            const resultsDiv = document.getElementById('searchResults');
+            input.addEventListener('keyup', function () {
+                const keyword = input.value.trim();
+                if (keyword.length === 0) {
+                    resultsDiv.innerHTML = '';
+                    return;
+                }
+                const results = searchPages(keyword);
+                renderSearchResults(results);
+            });
+
+            // Optional: clear results when modal closes
+            $('#searchModal').on('hidden.bs.modal', function () {
+                input.value = '';
+                resultsDiv.innerHTML = '';
+            });
+        });
+    </script>
     <!-- Modal Search End -->
 
 
     <!-- Hero Start -->
     <div class="container-fluid bg-light py-6 my-6 mt-0">
         <div class="container text-center animated bounceInDown">
-            <h1 class="display-1 mb-4">About Us</h1>
+            <h1 class="display-1 mb-4">Luxury Interior Paints</h1>
             <ol class="breadcrumb justify-content-center mb-0 animated bounceInDown">
                 <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                <li class="breadcrumb-item text-dark" aria-current="page">About</li>
+                <li class="breadcrumb-item text-dark" aria-current="page">Luxury Interior Paints</li>
             </ol>
         </div>
     </div>
     <!-- Hero End -->
 
+    <!-- Product Start -->
+    <div class="container">
+        <div class="text-center" style="margin-bottom: -30px;margin-top: -50px;">
+            <small
+                class="d-inline-block fw-bold text-dark text-uppercase bg-light border border-primary rounded-pill px-4 py-1 mb-3">
+                Our Products
+            </small>
+            <h1 class="display-5 mb-4">Our Luxury Interior Paints</h1>
+        </div>
+    </div>
+    <div id="product-detail-list">
+        <!-- Dynamic product cards will be inserted here -->
+    </div>
 
-    <!-- About Satrt -->
-    <div class="container-fluid py-6 mt-0 mb-0">
+    <script>
+        async function loadProductDetails() {
+            try {
+                const res = await fetch('js/products.json');
+                const productsData = await res.json();
+
+                // Access the "interior" array inside products.json
+                const products = productsData.Interior;
+
+                const list = document.getElementById('product-detail-list');
+                list.innerHTML = '';
+
+                if (!products || !Array.isArray(products) || !products.length) {
+                    list.innerHTML = '<div style="color: red;">No products found.</div>';
+                    return;
+                }
+
+                products.forEach(product => {
+                    const name = product.name || 'Unnamed Product';
+                    const description = product.description || 'No description available.';
+                    const imageHTML = product.image
+                        ? `<img class="img-fluid rounded w-100" src="${product.image}" alt="${name}">`
+                        : '<div style="color: #fff; padding: 2rem;">No Image</div>';
+                    const emailLink = product.email || '#';
+                    const whatsappLink = product.whatsapp || '#';
+                    const qualities = Array.isArray(product.qualities) ? product.qualities : [];
+                    const mid = Math.ceil(qualities.length / 2);
+                    const qualities1 = qualities.slice(0, mid);
+                    const qualities2 = qualities.slice(mid);
+
+                    const card = document.createElement('div');
+                    card.className = 'product-detail-card';
+                    card.innerHTML = `
+                    <div class="product-detail-row wow zoomIn" data-wow-delay="0.05s">
+                        <div class="product-image-box">
+                            ${imageHTML}
+                            <div class="event-overlay">
+                                <h3>${name}</h3>
+                            </div>
+                        </div>
+                        <div class="product-detail-content">
+                            <h1 style="margin-left: 10px; font-size: 3rem; background: linear-gradient(90deg, #233554, #4976c7, #6dd5ed); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; color: transparent;">${name}</h1>
+                            <div class="product-qualities" style="display: flex; gap: 20px;">
+                                <div>
+                                    ${qualities1.map(q => `
+                                        <div style="display:flex;align-items:center;margin-bottom:8px;">
+                                            <i class="fas fa-check-circle text-primary me-2"></i>
+                                            <span style="background: linear-gradient(180deg, #ff7e5f, #fa0202 ,#1b04c9); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; color: transparent;">${q}</span>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                                <div>
+                                    ${qualities2.map(q => `
+                                        <div style="display:flex;align-items:center;margin-bottom:8px;">
+                                            <i class="fas fa-check-circle text-primary me-2"></i>
+                                            <span style="background: linear-gradient(180deg, #ff7e5f, #fa0202 ,#1b04c9); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; color: transparent;">${q}</span>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            </div>
+                            <div class="product-description" style="margin-top: 1rem; background: linear-gradient(to right, #283e51, #485563); -webkit-background-clip: text; color: transparent;">${description}</div>
+                            <div class="product-detail-actions d-flex gap-3 mt-4 flex-wrap">
+                                <a href="${emailLink}" target="_blank" 
+                                    class="btn px-4 py-2 d-flex align-items-center"
+                                    style="font-weight:600; border-radius: 1.5rem 0.5rem 1.5rem 0.5rem; background:linear-gradient(90deg,#f5f7fa,#c3cfe2); color:#333; border:none; box-shadow:0 2px 8px rgba(33,53,84,0.08); transition:box-shadow 0.2s;">
+                                    <span style="display:inline-flex;align-items:center;">
+                                        <img src="img/Gmail_icon.svg" alt="Email" class="me-2" style="width:25px;height:30px;object-fit:contain;">
+                                    </span>
+                                    Email Us
+                                </a>
+                                <a href="${whatsappLink}" target="_blank"
+                                   class="btn px-4 py-2 d-flex align-items-center"
+                                   style="font-weight:600; border-radius: 1.5rem 0.5rem 1.5rem 0.5rem; background:linear-gradient(90deg,#25D366,#128C7E); color:#fff; border:none; box-shadow:0 2px 8px rgba(33,53,84,0.08); transition:box-shadow 0.2s;">
+                                    <span style="display:inline-flex;align-items:center;">
+                                        <img src="img/WhatsApp.svg" alt="Whatsapp" class="me-2" style="width:25px;height:30px;object-fit:contain;">
+                                    </span>
+                                    WhatsApp Us
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                    list.appendChild(card);
+                });
+            } catch (error) {
+                console.error('Error loading products:', error);
+                document.getElementById('product-detail-list').innerHTML =
+                    '<div style="color: red;">Failed to load products.</div>';
+            }
+        }
+
+        // Call the function when the script loads
+        loadProductDetails();
+    </script>
+    <!-- Product End -->
+
+
+
+    <!-- Something Section Start -->
+    <div class="container-fluid py-5 bg-light">
         <div class="container">
-            <div class="row g-5 align-items-center">
-                <div class="col-lg-5 wow bounceInUp" data-wow-delay="0.1s">
-                    <img src="img/about.jpg" class="img-fluid rounded" alt="">
-                </div>
-                <div class="col-lg-7 wow bounceInUp" data-wow-delay="0.3s">
-                    <small
-                        class="d-inline-block fw-bold text-dark text-uppercase bg-light border border-primary rounded-pill px-4 py-1 mb-3">About
-                        Us</small>
-                    <div>
-                        <h1 class="display-5 mb-4 d-inline">Trusted By </h1>
-                        <h1 class="display-5 mb-4 d-inline" data-toggle="counter-up">2000</h1>
-                        <h1 class="display-5 mb-4 d-inline">+ satisfied
-                            clients
-                        </h1>
-                    </div>
-                    <p class="mb-4">Since 2011, JKP Paints India Pvt. Ltd. has been a leading provider of high-quality,
-                        cost-effective paint solutions. Our diverse product portfolio includes interior and exterior
-                        emulsions, primers, distempers, and specialty paints for industrial and marine applications.
-                        With a strong foundation in the minerals and raw materials industry, we prioritize innovation,
-                        quality, and sustainability in all our offerings, ensuring exceptional performance and customer
-                        satisfaction.</p>
-                    <div class="row g-4 text-dark mb-5">
-                        <div class="col-sm-6">
-                            <i class="fas fa-share text-primary me-2"></i>High-Quality Paint Solutions
-                        </div>
-                        <div class="col-sm-6">
-                            <i class="fas fa-share text-primary me-2"></i>Exceptional Customer Service
-                        </div>
-                        <div class="col-sm-6">
-                            <i class="fas fa-share text-primary me-2"></i>Customized Color Solutions
-                        </div>
-                        <div class="col-sm-6">
-                            <i class="fas fa-share text-primary me-2"></i>Innovative & Sustainable Products
-                        </div>
-                    </div>
-                    <a href="" class="btn btn-primary py-3 px-5 rounded-pill">About Us<i
-                            class="fas fa-arrow-right ps-2"></i></a>
-                </div>
+            <div class="text-center mb-5">
+                <small
+                    class="d-inline-block fw-bold text-dark text-uppercase bg-light border border-primary rounded-pill px-4 py-1 mb-3">
+                    Why Choose JKP Paints?
+                </small>
+                <h1 class="display-5 mb-4">Discover More with JKP Paints</h1>
+                <!-- <p class="fs-5 text-muted">
+                    From vibrant colors to innovative finishes, JKP Paints offers solutions that go beyond ordinary
+                    paint. Explore our unique features, expert tips, and the latest trends to make your next project
+                    truly stand out.
+                </p> -->
             </div>
-        </div>
-    </div>
-    <!-- About End -->
-
-
-    <!-- Fact Start-->
-    <div class="container-fluid faqt py-6 mt-0 mb-0 bg-light">
-        <div class="container">
-            <div class="row g-4 align-items-center">
-                <div class="col-lg-7">
-                    <div class="row g-4">
-                        <div class="col-sm-4 wow bounceInUp" data-wow-delay="0.3s">
-                            <div class="faqt-item bg-primary rounded p-4 text-center">
-                                <i class="fas fa-users fa-4x mb-4 text-white"></i>
-                                <div>
-                                    <h1 class="display-4 fw-bold d-inline" data-toggle="counter-up">2000</h1>
-                                    <h1 class="display-4 fw-bold d-inline">+</h1>
-                                </div>
-                                <p class="text-dark text-uppercase fw-bold mb-0">Happy Clients</p>
-                            </div>
-                        </div>
-                        <div class="col-sm-4 wow bounceInUp" data-wow-delay="0.5s">
-                            <div class="faqt-item bg-primary rounded p-4 text-center">
-                                <i class="fas fa-users-cog fa-4x mb-4 text-white"></i>
-                                <div>
-                                    <h1 class="display-4 fw-bold d-inline" data-toggle="counter-up">10</h1>
-                                    <h1 class="display-4 fw-bold d-inline">+</h1>
-                                </div>
-                                <p class="text-dark text-uppercase fw-bold mb-0">Years of Expertise</p>
-                            </div>
-                        </div>
-                        <div class="col-sm-4 wow bounceInUp" data-wow-delay="0.7s">
-                            <div class="faqt-item bg-primary rounded p-4 text-center">
-                                <i class="fas fa-user-check fa-4x mb-4 text-white"></i>
-                                <div>
-                                    <h1 class="display-4 fw-bold d-inline" data-toggle="counter-up">900</h1>
-                                    <h1 class="display-4 fw-bold d-inline">+</h1>
-                                </div>
-                                <p class="text-dark text-uppercase fw-bold mb-0">Delivered Work</p>
-                            </div>
-                        </div>
+            <div class="row g-4 ">
+                <div class="col-lg-4 col-md-6 wow bounceInUp" data-wow-delay="0.1s">
+                    <div class="bg-white rounded p-4 text-center h-100">
+                        <i class="fas fa-lightbulb fa-3x mb-3"
+                            style="background: linear-gradient(to top, rgb(58, 58, 58), orange, yellow); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; color: transparent;"></i>
+                        <h5 class="mb-3">Expert Advice</h5>
+                        <p>Get professional tips on color selection, surface preparation, and application for
+                            flawless
+                            results every time.</p>
                     </div>
                 </div>
-                <div class="col-lg-5 wow bounceInUp" data-wow-delay="0.1s">
-                    <div class="video">
-                        <button type="button" class="btn-play" data-bs-toggle="modal"
-                            data-src="https://www.youtube-nocookie.com/embed/kDoedcT6tWw?si=ihho4sr1lAad5NLJ&t=9"
-                            data-bs-target="#videoModal">
-                            <span></span>
-                        </button>
+                <div class="col-lg-4 col-md-6 wow bounceInUp" data-wow-delay="0.3s">
+                    <div class="bg-white rounded p-4 text-center h-100">
+                        <i class="fas fa-palette fa-3x mb-3"
+                            style="background: linear-gradient(45deg, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5); -webkit-background-clip: text; color: transparent;"></i>
+                        <h5 class="mb-3">Color Trends</h5>
+                        <p>Stay updated with the latest color palettes and design inspirations to transform your
+                            space
+                            with style.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12 wow bounceInUp" data-wow-delay="0.5s">
+                    <div class="bg-white rounded p-4 text-center h-100">
+                        <i class="fas fa-award fa-3x mb-3" style="background: linear-gradient(to bottom, #FFD700 , #cc1010 );
+                                     -webkit-background-clip: text; 
+                                     -webkit-text-fill-color: transparent; 
+                                     background-clip: text; 
+                                     color: transparent;"></i>
+                        <h5 class="mb-3">Quality Commitment</h5>
+                        <p>Our paints are rigorously tested for performance, ensuring long-lasting beauty and
+                            protection
+                            for every project.</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Modal Video -->
+    <!-- Something Section End -->
 
-    <div class="modal fade mt-0 mb-0" id="videoModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content rounded-0">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Youtube Video</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+
+
+    <!-- Packaging Options Start -->
+    <div class="container py-5">
+        <div class="text-center mb-4">
+            <small
+                class="d-inline-block fw-bold text-dark text-uppercase bg-light border border-primary rounded-pill px-4 py-1 mb-3 wow fadeInDown"
+                data-wow-delay="0.1s">
+                Packaging Options
+            </small>
+            <h1 class="mb-3 wow fadeInDown" data-wow-delay="0.2s">Available Paint Can / Bucket Sizes</h1>
+            <h6 class="text-muted wow fadeInDown" data-wow-delay="0.3s"
+                style="background: linear-gradient(90deg, #233554, #4976c7, #27d5f8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; color: transparent;">
+                Choose from a range of convenient packaging sizes to suit your project needs. Whether you are working on
+                a small room refresh or a large-scale renovation, our professionally sealed cans and buckets ensure
+                quality, freshness, and ease of application for every requirement.
+            </h6>
+        </div>
+        <div class="row justify-content-center g-4">
+            <div class="col-6 col-sm-3 text-center">
+                <div class="card border-0 shadow-sm h-100 wow zoomIn" data-wow-delay="0.1s"
+                    style="transition: transform 0.3s;">
+                    <div class="card-body d-flex flex-column align-items-center">
+                        <div class="packaging-anim mb-3">
+                            <img src="img/Buckets/Size/1Ltr - Copy.png" alt="1 Litre Paint Can"
+                                style="max-width:100%; border-radius: 10px;">
+                        </div>
+                        <h5 class="card-title mb-0">1 Litre</h5>
+                    </div>
                 </div>
-                <div class="modal-body">
-                    <!-- 16:9 aspect ratio -->
-                    <div class="ratio ratio-16x9">
-                        <iframe class="embed-responsive-item" src="" id="video" allowfullscreen
-                            allowscriptaccess="always" allow="autoplay"></iframe>
+            </div>
+            <div class="col-6 col-sm-3 text-center">
+                <div class="card border-0 shadow-sm h-100 wow zoomIn" data-wow-delay="0.2s"
+                    style="transition: transform 0.3s;">
+                    <div class="card-body d-flex flex-column align-items-center">
+                        <div class="packaging-anim mb-3">
+                            <img src="img/Buckets/Size/4Ltr - Copy.png" alt="4 Litre Paint Can"
+                                style="max-width:100%; border-radius: 10px;">
+                        </div>
+                        <h5 class="card-title mb-0">4 Litres</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-sm-3 text-center">
+                <div class="card border-0 shadow-sm h-100 wow zoomIn" data-wow-delay="0.4s"
+                    style="transition: transform 0.3s;">
+                    <div class="card-body d-flex flex-column align-items-center">
+                        <div class="packaging-anim mb-3">
+                            <img src="img/Buckets/Size/10Ltr - Copy.png" alt="10 Litre Paint Can"
+                                style="max-width:100%; border-radius: 10px;">
+                        </div>
+                        <h5 class="card-title mb-0">10 Litres</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-sm-3 text-center">
+                <div class="card border-0 shadow-sm h-100 wow zoomIn" data-wow-delay="0.4s"
+                    style="transition: transform 0.3s;">
+                    <div class="card-body d-flex flex-column align-items-center">
+                        <div class="packaging-anim mb-3">
+                            <img src="img/Buckets/Size/20Ltr - Copy.png" alt="20 Litre Paint Can"
+                                style="max-width:100%; border-radius: 10px;">
+                        </div>
+                        <h5 class="card-title mb-0">20 Litres</h5>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Fact End -->
-
-
     <style>
-        @media (min-width: 992px) {
-            .col-lg-5th {
-                width: 20%;
-                flex: 0 0 auto;
+        /* Animated hover effect for cards */
+        .card.border-0.shadow-sm.h-100:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 8px 32px rgba(33, 53, 84, 0.15), 0 1.5px 6px rgba(33, 53, 84, 0.10);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        /* Subtle floating animation for cans */
+        .packaging-anim img {
+            animation: floatCan 2.5s ease-in-out infinite;
+        }
+
+        @keyframes floatCan {
+            0% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+
+            100% {
+                transform: translateY(0);
             }
         }
     </style>
-
-    <!-- Service Start -->
-    <div class="container-fluid service py-6 mt-0 mb-0">
-        <div class="container">
-            <div class="text-center wow bounceInUp" data-wow-delay="0.1s">
-                <small
-                    class="d-inline-block fw-bold text-dark text-uppercase bg-light border border-primary rounded-pill px-4 py-1 mb-3">Product
-                    Range</small>
-                <h1 class="display-5 mb-5">Our Product Portfolio</h1>
-            </div>
-            <div class="row g-4">
-                <div class="col-lg-5th col-md-6 col-sm-12 wow bounceInUp" data-wow-delay="0.1s">
-                    <div class="bg-light rounded service-item">
-                        <div class="service-content d-flex align-items-center justify-content-center p-4">
-                            <div class="service-content-icon text-center">
-                                <i class="fas fa-paint-roller fa-7x text-primary mb-4"></i>
-                                <h4 class="mb-3">Interior Paints</h4>
-                                <p class="mb-4">Premium wall finishes with rich colors and smooth texture, ideal for all
-                                    indoor spaces</p>
-                                <a href="#" class="btn btn-primary px-4 py-2 rounded-pill">Read More</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-5th col-md-6 col-sm-12 wow bounceInUp" data-wow-delay="0.3s">
-                    <div class="bg-light rounded service-item">
-                        <div class="service-content d-flex align-items-center justify-content-center p-4">
-                            <div class="service-content-icon text-center">
-                                <i class="fas fa-city fa-7x text-primary mb-4"></i>
-                                <h4 class="mb-3">Exterior Paints</h4>
-                                <p class="mb-4">Weather-resistant paints that protect and enhance exterior walls with
-                                    lasting durability.</p>
-                                <a href="#" class="btn btn-primary px-4 py-2 rounded-pill">Read More</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-5th col-md-6 col-sm-12 wow bounceInUp" data-wow-delay="0.5s">
-                    <div class="bg-light rounded service-item">
-                        <div class="service-content d-flex align-items-center justify-content-center p-4">
-                            <div class="service-content-icon text-center">
-                                <i class="fas fa-brush fa-7x text-primary mb-4"></i>
-                                <h4 class="mb-3">Primers</h4>
-                                <p class="mb-4">High-adhesion base coats that improve surface preparation and ensure a
-                                    long-lasting topcoat.</p>
-                                <a href="#" class="btn btn-primary px-4 py-2 rounded-pill">Read More</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-5th col-md-6 col-sm-12 wow bounceInUp" data-wow-delay="0.7s">
-                    <div class="bg-light rounded service-item">
-                        <div class="service-content d-flex align-items-center justify-content-center p-4">
-                            <div class="service-content-icon text-center">
-                                <i class="fas fa-palette fa-7x text-primary mb-4"></i>
-                                <h4 class="mb-3">Distempers</h4>
-                                <p class="mb-4">Cost-effective, water-based paints for interiors, offering a smooth,
-                                    matte look.</p>
-                                <a href="#" class="btn btn-primary px-4 py-2 rounded-pill">Read More</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-5th col-md-6 col-sm-12 wow bounceInUp" data-wow-delay="0.1s">
-                    <div class="bg-light rounded service-item">
-                        <div class="service-content d-flex align-items-center justify-content-center p-4">
-                            <div class="service-content-icon text-center">
-                                <i class="fas fa-fill-drip fa-7x text-primary mb-4"></i>
-                                <h4 class="mb-3">Bullet Enamel</h4>
-                                <p class="mb-4">Glossy, durable enamel for wood and metal surfaces exposed to frequent
-                                    use.</p>
-                                <a href="#" class="btn btn-primary px-4 py-2 rounded-pill">Read More</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-5th col-md-6 col-sm-12 wow bounceInUp" data-wow-delay="0.3s">
-                    <div class="bg-light rounded service-item">
-                        <div class="service-content d-flex align-items-center justify-content-center p-4">
-                            <div class="service-content-icon text-center">
-                                <i class="fas fa-industry fa-7x text-primary mb-4"></i>
-                                <h4 class="mb-3">Industrial Paints</h4>
-                                <p class="mb-4">Specialized coatings designed to perform in tough industrial and
-                                    commercial environments.</p>
-                                <a href="#" class="btn btn-primary px-4 py-2 rounded-pill">Read More</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-5th col-md-6 col-sm-12 wow bounceInUp" data-wow-delay="0.5s">
-                    <div class="bg-light rounded service-item">
-                        <div class="service-content d-flex align-items-center justify-content-center p-4">
-                            <div class="service-content-icon text-center">
-                                <i class="fas fa-anchor fa-7x text-primary mb-4"></i>
-                                <h4 class="mb-3">Marine Paints</h4>
-                                <p class="mb-4">Anti-corrosive paints specially built to withstand moisture, salt, and
-                                    extreme harsh
-                                    marine conditions.</p>
-                                <a href="#" class="btn btn-primary px-4 py-2 rounded-pill">Read More</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-5th col-md-6 col-sm-12 wow bounceInUp" data-wow-delay="0.7s">
-                    <div class="bg-light rounded service-item">
-                        <div class="service-content d-flex align-items-center justify-content-center p-4">
-                            <div class="service-content-icon text-center">
-                                <i class="fas fa-shield-alt fa-7x text-primary mb-4"></i>
-                                <h4 class="mb-3">Red Oxide Primers</h4>
-                                <p class="mb-4">Protective primers for metal surfaces that resist rust and improve paint
-                                    bonding.</p>
-                                <a href="#" class="btn btn-primary px-4 py-2 rounded-pill">Read More</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-5th col-md-6 col-sm-12 wow bounceInUp" data-wow-delay="0.7s">
-                    <div class="bg-light rounded service-item">
-                        <div class="service-content d-flex align-items-center justify-content-center p-4">
-                            <div class="service-content-icon text-center">
-                                <i class="fas fa-sun fa-7x text-primary mb-4"></i>
-                                <h4 class="mb-3">Aluminum Paint</h4>
-                                <p class="mb-4">Reflective, heat-resistant metallic paint ideal for metal roofing,
-                                    storage tanks, and industrial pipelines.</p>
-                                <a href="#" class="btn btn-primary px-4 py-2 rounded-pill">Read More</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-5th col-md-6 col-sm-12 wow bounceInUp" data-wow-delay="0.7s">
-                    <div class="bg-light rounded service-item">
-                        <div class="service-content d-flex align-items-center justify-content-center p-4">
-                            <div class="service-content-icon text-center">
-                                <i class="fas fa-fire-extinguisher fa-7x text-primary mb-4"></i>
-                                <h4 class="mb-3">Fireproof Paint</h4>
-                                <p class="mb-4">Intumescent protective coatings that expand under heat to safeguard
-                                    surfaces from severe fire damage.</p>
-                                <a href="#" class="btn btn-primary px-4 py-2 rounded-pill">Read More</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Service End -->
-
-
-
-    <!-- Deco Paint Products Start -->
-    <div class="container-fluid bg-light event py-6 mt-0 mb-0">
-        <div class="container">
-            <div class="text-center wow bounceInUp" data-wow-delay="0.1s">
-                <small
-                    class="d-inline-block fw-bold text-dark text-uppercase bg-light border border-primary rounded-pill px-4 py-1 mb-3">
-                    Decorative Paints
-                </small>
-                <h1 class="display-5 mb-5">Explore Our Decorative Paint Range</h1>
-            </div>
-            <div class="tab-class text-center">
-                <ul class="nav nav-pills d-inline-flex justify-content-center mb-5 wow bounceInUp"
-                    data-wow-delay="0.1s">
-                    <li class="nav-item p-2">
-                        <a class="d-flex mx-2 py-2 border border-primary bg-light rounded-pill active"
-                            data-bs-toggle="pill" href="#tab-1">
-                            <span class="text-dark" style="width: 150px;">All Products</span>
-                        </a>
-                    </li>
-                    <li class="nav-item p-2">
-                        <a class="d-flex py-2 mx-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill"
-                            href="#tab-2">
-                            <span class="text-dark" style="width: 150px;">Interior Paints</span>
-                        </a>
-                    </li>
-                    <li class="nav-item p-2">
-                        <a class="d-flex mx-2 py-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill"
-                            href="#tab-3">
-                            <span class="text-dark" style="width: 150px;">Exterior Paints</span>
-                        </a>
-                    </li>
-                    <li class="nav-item p-2">
-                        <a class="d-flex mx-2 py-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill"
-                            href="#tab-4">
-                            <span class="text-dark" style="width: 150px;">Primer</span>
-                        </a>
-                    </li>
-                    <li class="nav-item p-2">
-                        <a class="d-flex mx-2 py-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill"
-                            href="#tab-5">
-                            <span class="text-dark" style="width: 150px;">Distemper</span>
-                        </a>
-                    </li>
-                    <li class="nav-item p-2">
-                        <a class="d-flex mx-2 py-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill"
-                            href="#tab-14">
-                            <span class="text-dark" style="width: 150px;">Bullet enamel</span>
-                        </a>
-                    </li>
-                    <li class="nav-item p-2">
-                        <a class="d-flex mx-2 py-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill"
-                            href="#tab-6">
-                            <span class="text-dark" style="width: 150px;">Fireproof Paint</span>
-                        </a>
-                    </li>
-                </ul>
-
-                <div class="tab-content">
-                    <!-- All Products -->
-                    <div id="tab-1" class="tab-pane fade show p-0 active">
-                        <div class="row g-4">
-                            <div class="col-lg-12">
-                                <div class="row g-4">
-                                    <div class="col-md-6 col-lg-3 wow bounceInUp" data-wow-delay="0.1s">
-                                        <div class="event-img position-relative">
-                                            <img class="img-fluid rounded w-100" src="img/event-1.jpg" alt="">
-                                            <div class="event-overlay d-flex flex-column p-4">
-                                                <h4 class="me-auto">Interior Paints</h4>
-                                                <a href="img/event-1.jpg" data-lightbox="paint" class="my-auto"><i
-                                                        class="fas fa-search-plus text-dark fa-2x"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-lg-3 wow bounceInUp" data-wow-delay="0.1s">
-                                        <div class="event-img position-relative">
-                                            <img class="img-fluid rounded w-100" src="img/event-1.jpg" alt="">
-                                            <div class="event-overlay d-flex flex-column p-4">
-                                                <h4 class="me-auto">Interior Paints</h4>
-                                                <a href="img/event-1.jpg" data-lightbox="paint" class="my-auto"><i
-                                                        class="fas fa-search-plus text-dark fa-2x"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-lg-3 wow bounceInUp" data-wow-delay="0.3s">
-                                        <div class="event-img position-relative">
-                                            <img class="img-fluid rounded w-100" src="img/event-2.jpg" alt="">
-                                            <div class="event-overlay d-flex flex-column p-4">
-                                                <h4 class="me-auto">Exterior Paints</h4>
-                                                <a href="img/event-2.jpg" data-lightbox="paint" class="my-auto"><i
-                                                        class="fas fa-search-plus text-dark fa-2x"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-lg-3 wow bounceInUp" data-wow-delay="0.5s">
-                                        <div class="event-img position-relative">
-                                            <img class="img-fluid rounded w-100" src="img/event-3.jpg" alt="">
-                                            <div class="event-overlay d-flex flex-column p-4">
-                                                <h4 class="me-auto">Primer</h4>
-                                                <a href="img/event-3.jpg" data-lightbox="paint" class="my-auto"><i
-                                                        class="fas fa-search-plus text-dark fa-2x"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-lg-3 wow bounceInUp" data-wow-delay="0.7s">
-                                        <div class="event-img position-relative">
-                                            <img class="img-fluid rounded w-100" src="img/event-4.jpg" alt="">
-                                            <div class="event-overlay d-flex flex-column p-4">
-                                                <h4 class="me-auto">Distemper</h4>
-                                                <a href="img/event-4.jpg" data-lightbox="paint" class="my-auto"><i
-                                                        class="fas fa-search-plus text-dark fa-2x"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-lg-3 wow bounceInUp" data-wow-delay="0.9s">
-                                        <div class="event-img position-relative">
-                                            <img class="img-fluid rounded w-100" src="img/event-5.jpg" alt="">
-                                            <div class="event-overlay d-flex flex-column p-4">
-                                                <h4 class="me-auto">Bullet enamel</h4>
-                                                <a href="img/event-5.jpg" data-lightbox="paint" class="my-auto"><i
-                                                        class="fas fa-search-plus text-dark fa-2x"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-lg-3 wow bounceInUp" data-wow-delay="0.9s">
-                                        <div class="event-img position-relative">
-                                            <img class="img-fluid rounded w-100" src="img/event-5.jpg" alt="">
-                                            <div class="event-overlay d-flex flex-column p-4">
-                                                <h4 class="me-auto">Fireproof Paint</h4>
-                                                <a href="img/event-5.jpg" data-lightbox="paint" class="my-auto"><i
-                                                        class="fas fa-search-plus text-dark fa-2x"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Interior Paints -->
-                    <div id="tab-2" class="tab-pane fade show p-0">
-                        <div class="row g-4">
-                            <div class="col-md-6 col-lg-3 ">
-                                <div class="event-img position-relative">
-                                    <img class="img-fluid rounded w-100" src="img/event-1.jpg" alt="">
-                                    <div class="event-overlay d-flex flex-column p-4">
-                                        <h4 class="me-auto">Interior Paints</h4>
-                                        <a href="img/event-1.jpg" data-lightbox="paint" class="my-auto"><i
-                                                class="fas fa-search-plus text-dark fa-2x"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-lg-3 ">
-                                <div class="event-img position-relative">
-                                    <img class="img-fluid rounded w-100" src="img/event-1.jpg" alt="">
-                                    <div class="event-overlay d-flex flex-column p-4">
-                                        <h4 class="me-auto">Interior Paints</h4>
-                                        <a href="img/event-1.jpg" data-lightbox="paint" class="my-auto"><i
-                                                class="fas fa-search-plus text-dark fa-2x"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-lg-3">
-                                <div class="event-img position-relative">
-                                    <img class="img-fluid rounded w-100" src="img/event-2.jpg" alt="">
-                                    <div class="event-overlay d-flex flex-column p-4">
-                                        <h4 class="me-auto">Exterior Paints</h4>
-                                        <a href="img/event-2.jpg" data-lightbox="paint" class="my-auto"><i
-                                                class="fas fa-search-plus text-dark fa-2x"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-lg-3">
-                                <div class="event-img position-relative">
-                                    <img class="img-fluid rounded w-100" src="img/event-3.jpg" alt="">
-                                    <div class="event-overlay d-flex flex-column p-4">
-                                        <h4 class="me-auto">Primer</h4>
-                                        <a href="img/event-3.jpg" data-lightbox="paint" class="my-auto"><i
-                                                class="fas fa-search-plus text-dark fa-2x"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <!-- Exterior Paints -->
-                    <div id="tab-3" class="tab-pane fade show p-0">
-                        <div class="row g-4">
-                            <div class="col-md-6 col-lg-3">
-                                <div class="event-img position-relative">
-                                    <img class="img-fluid rounded w-100" src="img/event-2.jpg" alt="">
-                                    <div class="event-overlay d-flex flex-column p-4">
-                                        <h4 class="me-auto">Exterior Paints</h4>
-                                        <a href="img/event-2.jpg" data-lightbox="paint-3" class="my-auto"><i
-                                                class="fas fa-search-plus text-dark fa-2x"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Primer -->
-                    <div id="tab-4" class="tab-pane fade show p-0">
-                        <div class="row g-4">
-                            <div class="col-md-6 col-lg-3">
-                                <div class="event-img position-relative">
-                                    <img class="img-fluid rounded w-100" src="img/event-3.jpg" alt="">
-                                    <div class="event-overlay d-flex flex-column p-4">
-                                        <h4 class="me-auto">Primer</h4>
-                                        <a href="img/event-3.jpg" data-lightbox="paint-4" class="my-auto"><i
-                                                class="fas fa-search-plus text-dark fa-2x"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Distemper -->
-                    <div id="tab-5" class="tab-pane fade show p-0">
-                        <div class="row g-4">
-                            <div class="col-md-6 col-lg-3">
-                                <div class="event-img position-relative">
-                                    <img class="img-fluid rounded w-100" src="img/event-4.jpg" alt="">
-                                    <div class="event-overlay d-flex flex-column p-4">
-                                        <h4 class="me-auto">Distemper</h4>
-                                        <a href="img/event-4.jpg" data-lightbox="paint-5" class="my-auto"><i
-                                                class="fas fa-search-plus text-dark fa-2x"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Fireproof Paint -->
-                    <div id="tab-6" class="tab-pane fade show p-0">
-                        <div class="row g-4">
-                            <div class="col-md-6 col-lg-3">
-                                <div class="event-img position-relative">
-                                    <img class="img-fluid rounded w-100" src="img/event-5.jpg" alt="">
-                                    <div class="event-overlay d-flex flex-column p-4">
-                                        <h4 class="me-auto">Fireproof Paint</h4>
-                                        <a href="img/event-5.jpg" data-lightbox="paint-6" class="my-auto"><i
-                                                class="fas fa-search-plus text-dark fa-2x"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Bullet enamel -->
-                    <div id="tab-14" class="tab-pane fade show p-0">
-                        <div class="row g-4">
-                            <div class="col-md-6 col-lg-3">
-                                <div class="event-img position-relative">
-                                    <img class="img-fluid rounded w-100" src="img/event-5.jpg" alt="">
-                                    <div class="event-overlay d-flex flex-column p-4">
-                                        <h4 class="me-auto">Bullet enamel</h4>
-                                        <a href="img/event-5.jpg" data-lightbox="paint-6" class="my-auto"><i
-                                                class="fas fa-search-plus text-dark fa-2x"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /Individual Tabs -->
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Deco Paint Products End -->
-
-    <!-- Industrial & Specialty Paints Start -->
-    <div class="container-fluid event py-6 mt-0 mb-0">
-        <div class="container">
-            <div class="text-center wow bounceInUp" data-wow-delay="0.1s">
-                <small
-                    class="d-inline-block fw-bold text-dark text-uppercase bg-light border border-primary rounded-pill px-4 py-1 mb-3">
-                    Industrial & Specialty Paints
-                </small>
-                <h1 class="display-5 mb-5">Explore Our Industrial & Specialty Paint Range</h1>
-            </div>
-            <div class="tab-class text-center">
-                <ul class="nav nav-pills d-inline-flex justify-content-center mb-5 wow bounceInUp"
-                    data-wow-delay="0.1s">
-                    <li class="nav-item p-2">
-                        <a class="d-flex mx-2 py-2 border border-primary bg-light rounded-pill active"
-                            data-bs-toggle="pill" href="#tab-13">
-                            <span class="text-dark" style="width: 150px;">All Products</span>
-                        </a>
-                    </li>
-                    <li class="nav-item p-2">
-                        <a class="d-flex py-2 mx-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill"
-                            href="#tab-7">
-                            <span class="text-dark" style="width: 150px;">Industrial Paints</span>
-                        </a>
-                    </li>
-                    <li class="nav-item p-2">
-                        <a class="d-flex mx-2 py-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill"
-                            href="#tab-8">
-                            <span class="text-dark" style="width: 150px;">Marine Paints</span>
-                        </a>
-                    </li>
-                    <li class="nav-item p-2">
-                        <a class="d-flex mx-2 py-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill"
-                            href="#tab-9">
-                            <span class="text-dark" style="width: 150px;">Red Oxide Primers</span>
-                        </a>
-                    </li>
-                    <li class="nav-item p-2">
-                        <a class="d-flex mx-2 py-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill"
-                            href="#tab-10">
-                            <span class="text-dark" style="width: 150px;">Bullet Enamel</span>
-                        </a>
-                    </li>
-                    <li class="nav-item p-2">
-                        <a class="d-flex mx-2 py-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill"
-                            href="#tab-11">
-                            <span class="text-dark" style="width: 150px;">Aluminum Paint</span>
-                        </a>
-                    </li>
-                    <li class="nav-item p-2">
-                        <a class="d-flex mx-2 py-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill"
-                            href="#tab-12">
-                            <span class="text-dark" style="width: 150px;">Fireproof Paint</span>
-                        </a>
-                    </li>
-                </ul>
-
-                <div class="tab-content">
-                    <!-- All Products -->
-                    <div id="tab-13" class="tab-pane fade show p-0 active">
-                        <div class="row g-4">
-                            <div class="col-lg-12">
-                                <div class="row g-4">
-                                    <div class="col-md-6 col-lg-3 wow bounceInUp" data-wow-delay="0.1s">
-                                        <div class="event-img position-relative">
-                                            <img class="img-fluid rounded w-100" src="img/event-1.jpg" alt="">
-                                            <div class="event-overlay d-flex flex-column p-4">
-                                                <h4 class="me-auto">Industrial Paints</h4>
-                                                <a href="img/event-1.jpg" data-lightbox="paint" class="my-auto"><i
-                                                        class="fas fa-search-plus text-dark fa-2x"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-lg-3 wow bounceInUp" data-wow-delay="0.3s">
-                                        <div class="event-img position-relative">
-                                            <img class="img-fluid rounded w-100" src="img/event-2.jpg" alt="">
-                                            <div class="event-overlay d-flex flex-column p-4">
-                                                <h4 class="me-auto">Marine Paints</h4>
-                                                <a href="img/event-2.jpg" data-lightbox="paint" class="my-auto"><i
-                                                        class="fas fa-search-plus text-dark fa-2x"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-lg-3 wow bounceInUp" data-wow-delay="0.5s">
-                                        <div class="event-img position-relative">
-                                            <img class="img-fluid rounded w-100" src="img/event-3.jpg" alt="">
-                                            <div class="event-overlay d-flex flex-column p-4">
-                                                <h4 class="me-auto">Red Oxide Primers</h4>
-                                                <a href="img/event-3.jpg" data-lightbox="paint" class="my-auto"><i
-                                                        class="fas fa-search-plus text-dark fa-2x"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-lg-3 wow bounceInUp" data-wow-delay="0.7s">
-                                        <div class="event-img position-relative">
-                                            <img class="img-fluid rounded w-100" src="img/event-4.jpg" alt="">
-                                            <div class="event-overlay d-flex flex-column p-4">
-                                                <h4 class="me-auto">Bullet Enamel</h4>
-                                                <a href="img/event-4.jpg" data-lightbox="paint" class="my-auto"><i
-                                                        class="fas fa-search-plus text-dark fa-2x"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-lg-3 wow bounceInUp" data-wow-delay="0.9s">
-                                        <div class="event-img position-relative">
-                                            <img class="img-fluid rounded w-100" src="img/event-5.jpg" alt="">
-                                            <div class="event-overlay d-flex flex-column p-4">
-                                                <h4 class="me-auto">Aluminum Paint</h4>
-                                                <a href="img/event-5.jpg" data-lightbox="paint" class="my-auto"><i
-                                                        class="fas fa-search-plus text-dark fa-2x"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-lg-3 wow bounceInUp" data-wow-delay="1.1s">
-                                        <div class="event-img position-relative">
-                                            <img class="img-fluid rounded w-100" src="img/event-5.jpg" alt="">
-                                            <div class="event-overlay d-flex flex-column p-4">
-                                                <h4 class="me-auto">Fireproof Paint</h4>
-                                                <a href="img/event-5.jpg" data-lightbox="paint" class="my-auto"><i
-                                                        class="fas fa-search-plus text-dark fa-2x"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Individual Tabs -->
-                    <div id="tab-7" class="tab-pane fade show p-0">
-                        <div class="row g-4">
-                            <div class="col-md-6 col-lg-3">
-                                <div class="event-img position-relative">
-                                    <img class="img-fluid rounded w-100" src="img/event-1.jpg" alt="">
-                                    <div class="event-overlay d-flex flex-column p-4">
-                                        <h4 class="me-auto">Industrial Paints</h4>
-                                        <a href="img/event-1.jpg" data-lightbox="paint" class="my-auto"><i
-                                                class="fas fa-search-plus text-dark fa-2x"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div id="tab-8" class="tab-pane fade show p-0">
-                        <div class="row g-4">
-                            <div class="col-md-6 col-lg-3">
-                                <div class="event-img position-relative">
-                                    <img class="img-fluid rounded w-100" src="img/event-2.jpg" alt="">
-                                    <div class="event-overlay d-flex flex-column p-4">
-                                        <h4 class="me-auto">Marine Paints</h4>
-                                        <a href="img/event-2.jpg" data-lightbox="paint" class="my-auto"><i
-                                                class="fas fa-search-plus text-dark fa-2x"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div id="tab-9" class="tab-pane fade show p-0">
-                        <div class="row g-4">
-                            <div class="col-md-6 col-lg-3">
-                                <div class="event-img position-relative">
-                                    <img class="img-fluid rounded w-100" src="img/event-3.jpg" alt="">
-                                    <div class="event-overlay d-flex flex-column p-4">
-                                        <h4 class="me-auto">Red Oxide Primers</h4>
-                                        <a href="img/event-3.jpg" data-lightbox="paint" class="my-auto"><i
-                                                class="fas fa-search-plus text-dark fa-2x"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div id="tab-10" class="tab-pane fade show p-0">
-                        <div class="row g-4">
-                            <div class="col-md-6 col-lg-3">
-                                <div class="event-img position-relative">
-                                    <img class="img-fluid rounded w-100" src="img/event-4.jpg" alt="">
-                                    <div class="event-overlay d-flex flex-column p-4">
-                                        <h4 class="me-auto">Bullet Enamel</h4>
-                                        <a href="img/event-4.jpg" data-lightbox="paint" class="my-auto"><i
-                                                class="fas fa-search-plus text-dark fa-2x"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div id="tab-11" class="tab-pane fade show p-0">
-                        <div class="row g-4">
-                            <div class="col-md-6 col-lg-3">
-                                <div class="event-img position-relative">
-                                    <img class="img-fluid rounded w-100" src="img/event-5.jpg" alt="">
-                                    <div class="event-overlay d-flex flex-column p-4">
-                                        <h4 class="me-auto">Aluminum Paint</h4>
-                                        <a href="img/event-5.jpg" data-lightbox="paint" class="my-auto"><i
-                                                class="fas fa-search-plus text-dark fa-2x"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div id="tab-12" class="tab-pane fade show p-0">
-                        <div class="row g-4">
-                            <div class="col-md-6 col-lg-3">
-                                <div class="event-img position-relative">
-                                    <img class="img-fluid rounded w-100" src="img/event-5.jpg" alt="">
-                                    <div class="event-overlay d-flex flex-column p-4">
-                                        <h4 class="me-auto">Fireproof Paint</h4>
-                                        <a href="img/event-5.jpg" data-lightbox="paint" class="my-auto"><i
-                                                class="fas fa-search-plus text-dark fa-2x"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /Individual Tabs -->
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Industrial & Specialty Paints End -->
-
-
-
-    <!-- Book Us Start -->
-    <div class="container-fluid contact py-6 wow bounceInUp" data-wow-delay="0.1s"
-        style="background-image:url(./img/hero4.png);">
-        <div class="container">
-            <div class="row g-0">
-
-                <!-- <div class="border border-primary py-5 px-4"
-                style="border-radius: 15px;background: rgb(255, 255, 255,0.2); backdrop-filter: blur(5px);"> -->
-                <div class="py-5 px-4"
-                    style="border-radius: 15px;background: rgb(255, 255, 255,0.2); backdrop-filter: blur(5px);">
-                    <div class="text-center">
-                        <small
-                            class="d-inline-block fw-bold text-dark text-uppercase bg-light border border-primary rounded-pill px-4 py-1 mb-3">Bulk
-                            Order Form</small>
-                        <h1 class="display-5 mb-5" style="text-shadow: 0px 0px 10px white;">Request Bulk Paint Supply
-                        </h1>
-                    </div>
-                    <div class="row g-4 form">
-                        <!-- Row 1: 3 Fields -->
-                        <div class="col-lg-4 col-md-6">
-                            <input type="text" class="form-control border-primary p-2" placeholder="Full Name" required>
-                        </div>
-                        <div class="col-lg-4 col-md-6">
-                            <input type="text" class="form-control border-primary p-2" placeholder="Company Name"
-                                required>
-                        </div>
-                        <div class="col-lg-4 col-md-6">
-                            <select class="form-select border-primary p-2" aria-label="Select Business Type" required>
-                                <option selected>Select Business Type</option>
-                                <option value="1">Builder</option>
-                                <option value="2">Contractor</option>
-                                <option value="3">Trader</option>
-                                <option value="4">Distributor</option>
-                                <option value="5">Other</option>
-                            </select>
-                        </div>
-
-                        <!-- Row 2: 3 Fields -->
-                        <div class="col-lg-4 col-md-6">
-                            <input type="text" class="form-control border-primary p-2" placeholder="Phone Number"
-                                required>
-                        </div>
-                        <div class="col-lg-4 col-md-6">
-                            <input type="email" class="form-control border-primary p-2" placeholder="Email Address"
-                                required>
-                        </div>
-
-                        <!-- Location Selection (State and District) -->
-                        <div class="col-lg-4 col-md-6">
-                            <select class="form-select border-primary p-2" id="inputState" aria-label="Select State"
-                                required>
-                                <option selected>Select State</option>
-                                <option value="1">Andaman and Nicobar Islands</option>
-                                <option value="2">Andhra Pradesh</option>
-                                <option value="3">Arunachal Pradesh</option>
-                                <option value="4">Assam</option>
-                                <option value="5">Bihar</option>
-                                <option value="6">Chandigarh</option>
-                                <option value="7">Chhattisgarh</option>
-                                <option value="8">Delhi</option>
-                                <option value="9">Dadra and Nagar Haveli and Daman and Diu</option>
-                                <option value="10">Goa</option>
-                                <option value="11">Gujarat</option>
-                                <option value="12">Haryana</option>
-                                <option value="13">Himachal Pradesh</option>
-                                <option value="14">Jharkhand</option>
-                                <option value="15">Karnataka</option>
-                                <option value="16">Kerala</option>
-                                <option value="17">Lakshadweep</option>
-                                <option value="18">Madhya Pradesh</option>
-                                <option value="19">Maharashtra</option>
-                                <option value="20">Manipur</option>
-                                <option value="21">Meghalaya</option>
-                                <option value="22">Mizoram</option>
-                                <option value="23">Nagaland</option>
-                                <option value="24">Odisha</option>
-                                <option value="25">Puducherry</option>
-                                <option value="26">Punjab</option>
-                                <option value="27">Rajasthan</option>
-                                <option value="28">Sikkim</option>
-                                <option value="29">Tamil Nadu</option>
-                                <option value="30">Telangana</option>
-                                <option value="31">Tripura</option>
-                                <option value="32">Uttarakhand</option>
-                                <option value="33">Uttar Pradesh</option>
-                                <option value="34">West Bengal</option>
-                                <option value="35">Jammu and Kashmir</option>
-                                <option value="36">Ladakh</option>
-                            </select>
-                        </div>
-
-                        <!-- District options will be populated based on selected state -->
-                        <!-- <div class="col-lg-4 col-md-6">
-                                <select class="form-select border-primary p-2" id="inputDistrict"
-                                    aria-label="Select District" required>
-                                    <option selected>Select District</option>
-                                </select>
-                            </div> -->
-
-
-
-                        <!-- Row 3: 2 Fields -->
-                        <div class="col-lg-6 col-md-6">
-                            <select class="form-select border-primary p-2" aria-label="Select Product(s) of Interest"
-                                required>
-                                <option selected>Select Product(s) of Interest</option>
-                                <option value="1">Interior Paints</option>
-                                <option value="2">Exterior Paints</option>
-                                <option value="3">Primers</option>
-                                <option value="4">Distempers</option>
-                                <option value="5">Bullet Enamel</option>
-                                <option value="6">Industrial Paints</option>
-                                <option value="7">Marine Paints</option>
-                                <option value="8">Red Oxide Primers</option>
-                                <option value="9">Aluminum Paint</option>
-                                <option value="10">Fireproof Paint</option>
-                            </select>
-                        </div>
-                        <div class="col-lg-6 col-md-6">
-                            <div style="position: relative;">
-                                <input type="text" class="form-control border-primary p-2"
-                                    placeholder="Quantity Requirement" required style="padding-right: 110px;">
-                                <select required
-                                    style="position: absolute; top: 0; right: 0; height: 100%; border: none; background: transparent; border-left: 1px solid #0d6efd; padding: 0 10px; color: #000; appearance: none; border-top-right-radius: 6px; border-bottom-right-radius: 6px;">
-                                    <option selected disabled>Unit</option>
-                                    <option value="kg">KG</option>
-                                    <option value="liters">Liters</option>
-                                    <option value="tons">Tons</option>
-                                    <option value="mts">MTs</option>
-                                </select>
-                            </div>
-                        </div>
-
-
-                        <!-- Row 4: Additional Details -->
-                        <div class="col-12">
-                            <textarea class="form-control border-primary p-2" placeholder="Additional Details / Message"
-                                rows="3"></textarea>
-                        </div>
-
-                        <!-- Submit Button -->
-                        <div class="col-12 text-center">
-                            <button type="submit" class="btn btn-primary px-5 py-3 rounded-pill">Submit Now</button>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-    <!-- Book Us End -->
-
-    <!-- Add JavaScript to handle dynamic district population based on selected state -->
-    <script>
-        document.getElementById("inputState").addEventListener("change", function () {
-            const stateId = this.value;
-            const districtSelect = document.getElementById("inputDistrict");
-
-            // Clear previous options
-            districtSelect.innerHTML = '<option selected>Select District</option>';
-
-            let districts = [];
-
-            // Districts based on selected state
-            if (stateId == "1") { // Andaman and Nicobar Islands
-                districts = ["South Andaman", "Nicobar", "North and Middle Andaman"];
-            } else if (stateId == "2") { // Andhra Pradesh
-                districts = ["Hyderabad", "Visakhapatnam", "Vijayawada", "Warangal", "Guntur", "Khammam", "Kurnool", "Nellore", "Chittoor", "East Godavari", "West Godavari", "Krishna", "Srikakulam", "Prakasam", "Anantapur", "Rajahmundry", "Kadapa"];
-            } else if (stateId == "3") { // Arunachal Pradesh
-                districts = ["Tawang", "West Kameng", "East Kameng", "Papum Pare", "Kra Daadi", "Kurung Kumey", "Lower Subansiri", "Upper Subansiri", "West Siang", "East Siang", "Siang", "Lower Dibang Valley", "Upper Dibang Valley", "Anjaw", "Lohit", "Namsai", "Changlang", "Tirap", "Longding"];
-            } else if (stateId == "4") { // Assam
-                districts = ["Guwahati", "Jorhat", "Dibrugarh", "Silchar", "Nagaon", "Tinsukia", "Bongaigaon", "Dhubri", "Goalpara", "Sonitpur", "Barpeta", "Karbi Anglong", "Cachar", "Hailakandi", "Kokrajhar", "Morigaon", "Baksa", "Nalbari"];
-            } else if (stateId == "5") { // Bihar
-                districts = ["Patna", "Gaya", "Bhagalpur", "Muzaffarpur", "Darbhanga", "Purnia", "Sasaram", "Chapra", "Munger", "Arrah", "Khagaria", "Siwan", "Buxar", "Nalanda", "Vaishali", "Samastipur", "Madhepura", "Begusarai"];
-            } else if (stateId == "6") { // Chandigarh
-                districts = ["Chandigarh"];
-            } else if (stateId == "7") { // Chhattisgarh
-                districts = ["Raipur", "Bilaspur", "Durg", "Korba", "Jagdalpur", "Raigarh", "Rajnandgaon", "Surguja", "Janjgir", "Kabirdham", "Baloda Bazar", "Mahasamund", "Balrampur", "Bemetara"];
-            } else if (stateId == "8") { // Delhi
-                districts = ["New Delhi", "South Delhi", "North Delhi", "West Delhi", "East Delhi", "Shahdara", "South West Delhi", "North West Delhi", "Central Delhi"];
-            } else if (stateId == "9") { // Dadra and Nagar Haveli and Daman and Diu
-                districts = ["Dadra and Nagar Haveli", "Daman", "Diu"];
-            } else if (stateId == "10") { // Goa
-                districts = ["North Goa", "South Goa"];
-            } else if (stateId == "11") { // Gujarat
-                districts = ["Ahmedabad", "Surat", "Vadodara", "Rajkot", "Bhavnagar", "Junagadh", "Narmada", "Anand", "Kheda", "Sabarkantha", "Mehsana", "Banaskantha", "Patan", "Navsari", "Valsad", "Gandhinagar", "Dang", "Morbi"];
-            } else if (stateId == "12") { // Haryana
-                districts = ["Gurugram", "Faridabad", "Hisar", "Karnal", "Ambala", "Rohtak", "Yamunanagar", "Sirsa", "Bhiwani", "Jind", "Sonipat", "Panipat", "Mahendragarh", "Fatehabad", "Rewari"];
-            } else if (stateId == "13") { // Himachal Pradesh
-                districts = ["Shimla", "Manali", "Kullu", "Solan", "Kangra", "Mandi", "Chamba", "Bilaspur", "Kullu", "Una", "Hamirpur", "Sirmaur", "Kangra"];
-            } else if (stateId == "14") { // Jharkhand
-                districts = ["Ranchi", "Jamshedpur", "Dhanbad", "Dumka", "Hazaribagh", "Deoghar", "Giridih", "Chatra", "Khunti", "Pakur", "Godda", "Palamu", "Latehar", "Lohardaga", "Ramgarh"];
-            } else if (stateId == "15") { // Karnataka
-                districts = ["Bengaluru", "Mysuru", "Hubli", "Belagavi", "Mangalore", "Mandya", "Shimoga", "Chikkamagaluru", "Chitradurga", "Tumkur", "Dakshina Kannada", "Udupi", "Bidar", "Raichur", "Bellary", "Kolar", "Hassan", "Davanagere"];
-            } else if (stateId == "16") { // Kerala
-                districts = ["Thiruvananthapuram", "Kochi", "Kottayam", "Kozhikode", "Thrissur", "Malappuram", "Ernakulam", "Alappuzha", "Pathanamthitta", "Idukki", "Wayanad", "Kannur", "Kasaragod", "Palakkad"];
-            } else if (stateId == "17") { // Lakshadweep
-                districts = ["Lakshadweep"];
-            } else if (stateId == "18") { // Madhya Pradesh
-                districts = ["Bhopal", "Indore", "Gwalior", "Jabalpur", "Ujjain", "Sagar", "Shivpuri", "Ratlam", "Khargone", "Dewas", "Satna", "Rewa", "Sehore", "Chhindwara", "Balaghat"];
-            } else if (stateId == "19") { // Maharashtra
-                districts = ["Mumbai", "Pune", "Nagpur", "Nashik", "Thane", "Kolhapur", "Aurangabad", "Solapur", "Satara", "Ratnagiri", "Palghar", "Beed", "Osmanabad", "Jalna", "Nandurbar", "Akola", "Buldhana"];
-            } else if (stateId == "20") { // Manipur
-                districts = ["Imphal", "Bishnupur", "Churachandpur", "Thoubal", "Senapati", "Tamenglong", "Chandel", "Ukhrul"];
-            } else if (stateId == "21") { // Meghalaya
-                districts = ["East Khasi Hills", "West Khasi Hills", "Jaintia Hills", "Ri Bhoi", "South Garo Hills", "West Garo Hills", "East Garo Hills"];
-            } else if (stateId == "22") { // Mizoram
-                districts = ["Aizawl", "Champhai", "Kolasib", "Lunglei", "Mamit", "Serchhip", "Lawngtlai"];
-            } else if (stateId == "23") { // Nagaland
-                districts = ["Dimapur", "Kohima", "Mokokchung", "Mon", "Peren", "Phek", "Tuensang", "Wokha", "Zunheboto"];
-            } else if (stateId == "24") { // Odisha
-                districts = ["Bhubaneswar", "Cuttack", "Rourkela", "Berhampur", "Sambalpur", "Balasore", "Kendrapara", "Angul", "Dhenkanal", "Jagatsinghpur"];
-            } else if (stateId == "25") { // Puducherry
-                districts = ["Puducherry", "Karaikal", "Mahe", "Yanam"];
-            } else if (stateId == "26") { // Punjab
-                districts = ["Chandigarh", "Amritsar", "Ludhiana", "Jalandhar", "Patiala", "Bathinda", "Moga", "Fatehgarh Sahib", "Hoshiarpur", "Rupnagar"];
-            } else if (stateId == "27") { // Rajasthan
-                districts = ["Jaipur", "Udaipur", "Jodhpur", "Kota", "Ajmer", "Bikaner", "Alwar", "Pali", "Sikar", "Churu", "Bhilwara"];
-            } else if (stateId == "28") { // Sikkim
-                districts = ["East Sikkim", "West Sikkim", "South Sikkim", "North Sikkim"];
-            } else if (stateId == "29") { // Tamil Nadu
-                districts = ["Chennai", "Coimbatore", "Madurai", "Tiruchirappalli", "Salem", "Tirunelveli", "Vellore", "Erode", "Tiruvallur", "Dharmapuri", "Kanchipuram"];
-            } else if (stateId == "30") { // Telangana
-                districts = ["Hyderabad", "Warangal", "Khammam", "Karimnagar", "Nizamabad", "Mahbubnagar", "Medak", "Adilabad"];
-            } else if (stateId == "31") { // Tripura
-                districts = ["West Tripura", "South Tripura", "North Tripura", "Dhalai", "Unakoti"];
-            } else if (stateId == "32") { // Uttarakhand
-                districts = ["Dehradun", "Haridwar", "Nainital", "Rishikesh", "Haldwani", "Udham Singh Nagar", "Pauri Garhwal", "Tehri Garhwal", "Chamoli"];
-            } else if (stateId == "33") { // Uttar Pradesh 
-                districts = ["Lucknow", "Kanpur", "Agra", "Varanasi", "Meerut", "Ghaziabad", "Aligarh", "Bareilly", "Moradabad", "Mathura", "Muzaffarnagar"];
-            } else if (stateId == "34") { // West Bengal 
-                districts = ["Kolkata", "Howrah", "Durgapur", "Siliguri", "Asansol", "Murshidabad", "Medinipur", "Jalpaiguri", "Hooghly", "Birbhum"];
-            } else if (stateId == "35") { // Jammu and Kashmir 
-                districts = ["Srinagar", "Jammu", "Baramulla", "Kathua", "Pulwama", "Anantnag", "Rajouri", "Poonch", "Kupwara"];
-            } else if (stateId == "36") { // Ladakh 
-                districts = ["Leh", "Kargil"];
-            }
-
-
-            // Populate districts dynamically
-            districts.forEach(district => {
-                let option = document.createElement("option");
-                option.value = district;
-                option.textContent = district;
-                districtSelect.appendChild(option);
-            });
-        });
-    </script>
-
-
-
-
-    <!-- Partners Start -->
-    <div class="container-fluid team py-6">
-        <div class="container">
-            <div class="text-center wow bounceInUp" data-wow-delay="0.1s">
-                <small
-                    class="d-inline-block fw-bold text-dark text-uppercase bg-light border border-primary rounded-pill px-4 py-1 mb-3">Our
-                    Partners</small>
-                <h1 class="display-5 mb-5">Trusted By Leading Brands</h1>
-            </div>
-            <div class="owl-carousel owl-theme dtestimonial-carousel testimonial-carousel-3 wow bounceInUp"
-                data-wow-delay="0.2s">
-                <div>
-                    <img src="img/blog-1.jpg" style="height: 200px; width: 200px; " alt="">
-                </div>
-                <div>
-                    <img src="img/blog-1.jpg" style="height: 200px; width: 200px; " alt="">
-                </div>
-                <div>
-                    <img src="img/blog-1.jpg" style="height: 200px; width: 200px; " alt="">
-                </div>
-                <div>
-                    <img src="img/blog-1.jpg" style="height: 200px; width: 200px; " alt="">
-                </div>
-                <div>
-                    <img src="img/blog-1.jpg" style="height: 200px; width: 200px; " alt="">
-                </div>
-                <div>
-                    <img src="img/blog-1.jpg" style="height: 200px; width: 200px; " alt="">
-                </div>
-                <div>
-                    <img src="img/blog-1.jpg" style="height: 200px; width: 200px; " alt="">
-                </div>
-                <div>
-                    <img src="img/blog-1.jpg" style="height: 200px; width: 200px; " alt="">
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Partners End -->
+    <!-- Packaging Options End -->
 
 
     <!-- Testimonial Start -->
-    <div class="container-fluid py-6">
+    <!-- <div class="container-fluid py-5">
         <div class="container">
             <div class="text-center wow bounceInUp" data-wow-delay="0.1s">
                 <small
-                    class="d-inline-block fw-bold text-dark text-uppercase bg-light border border-primary rounded-pill px-4 py-1 mb-3">Testimonial</small>
+                    class="d-inline-block fw-bold text-dark text-uppercase bg-light border border-primary rounded-pill px-3 py-1 mb-3">Testimonial</small>
                 <h1 class="display-5 mb-5">What Our Customers says!</h1>
             </div>
             <div class="owl-carousel owl-theme testimonial-carousel testimonial-carousel-1 mb-4 wow bounceInUp"
                 data-wow-delay="0.1s">
                 <div class="testimonial-item rounded bg-light">
                     <div class="d-flex mb-3">
-                        <img src="img/testimonial-1.jpg" class="img-fluid rounded-circle flex-shrink-0" alt="">
+                        <img src="img/testimonials/Shree_Laxmi.png" class="img-fluid rounded-circle flex-shrink-0"
+                            alt="">
                         <div class="position-absolute" style="top: 15px; right: 20px;">
                             <i class="fa fa-quote-right fa-2x"></i>
                         </div>
                         <div class="ps-3 my-auto">
-                            <h4 class="mb-0">Person Name</h4>
-                            <p class="m-0">Profession</p>
+                            <h4 class="mb-0">Shree Laxmi Interiors</h4>
+                            <p class="m-0">Interior Designer</p>
                         </div>
                     </div>
                     <div class="testimonial-content">
@@ -1232,19 +499,20 @@
                             <i class="fas fa-star text-primary"></i>
                             <i class="fas fa-star text-primary"></i>
                         </div>
-                        <p class="fs-5 m-0 pt-3">Lorem ipsum dolor sit amet elit, sed do eiusmod tempor ut labore et
-                            dolore magna aliqua.</p>
+                        <p class="fs-5 m-0 pt-3">We've trusted JKP Paints' interior emulsions for over 5 years the
+                            finish, coverage, and durability are top-notch. Clients love the smooth, luxurious look.</p>
                     </div>
                 </div>
                 <div class="testimonial-item rounded bg-light">
                     <div class="d-flex mb-3">
-                        <img src="img/testimonial-2.jpg" class="img-fluid rounded-circle flex-shrink-0" alt="">
+                        <img src="img/testimonials/Sunbeam_Constructions.png"
+                            class="img-fluid rounded-circle flex-shrink-0" alt="">
                         <div class="position-absolute" style="top: 15px; right: 20px;">
                             <i class="fa fa-quote-right fa-2x"></i>
                         </div>
                         <div class="ps-3 my-auto">
-                            <h4 class="mb-0">Person Name</h4>
-                            <p class="m-0">Profession</p>
+                            <h4 class="mb-0">Sunbeam Constructions Pvt. Ltd.</h4>
+                            <p class="m-0">Builder</p>
                         </div>
                     </div>
                     <div class="testimonial-content">
@@ -1255,19 +523,20 @@
                             <i class="fas fa-star text-primary"></i>
                             <i class="fas fa-star text-primary"></i>
                         </div>
-                        <p class="fs-5 m-0 pt-3">Lorem ipsum dolor sit amet elit, sed do eiusmod tempor ut labore et
-                            dolore magna aliqua.</p>
+                        <p class="fs-5 m-0 pt-3">JKP’s exterior paints have stood the test of harsh weather and time.
+                            Their durability and fade resistance give our projects a premium touch that lasts.</p>
                     </div>
                 </div>
                 <div class="testimonial-item rounded bg-light">
                     <div class="d-flex mb-3">
-                        <img src="img/testimonial-3.jpg" class="img-fluid rounded-circle flex-shrink-0" alt="">
+                        <img src="img/testimonials/Surya_Traders.png" class="img-fluid rounded-circle flex-shrink-0"
+                            alt="">
                         <div class="position-absolute" style="top: 15px; right: 20px;">
                             <i class="fa fa-quote-right fa-2x"></i>
                         </div>
                         <div class="ps-3 my-auto">
-                            <h4 class="mb-0">Person Name</h4>
-                            <p class="m-0">Profession</p>
+                            <h4 class="mb-0">Surya Traders</h4>
+                            <p class="m-0">Paint Distributor</p>
                         </div>
                     </div>
                     <div class="testimonial-content">
@@ -1278,19 +547,20 @@
                             <i class="fas fa-star text-primary"></i>
                             <i class="fas fa-star text-primary"></i>
                         </div>
-                        <p class="fs-5 m-0 pt-3">Lorem ipsum dolor sit amet elit, sed do eiusmod tempor ut labore et
-                            dolore magna aliqua.</p>
+                        <p class="fs-5 m-0 pt-3">The primer range from JKP Paints is always in high demand. Contractors
+                            trust its quality and ease of application & timely delivery makes our job easier.</p>
                     </div>
                 </div>
                 <div class="testimonial-item rounded bg-light">
                     <div class="d-flex mb-3">
-                        <img src="img/testimonial-4.jpg" class="img-fluid rounded-circle flex-shrink-0" alt="">
+                        <img src="img/testimonials/Gupta_Hardware.png" class="img-fluid rounded-circle flex-shrink-0"
+                            alt="">
                         <div class="position-absolute" style="top: 15px; right: 20px;">
                             <i class="fa fa-quote-right fa-2x"></i>
                         </div>
                         <div class="ps-3 my-auto">
-                            <h4 class="mb-0">Person Name</h4>
-                            <p class="m-0">Profession</p>
+                            <h4 class="mb-0">Gupta Paint & Hardware</h4>
+                            <p class="m-0">Retail Trader</p>
                         </div>
                     </div>
                     <div class="testimonial-content">
@@ -1301,21 +571,119 @@
                             <i class="fas fa-star text-primary"></i>
                             <i class="fas fa-star text-primary"></i>
                         </div>
-                        <p class="fs-5 m-0 pt-3">Lorem ipsum dolor sit amet elit, sed do eiusmod tempor ut labore et
-                            dolore magna aliqua.</p>
+                        <p class="fs-5 m-0 pt-3">Distempers from JKP Paints offer excellent value for budget-conscious
+                            customers without compromising on finish. It’s a fast-moving product in our shop.</p>
+                    </div>
+                </div>
+                <div class="testimonial-item rounded bg-light">
+                    <div class="d-flex mb-3">
+                        <img src="img/testimonials/Bhavani_Industries.png"
+                            class="img-fluid rounded-circle flex-shrink-0" alt="">
+                        <div class="position-absolute" style="top: 15px; right: 20px;">
+                            <i class="fa fa-quote-right fa-2x"></i>
+                        </div>
+                        <div class="ps-3 my-auto">
+                            <h4 class="mb-0">Jai Bhavani Industries</h4>
+                            <p class="m-0">Industrial Manufacturer</p>
+                        </div>
+                    </div>
+                    <div class="testimonial-content">
+                        <div class="d-flex">
+                            <i class="fas fa-star text-primary"></i>
+                            <i class="fas fa-star text-primary"></i>
+                            <i class="fas fa-star text-primary"></i>
+                            <i class="fas fa-star text-primary"></i>
+                            <i class="fas fa-star text-primary"></i>
+                        </div>
+                        <p class="fs-5 m-0 pt-3">We rely on JKP’s industrial paints for our machinery. The coating is
+                            tough, chemical-resistant, and enhances equipment life. Great job on industrial solutions!
+                        </p>
+                    </div>
+                </div>
+                <div class="testimonial-item rounded bg-light">
+                    <div class="d-flex mb-3">
+                        <img src="img/testimonials/Oceanic_Shipbuilders.png"
+                            class="img-fluid rounded-circle flex-shrink-0" alt="">
+                        <div class="position-absolute" style="top: 15px; right: 20px;">
+                            <i class="fa fa-quote-right fa-2x"></i>
+                        </div>
+                        <div class="ps-3 my-auto">
+                            <h4 class="mb-0">Oceanic Shipbuilders Ltd.</h4>
+                            <p class="m-0">Marine Contractor</p>
+                        </div>
+                    </div>
+                    <div class="testimonial-content">
+                        <div class="d-flex">
+                            <i class="fas fa-star text-primary"></i>
+                            <i class="fas fa-star text-primary"></i>
+                            <i class="fas fa-star text-primary"></i>
+                            <i class="fas fa-star text-primary"></i>
+                            <i class="fas fa-star text-primary"></i>
+                        </div>
+                        <p class="fs-5 m-0 pt-3">We were impressed by the performance of JKP’s marine paints. Even under
+                            saline and high-moisture conditions, the coatings remain strong and intact.</p>
+                    </div>
+                </div>
+                <div class="testimonial-item rounded bg-light">
+                    <div class="d-flex mb-3">
+                        <img src="img/testimonials/Pranav_Developers.png" class="img-fluid rounded-circle flex-shrink-0"
+                            alt="">
+                        <div class="position-absolute" style="top: 15px; right: 20px;">
+                            <i class="fa fa-quote-right fa-2x"></i>
+                        </div>
+                        <div class="ps-3 my-auto">
+                            <h4 class="mb-0">Pranav Developers</h4>
+                            <p class="m-0">Construction Company</p>
+                        </div>
+                    </div>
+                    <div class="testimonial-content">
+                        <div class="d-flex">
+                            <i class="fas fa-star text-primary"></i>
+                            <i class="fas fa-star text-primary"></i>
+                            <i class="fas fa-star text-primary"></i>
+                            <i class="fas fa-star text-primary"></i>
+                            <i class="fas fa-star text-primary"></i>
+                        </div>
+                        <p class="fs-5 m-0 pt-3">JKP Paints has become our go-to brand for both interior and exterior
+                            finishes. The customized color options really help bring our design vision to life.</p>
+                    </div>
+                </div>
+                <div class="testimonial-item rounded bg-light">
+                    <div class="d-flex mb-3">
+                        <img src="img/testimonials/Kalpana_Coatings.png" class="img-fluid rounded-circle flex-shrink-0"
+                            alt="">
+                        <div class="position-absolute" style="top: 15px; right: 20px;">
+                            <i class="fa fa-quote-right fa-2x"></i>
+                        </div>
+                        <div class="ps-3 my-auto">
+                            <h4 class="mb-0">Kalpana Coatings</h4>
+                            <p class="m-0">Distributor</p>
+                        </div>
+                    </div>
+                    <div class="testimonial-content">
+                        <div class="d-flex">
+                            <i class="fas fa-star text-primary"></i>
+                            <i class="fas fa-star text-primary"></i>
+                            <i class="fas fa-star text-primary"></i>
+                            <i class="fas fa-star text-primary"></i>
+                            <i class="fas fa-star text-primary"></i>
+                        </div>
+                        <p class="fs-5 m-0 pt-3">Bullet Enamel from JKP is one of the finest in the market. The gloss
+                            retention and fast drying time are ideal for heavy-duty applications.</p>
                     </div>
                 </div>
             </div>
             <div class="owl-carousel testimonial-carousel testimonial-carousel-2 wow bounceInUp" data-wow-delay="0.3s">
                 <div class="testimonial-item rounded bg-light">
                     <div class="d-flex mb-3">
-                        <img src="img/testimonial-1.jpg" class="img-fluid rounded-circle flex-shrink-0" alt="">
+                        <img src="img/testimonials/Vishwakarma_Constructions.png"
+                            class="img-fluid rounded-circle flex-shrink-0" alt="">
                         <div class="position-absolute" style="top: 15px; right: 20px;">
                             <i class="fa fa-quote-right fa-2x"></i>
                         </div>
                         <div class="ps-3 my-auto">
-                            <h4 class="mb-0">Person Name</h4>
-                            <p class="m-0">Profession</p>
+                            <h4 class="mb-0">Vishwakarma Constructions</h4>
+                            <p class="m-0">Builder</p>
                         </div>
                     </div>
                     <div class="testimonial-content">
@@ -1326,19 +694,20 @@
                             <i class="fas fa-star text-primary"></i>
                             <i class="fas fa-star text-primary"></i>
                         </div>
-                        <p class="fs-5 m-0 pt-3">Lorem ipsum dolor sit amet elit, sed do eiusmod tempor ut labore et
-                            dolore magna aliqua.</p>
+                        <p class="fs-5 m-0 pt-3">The red oxide primer from JKP Paints provides excellent rust protection
+                            for our steel structures. It has significantly improved our maintenance cycles.</p>
                     </div>
                 </div>
                 <div class="testimonial-item rounded bg-light">
                     <div class="d-flex mb-3">
-                        <img src="img/testimonial-2.jpg" class="img-fluid rounded-circle flex-shrink-0" alt="">
+                        <img src="img/testimonials/MPH_Painthouse.png" class="img-fluid rounded-circle flex-shrink-0"
+                            alt="">
                         <div class="position-absolute" style="top: 15px; right: 20px;">
                             <i class="fa fa-quote-right fa-2x"></i>
                         </div>
                         <div class="ps-3 my-auto">
-                            <h4 class="mb-0">Person Name</h4>
-                            <p class="m-0">Profession</p>
+                            <h4 class="mb-0">Mehta Paint House</h4>
+                            <p class="m-0">Retail Paint Dealer</p>
                         </div>
                     </div>
                     <div class="testimonial-content">
@@ -1349,19 +718,19 @@
                             <i class="fas fa-star text-primary"></i>
                             <i class="fas fa-star text-primary"></i>
                         </div>
-                        <p class="fs-5 m-0 pt-3">Lorem ipsum dolor sit amet elit, sed do eiusmod tempor ut labore et
-                            dolore magna aliqua.</p>
+                        <p class="fs-5 m-0 pt-3">Customers love the vibrant colors and smooth finish of JKP’s interior
+                            paints. We’ve seen repeat buyers come back asking specifically for this brand.</p>
                     </div>
                 </div>
                 <div class="testimonial-item rounded bg-light">
                     <div class="d-flex mb-3">
-                        <img src="img/testimonial-3.jpg" class="img-fluid rounded-circle flex-shrink-0" alt="">
+                        <img src="img/testimonials/ECM.png" class="img-fluid rounded-circle flex-shrink-0" alt="">
                         <div class="position-absolute" style="top: 15px; right: 20px;">
                             <i class="fa fa-quote-right fa-2x"></i>
                         </div>
                         <div class="ps-3 my-auto">
-                            <h4 class="mb-0">Person Name</h4>
-                            <p class="m-0">Profession</p>
+                            <h4 class="mb-0">Eastern Cargo & Marine Pvt. Ltd.</h4>
+                            <p class="m-0">Marine Logistics</p>
                         </div>
                     </div>
                     <div class="testimonial-content">
@@ -1372,19 +741,20 @@
                             <i class="fas fa-star text-primary"></i>
                             <i class="fas fa-star text-primary"></i>
                         </div>
-                        <p class="fs-5 m-0 pt-3">Lorem ipsum dolor sit amet elit, sed do eiusmod tempor ut labore et
-                            dolore magna aliqua.</p>
+                        <p class="fs-5 m-0 pt-3">JKP’s marine-grade coatings helped us refurbish our fleet. The
+                            performance under constant exposure to saltwater is remarkable.</p>
                     </div>
                 </div>
                 <div class="testimonial-item rounded bg-light">
                     <div class="d-flex mb-3">
-                        <img src="img/testimonial-4.jpg" class="img-fluid rounded-circle flex-shrink-0" alt="">
+                        <img src="img/testimonials/Trivedi_Engineringworks.png"
+                            class="img-fluid rounded-circle flex-shrink-0" alt="">
                         <div class="position-absolute" style="top: 15px; right: 20px;">
                             <i class="fa fa-quote-right fa-2x"></i>
                         </div>
                         <div class="ps-3 my-auto">
-                            <h4 class="mb-0">Person Name</h4>
-                            <p class="m-0">Profession</p>
+                            <h4 class="mb-0">Trivedi Engineering Works</h4>
+                            <p class="m-0">Industrial Contractor</p>
                         </div>
                     </div>
                     <div class="testimonial-content">
@@ -1395,14 +765,263 @@
                             <i class="fas fa-star text-primary"></i>
                             <i class="fas fa-star text-primary"></i>
                         </div>
-                        <p class="fs-5 m-0 pt-3">Lorem ipsum dolor sit amet elit, sed do eiusmod tempor ut labore et
-                            dolore magna aliqua.</p>
+                        <p class="fs-5 m-0 pt-3">For factory floors and equipment, we trust JKP Paints’ industrial
+                            range. The durability and abrasion resistance are spot on for our needs.</p>
                     </div>
+                </div>
+                <div class="testimonial-item rounded bg-light">
+                    <div class="d-flex mb-3">
+                        <img src="img/testimonials/Devika_Builders.png" class="img-fluid rounded-circle flex-shrink-0"
+                            alt="">
+                        <div class="position-absolute" style="top: 15px; right: 20px;">
+                            <i class="fa fa-quote-right fa-2x"></i>
+                        </div>
+                        <div class="ps-3 my-auto">
+                            <h4 class="mb-0">Devika Builders & Promoters</h4>
+                            <p class="m-0">Real Estate Developer</p>
+                        </div>
+                    </div>
+                    <div class="testimonial-content">
+                        <div class="d-flex">
+                            <i class="fas fa-star text-primary"></i>
+                            <i class="fas fa-star text-primary"></i>
+                            <i class="fas fa-star text-primary"></i>
+                            <i class="fas fa-star text-primary"></i>
+                            <i class="fas fa-star text-primary"></i>
+                        </div>
+                        <p class="fs-5 m-0 pt-3">The fireproof paint solution from JKP Paints gives us peace of mind
+                            while also meeting safety codes. It’s an essential addition to our high-rise projects.</p>
+                    </div>
+                </div>
+                <div class="testimonial-item rounded bg-light">
+                    <div class="d-flex mb-3">
+                        <img src="img/testimonials/Omsai_Traders.png" class="img-fluid rounded-circle flex-shrink-0"
+                            alt="">
+                        <div class="position-absolute" style="top: 15px; right: 20px;">
+                            <i class="fa fa-quote-right fa-2x"></i>
+                        </div>
+                        <div class="ps-3 my-auto">
+                            <h4 class="mb-0">Om Sai Traders</h4>
+                            <p class="m-0">Paint Trader</p>
+                        </div>
+                    </div>
+                    <div class="testimonial-content">
+                        <div class="d-flex">
+                            <i class="fas fa-star text-primary"></i>
+                            <i class="fas fa-star text-primary"></i>
+                            <i class="fas fa-star text-primary"></i>
+                            <i class="fas fa-star text-primary"></i>
+                            <i class="fas fa-star text-primary"></i>
+                        </div>
+                        <p class="fs-5 m-0 pt-3">JKP’s aluminum paint has an excellent sheen and heat resistance. It’s
+                            very popular for industrial roofing and pipes in our region.</p>
+                    </div>
+                </div>
+                <div class="testimonial-item rounded bg-light">
+                    <div class="d-flex mb-3">
+                        <img src="img/testimonials/Ashirwad_Constructions.png"
+                            class="img-fluid rounded-circle flex-shrink-0" alt="">
+                        <div class="position-absolute" style="top: 15px; right: 20px;">
+                            <i class="fa fa-quote-right fa-2x"></i>
+                        </div>
+                        <div class="ps-3 my-auto">
+                            <h4 class="mb-0">Ashirwad Constructions</h4>
+                            <p class="m-0">Contractor</p>
+                        </div>
+                    </div>
+                    <div class="testimonial-content">
+                        <div class="d-flex">
+                            <i class="fas fa-star text-primary"></i>
+                            <i class="fas fa-star text-primary"></i>
+                            <i class="fas fa-star text-primary"></i>
+                            <i class="fas fa-star text-primary"></i>
+                            <i class="fas fa-star text-primary"></i>
+                        </div>
+                        <p class="fs-5 m-0 pt-3">Whether it’s for a bungalow or a commercial complex, JKP’s primer
+                            ensures a strong foundation for any topcoat. It’s a must-have for quality results.</p>
+                    </div>
+                </div>
+                <div class="testimonial-item rounded bg-light">
+                    <div class="d-flex mb-3">
+                        <img src="img/testimonials/Supreme_Infratech.png" class="img-fluid rounded-circle flex-shrink-0"
+                            alt="">
+                        <div class="position-absolute" style="top: 15px; right: 20px;">
+                            <i class="fa fa-quote-right fa-2x"></i>
+                        </div>
+                        <div class="ps-3 my-auto">
+                            <h4 class="mb-0">Supreme Infratech Pvt. Ltd.</h4>
+                            <p class="m-0">Infra Developer</p>
+                        </div>
+                    </div>
+                    <div class="testimonial-content">
+                        <div class="d-flex">
+                            <i class="fas fa-star text-primary"></i>
+                            <i class="fas fa-star text-primary"></i>
+                            <i class="fas fa-star text-primary"></i>
+                            <i class="fas fa-star text-primary"></i>
+                            <i class="fas fa-star text-primary"></i>
+                        </div>
+                        <p class="fs-5 m-0 pt-3">From fireproof solutions to marine-grade coatings, JKP Paints delivers
+                            consistently across all categories. We’re proud to be associated with them for our pan-India
+                            projects.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div> -->
+    <!-- Testimonial End -->
+
+    <!-- Image Comparison Slider Start -->
+    <div class=" container-fluid py-3 bg-light">
+        <div class="text-center mb-4">
+            <small
+                class="d-inline-block fw-bold text-dark text-uppercase bg-light border border-primary rounded-pill px-4 py-1 mb-3 wow fadeInDown"
+                data-wow-delay="0.1s">
+                Before & After
+            </small>
+            <h1 class="mb-3 wow fadeInDown" data-wow-delay="0.2s">See the JKP Paints Impact</h1>
+            <h6 class="text-muted wow fadeInDown" data-wow-delay="0.3s"
+                style="background: linear-gradient(90deg, #233554, #4976c7, #27d5f8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; color: transparent;">
+                Slide to view the transformation - experience the enhanced color depth and flawless finish achieved with
+                JKP Paints.
+            </h6>
+        </div>
+        <div class="container" id="slider"
+            style="max-width:600px;height:400px;position:relative;overflow:hidden;cursor:ew-resize;">
+            <img src="img/Slider/Dull/interior.png" alt="Before"
+                style="position:absolute;width:100%;height:100%;object-fit:cover;top:0;left:0;">
+            <img src="img/Slider/Og/interior.png" alt="After" id="afterImg"
+                style="position:absolute;width:100%;height:100%;object-fit:cover;top:0;left:0;clip-path:inset(0 50% 0 0);transition:none;">
+            <div id="sliderLine"
+                style="position:absolute;top:0;bottom:0;width:2px;background:#fff;z-index:10;left:50%;transition:none;">
+            </div>
+            <!-- Labels -->
+            <span id="afterLabel"
+                style="position:absolute;bottom:15px;left:20px;z-index:20;color:#fff;font-weight:bold;font-size:1.1rem;text-shadow:0 0 8px #000;">After</span>
+            <span id="beforeLabel"
+                style="position:absolute;bottom:15px;right:20px;z-index:20;color:#fff;font-weight:bold;font-size:1.1rem;text-shadow:0 0 8px #000;">Before</span>
+        </div>
+    </div>
+
+    <script>
+        const container = document.getElementById('slider');
+        const afterImage = document.getElementById('afterImg');
+        const sliderLine = document.getElementById('sliderLine');
+        const beforeLabel = document.getElementById('beforeLabel');
+        const afterLabel = document.getElementById('afterLabel');
+        let lastPercent = 50;
+
+        function setSlider(p) {
+            p = Math.max(0, Math.min(p, 100));
+            lastPercent = p;
+            afterImage.style.clipPath = `inset(0 ${100 - p}% 0 0)`;
+            sliderLine.style.left = `${p}%`;
+
+            // Show/hide labels based on which side is more visible
+            if (p < 50) {
+                afterLabel.textContent = '';
+                beforeLabel.textContent = 'Before';
+            } else if (p > 50) {
+                beforeLabel.textContent = '';
+                afterLabel.textContent = 'After';
+            } else {
+                beforeLabel.textContent = 'Before';
+                afterLabel.textContent = 'After';
+            }
+        }
+
+        // Move slider on hover only, leave at last position
+        container.addEventListener('mousemove', e => {
+            const r = container.getBoundingClientRect();
+            let x = Math.max(0, Math.min(e.clientX - r.left, r.width));
+            let p = x / r.width * 100;
+            setSlider(p);
+        });
+
+        // Touch support for hover-like effect
+        container.addEventListener('touchmove', e => {
+            if (e.touches.length === 1) {
+                const r = container.getBoundingClientRect();
+                let x = Math.max(0, Math.min(e.touches[0].clientX - r.left, r.width));
+                let p = x / r.width * 100;
+                setSlider(p);
+            }
+        });
+
+        // On load, set to lastPercent (default 50)
+        setSlider(lastPercent);
+    </script>
+    <!-- Image Comparison Slider End -->
+
+
+
+    <!-- Brochure Download Section Start -->
+    <div class="container-fluid mt-2">
+        <div class="container">
+            <div class="row g-5 align-items-center">
+                <div class="col-lg-5 wow bounceInLeft" data-wow-delay="0.1s">
+                    <div class="position-relative overflow-hidden">
+                        <video src="video/Minumum_Viable_Product.mp4" autoplay loop muted alt="Product Philosophy"
+                            class="img-fluid rounded"></video>
+                    </div>
+                </div>
+                <div class="col-lg-7 wow bounceInRight" data-wow-delay="0.3s">
+                    <small
+                        class="d-inline-block fw-bold text-dark text-uppercase bg-light border border-primary rounded-pill px-4 py-1 mb-3">
+                        Brochure & Downloads
+                    </small>
+                    <h1 class="mb-3">JKP Paints – Product Brochure</h1>
+                    <p class="fs-5 text-muted mb-4">
+                        Explore our comprehensive brochure to discover:<br>
+                    <div class="fs-6 text-muted mb-3">
+                        <div class="d-flex align-items-start mb-2">
+                            <i class="fas fa-paint-roller text-primary me-3 mt-1"
+                                style="background: linear-gradient(145deg, #ff9800, #f44336, #160202, #2196f3); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; color: transparent;"></i>
+                            <span>Complete range of paint products for all categories</span>
+                        </div>
+                        <div class="d-flex align-items-start mb-2">
+                            <i class="fas fa-info-circle text-primary me-3 mt-1"
+                                style="background: linear-gradient(90deg, #00c6ff, #0072ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; color: transparent;"></i>
+                            <span>Technical specifications, coverage, and finish options</span>
+                        </div>
+                        <div class="d-flex align-items-start mb-2">
+                            <i class="fas fa-tools text-primary me-3 mt-1"
+                                style="background: linear-gradient(90deg, #ff512f, #dd2476); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; color: transparent;"></i>
+                            <span>Surface preparation and application guidelines</span>
+                        </div>
+                        <div class="d-flex align-items-start mb-2">
+                            <i class="fas fa-lightbulb text-primary me-3 mt-1"
+                                style="background: linear-gradient(90deg, #fff700, #ff9800); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; color: transparent;"></i>
+                            <span>Recommended usage areas and best practices</span>
+                        </div>
+                        <div class="d-flex align-items-start mb-2">
+                            <i class="fas fa-box-open text-primary me-3 mt-1"
+                                style="background: linear-gradient(90deg, #8e2de2, #4a00e0); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; color: transparent;"></i>
+                            <span>Packaging sizes and safety information</span>
+                        </div>
+                        <div class="d-flex align-items-start mb-2">
+                            <i class="fas fa-headset text-primary me-3 mt-1"
+                                style="background: linear-gradient(90deg, #43cea2, #185a9d); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; color: transparent;"></i>
+                            <span>Contact details for technical support and sales</span>
+                        </div>
+                    </div>
+                    <p>Download the PDF for detailed insights and make informed decisions for your next project.
+                    </p>
+                    <a href="Og design/JKP PAINT BROUCHER.pdf" class="btn btn-primary px-5 py-2 rounded-pill mt-2"
+                        download>
+                        <i class="fas fa-file-download me-2"></i>Download Brochure (PDF)
+                    </a>
+                    <a href="Og design/JKP PAINT BROUCHER.pdf"
+                        class="btn btn-outline-primary px-4 py-2 rounded-pill mt-2 ms-2" target="_blank">
+                        <i class="fas fa-eye me-2"></i>View Online
+                    </a>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Testimonial End -->
+    <!-- Brochure Download Section End -->
+
 
 
     <!-- Footer Start -->
@@ -1429,7 +1048,8 @@
                                     class="fab fa-twitter"></i></a>
                             <a href="#" class="btn btn-primary btn-sm-square me-2 rounded-circle"><i
                                     class="fab fa-instagram"></i></a>
-                            <a href="#" class="btn btn-primary btn-sm-square rounded-circle"><i
+                            <a href="https://www.linkedin.com/company/jkppaints/"
+                                class="btn btn-primary btn-sm-square rounded-circle"><i
                                     class="fab fa-linkedin-in"></i></a>
                         </div>
                     </div>
@@ -1439,27 +1059,34 @@
                         <h4 class="mb-4 mt-3 w-75 text-center">Our Products</h4>
                         <div class="row">
                             <div class="col-6 d-flex flex-column align-items-start">
-                                <a class="text-body mb-3" href=""><i class="fa fa-check text-primary me-2"></i>Interior
+                                <a class="text-body mb-3" href="interior.html"><i
+                                        class="fa fa-check text-primary me-2"></i>Interior
                                     Paints</a>
-                                <a class="text-body mb-3" href=""><i class="fa fa-check text-primary me-2"></i>Exterior
+                                <a class="text-body mb-3" href="exterior.html"><i
+                                        class="fa fa-check text-primary me-2"></i>Exterior
                                     Paints</a>
-                                <a class="text-body mb-3" href=""><i
+                                <a class="text-body mb-3" href="primer.html"><i
                                         class="fa fa-check text-primary me-2"></i>Primer</a>
-                                <a class="text-body mb-3" href=""><i
+                                <a class="text-body mb-3" href="distemper.html"><i
                                         class="fa fa-check text-primary me-2"></i>Distemper</a>
                                 <a class="text-body mb-3" href=""><i class="fa fa-check text-primary me-2"></i>Bullet
                                     Enamel</a>
                             </div>
                             <div class="col-6 d-flex flex-column align-items-start">
-                                <a class="text-body mb-3" href=""><i
+                                <a class="text-body mb-3" href="industrial.html"><i
                                         class="fa fa-check text-primary me-2"></i>Industrial Paints</a>
-                                <a class="text-body mb-3" href=""><i class="fa fa-check text-primary me-2"></i>Marine
+                                <a class="text-body mb-3" href="marine.html"><i
+                                        class="fa fa-check text-primary me-2"></i>Marine
                                     Paints</a>
-                                <a class="text-body mb-3" href=""><i class="fa fa-check text-primary me-2"></i>Red Oxide
+                                <a class="text-body mb-3" href="redOxide.html"><i
+                                        class="fa fa-check text-primary me-2"></i>Red
+                                    Oxide
                                     Primer</a>
-                                <a class="text-body mb-3" href=""><i class="fa fa-check text-primary me-2"></i>Aluminum
+                                <a class="text-body mb-3" href="aluminium.html"><i
+                                        class="fa fa-check text-primary me-2"></i>Aluminum
                                     Paint</a>
-                                <a class="text-body mb-3" href=""><i class="fa fa-check text-primary me-2"></i>Fireproof
+                                <a class="text-body mb-3" href="fire.html"><i
+                                        class="fa fa-check text-primary me-2"></i>Fireproof
                                     Paint</a>
                             </div>
                         </div>
