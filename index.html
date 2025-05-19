@@ -67,11 +67,12 @@
                                 <a href="primer.html" class="dropdown-item">Primers</a>
                                 <a href="distemper.html" class="dropdown-item">Distempers</a>
                                 <a href="enamel.html" class="dropdown-item">Enamel Paints</a>
-                                <a href="elastomeric.html" class="dropdown-item">Elastomeric Coatings</a>
-                                <a href="textured.html" class="dropdown-item">Textured Finishes</a>
                                 <a href="industrial.html" class="dropdown-item">Industrial Coatings</a>
+                                <a href="marine.html" class="dropdown-item">Marine Paints</a>
                                 <a href="aluminium.html" class="dropdown-item">Aluminium Paints</a>
                                 <a href="fire.html" class="dropdown-item">Fire-Resistant Paints</a>
+                                <a href="textured.html" class="dropdown-item">Textured Finishes</a>
+                                <a href="elastomeric.html" class="dropdown-item">Elastomeric Coatings</a>
                             </div>
                         </div>
                         <a href="contact.html" class="nav-item nav-link">Contact</a>
@@ -109,18 +110,81 @@
                     <h5 class="modal-title" id="exampleModalLabel">Search by keyword</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body d-flex align-items-center">
-                    <div class="input-group w-75 mx-auto d-flex">
-                        <input type="search" class="form-control bg-transparent p-3" placeholder="keywords"
-                            aria-describedby="search-icon-1">
+                <div class="modal-body d-flex align-items-center flex-column">
+                    <div class="input-group w-75 mx-auto d-flex mb-3">
+                        <input id="searchInput" type="search" class="form-control bg-transparent p-3"
+                            placeholder="keywords" aria-describedby="search-icon-1" autocomplete="off">
                         <span id="search-icon-1" class="input-group-text p-3"><i class="fa fa-search"></i></span>
                     </div>
+                    <div id="searchResults" class="w-75 mx-auto"></div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Modal Search End -->
+    <script>
+        // List of pages to search
+        const pages = [
+            { name: "Home", url: "index.html" },
+            { name: "About", url: "about.html" },
+            { name: "Product Range", url: "productRange.html" },
+            { name: "Luxury Interior Paints", url: "interior.html" },
+            { name: "Exterior Coatings", url: "exterior.html" },
+            { name: "Primers", url: "primer.html" },
+            { name: "Distempers", url: "distemper.html" },
+            { name: "Enamel Paints", url: "enamel.html" },
+            { name: "Industrial Coatings", url: "industrial.html" },
+            { name: "Marine Paints", url: "marine.html" },
+            { name: "Aluminium Paints", url: "aluminium.html" },
+            { name: "Fire-Resistant Paints", url: "fire.html" },
+            { name: "Textured Finishes", url: "textured.html" },
+            { name: "Elastomeric Coatings", url: "elastomeric.html" },
+            { name: "Contact", url: "contact.html" },
+            { name: "Careers", url: "careers.html" }
+        ];
 
+        // Search function
+        function searchPages(keyword) {
+            if (!keyword) return [];
+            keyword = keyword.toLowerCase();
+            return pages.filter(page => page.name.toLowerCase().includes(keyword));
+        }
+
+        // Render search results
+        function renderSearchResults(results) {
+            const container = document.getElementById('searchResults');
+            if (!results.length) {
+                container.innerHTML = '<div class="text-muted text-center">No results found.</div>';
+                return;
+            }
+            container.innerHTML = `
+                <ul class="list-group">
+                    ${results.map(r => `<li class="list-group-item"><a href="${r.url}" class="text-decoration-none">${r.name}</a></li>`).join('')}
+                </ul>
+            `;
+        }
+
+        // Event listener for search input
+        document.addEventListener('DOMContentLoaded', function () {
+            const input = document.getElementById('searchInput');
+            const resultsDiv = document.getElementById('searchResults');
+            input.addEventListener('keyup', function () {
+                const keyword = input.value.trim();
+                if (keyword.length === 0) {
+                    resultsDiv.innerHTML = '';
+                    return;
+                }
+                const results = searchPages(keyword);
+                renderSearchResults(results);
+            });
+
+            // Optional: clear results when modal closes
+            $('#searchModal').on('hidden.bs.modal', function () {
+                input.value = '';
+                resultsDiv.innerHTML = '';
+            });
+        });
+    </script>
+    <!-- Modal Search End -->
 
     <!-- Hero Start -->
     <div class="container-fluid bg-light py-6 my-6 mb-0 mt-0"
@@ -284,7 +348,7 @@
     </style>
 
     <!-- Service Start -->
-    <div class="container-fluid service py-6 mt-0 mb-0">
+    <div class="container-fluid service py-3 ">
         <div class="container">
             <div class="text-center wow bounceInUp" data-wow-delay="0.1s">
                 <small
@@ -297,11 +361,12 @@
                     <div class="bg-light rounded service-item">
                         <div class="service-content d-flex align-items-center justify-content-center p-4">
                             <div class="service-content-icon text-center">
-                                <i class="fas fa-paint-roller fa-7x text-primary mb-4"></i>
+                                <i class="fas fa-paint-roller fa-7x  mb-4"
+                                    style="background: linear-gradient(45deg, #ff6b6b, #feca57, #48dbfb); -webkit-background-clip: text; color: transparent;"></i>
                                 <h4 class="mb-3">Interior Paints</h4>
                                 <p class="mb-4">Premium wall finishes with rich colors and smooth texture, ideal for all
                                     indoor spaces</p>
-                                <a href="#" class="btn btn-primary px-4 py-2 rounded-pill">Read More</a>
+                                <a href="interior.html" class="btn btn-primary px-4 py-2 rounded-pill">Read More</a>
                             </div>
                         </div>
                     </div>
@@ -310,11 +375,12 @@
                     <div class="bg-light rounded service-item">
                         <div class="service-content d-flex align-items-center justify-content-center p-4">
                             <div class="service-content-icon text-center">
-                                <i class="fas fa-city fa-7x text-primary mb-4"></i>
+                                <i class="fas fa-city fa-7x mb-4"
+                                    style="background: linear-gradient(45deg, #ff416c, #ff4b2b, #ffcc70); -webkit-background-clip: text; color: transparent;"></i>
                                 <h4 class="mb-3">Exterior Paints</h4>
                                 <p class="mb-4">Weather-resistant paints that protect and enhance exterior walls with
                                     lasting durability.</p>
-                                <a href="#" class="btn btn-primary px-4 py-2 rounded-pill">Read More</a>
+                                <a href="exterior.html" class="btn btn-primary px-4 py-2 rounded-pill">Read More</a>
                             </div>
                         </div>
                     </div>
@@ -323,11 +389,12 @@
                     <div class="bg-light rounded service-item">
                         <div class="service-content d-flex align-items-center justify-content-center p-4">
                             <div class="service-content-icon text-center">
-                                <i class="fas fa-brush fa-7x text-primary mb-4"></i>
+                                <i class="fas fa-brush fa-7x mb-4"
+                                    style="background: linear-gradient(to right, #B0BEC5, #90A4AE, #78909C); -webkit-background-clip: text; color: transparent;"></i>
                                 <h4 class="mb-3">Primers</h4>
                                 <p class="mb-4">High-adhesion base coats that improve surface preparation and ensure a
                                     long-lasting topcoat.</p>
-                                <a href="#" class="btn btn-primary px-4 py-2 rounded-pill">Read More</a>
+                                <a href="primer.html" class="btn btn-primary px-4 py-2 rounded-pill">Read More</a>
                             </div>
                         </div>
                     </div>
@@ -336,11 +403,12 @@
                     <div class="bg-light rounded service-item">
                         <div class="service-content d-flex align-items-center justify-content-center p-4">
                             <div class="service-content-icon text-center">
-                                <i class="fas fa-palette fa-7x text-primary mb-4"></i>
+                                <i class="fas fa-palette fa-7x mb-4"
+                                    style="background: linear-gradient(45deg, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5); -webkit-background-clip: text; color: transparent;"></i>
                                 <h4 class="mb-3">Distempers</h4>
                                 <p class="mb-4">Cost-effective, water-based paints for interiors, offering a smooth,
                                     matte look.</p>
-                                <a href="#" class="btn btn-primary px-4 py-2 rounded-pill">Read More</a>
+                                <a href="distemper.html" class="btn btn-primary px-4 py-2 rounded-pill">Read More</a>
                             </div>
                         </div>
                     </div>
@@ -349,11 +417,12 @@
                     <div class="bg-light rounded service-item">
                         <div class="service-content d-flex align-items-center justify-content-center p-4">
                             <div class="service-content-icon text-center">
-                                <i class="fas fa-fill-drip fa-7x text-primary mb-4"></i>
+                                <i class="fas fa-fill-drip fa-7x mb-4"
+                                    style="background: linear-gradient(45deg, #f59e0b, #ef4444, #3b82f6); -webkit-background-clip: text; color: transparent;"></i>
                                 <h4 class="mb-3">Bullet Enamel</h4>
                                 <p class="mb-4">Glossy, durable enamel for wood and metal surfaces exposed to frequent
                                     use.</p>
-                                <a href="#" class="btn btn-primary px-4 py-2 rounded-pill">Read More</a>
+                                <a href="enamel.html" class="btn btn-primary px-4 py-2 rounded-pill">Read More</a>
                             </div>
                         </div>
                     </div>
@@ -362,11 +431,12 @@
                     <div class="bg-light rounded service-item">
                         <div class="service-content d-flex align-items-center justify-content-center p-4">
                             <div class="service-content-icon text-center">
-                                <i class="fas fa-industry fa-7x text-primary mb-4"></i>
+                                <i class="fas fa-industry fa-7x mb-4"
+                                    style="background: linear-gradient(to right, #90A4AE, #607D8B, #37474F); -webkit-background-clip: text; color: transparent;"></i>
                                 <h4 class="mb-3">Industrial Paints</h4>
                                 <p class="mb-4">Specialized coatings designed to perform in tough industrial and
                                     commercial environments.</p>
-                                <a href="#" class="btn btn-primary px-4 py-2 rounded-pill">Read More</a>
+                                <a href="industrial.html" class="btn btn-primary px-4 py-2 rounded-pill">Read More</a>
                             </div>
                         </div>
                     </div>
@@ -375,12 +445,13 @@
                     <div class="bg-light rounded service-item">
                         <div class="service-content d-flex align-items-center justify-content-center p-4">
                             <div class="service-content-icon text-center">
-                                <i class="fas fa-anchor fa-7x text-primary mb-4"></i>
+                                <i class="fas fa-anchor fa-7x mb-4"
+                                    style="background: linear-gradient(to right, #0277BD, #01579B, #003c6c); -webkit-background-clip: text; color: transparent;"></i>
                                 <h4 class="mb-3">Marine Paints</h4>
                                 <p class="mb-4">Anti-corrosive paints specially built to withstand moisture, salt, and
                                     extreme harsh
                                     marine conditions.</p>
-                                <a href="#" class="btn btn-primary px-4 py-2 rounded-pill">Read More</a>
+                                <a href="marine.html" class="btn btn-primary px-4 py-2 rounded-pill">Read More</a>
                             </div>
                         </div>
                     </div>
@@ -389,11 +460,12 @@
                     <div class="bg-light rounded service-item">
                         <div class="service-content d-flex align-items-center justify-content-center p-4">
                             <div class="service-content-icon text-center">
-                                <i class="fas fa-shield-alt fa-7x text-primary mb-4"></i>
+                                <i class="fas fa-shield-alt fa-7x mb-4"
+                                    style="background: linear-gradient(to right, #8B0000, #A52A2A, #B22222); -webkit-background-clip: text; color: transparent;"></i>
                                 <h4 class="mb-3">Red Oxide Primers</h4>
                                 <p class="mb-4">Protective primers for metal surfaces that resist rust and improve paint
                                     bonding.</p>
-                                <a href="#" class="btn btn-primary px-4 py-2 rounded-pill">Read More</a>
+                                <a href="redOxide.html" class="btn btn-primary px-4 py-2 rounded-pill">Read More</a>
                             </div>
                         </div>
                     </div>
@@ -402,11 +474,12 @@
                     <div class="bg-light rounded service-item">
                         <div class="service-content d-flex align-items-center justify-content-center p-4">
                             <div class="service-content-icon text-center">
-                                <i class="fas fa-sun fa-7x text-primary mb-4"></i>
+                                <i class="fas fa-sun fa-7x mb-4"
+                                    style="background: linear-gradient(to right, #D5D5D5, #B0B0B0, #8C8C8C); -webkit-background-clip: text; color: transparent;"></i>
                                 <h4 class="mb-3">Aluminum Paint</h4>
                                 <p class="mb-4">Reflective, heat-resistant metallic paint ideal for metal roofing,
                                     storage tanks, and industrial pipelines.</p>
-                                <a href="#" class="btn btn-primary px-4 py-2 rounded-pill">Read More</a>
+                                <a href="aluminium.html" class="btn btn-primary px-4 py-2 rounded-pill">Read More</a>
                             </div>
                         </div>
                     </div>
@@ -415,11 +488,12 @@
                     <div class="bg-light rounded service-item">
                         <div class="service-content d-flex align-items-center justify-content-center p-4">
                             <div class="service-content-icon text-center">
-                                <i class="fas fa-fire-extinguisher fa-7x text-primary mb-4"></i>
+                                <i class="fas fa-fire-extinguisher fa-7x mb-4"
+                                    style="background: linear-gradient(to right, #FF6F00, #D84315, #BF360C); -webkit-background-clip: text; color: transparent;"></i>
                                 <h4 class="mb-3">Fireproof Paint</h4>
                                 <p class="mb-4">Intumescent protective coatings that expand under heat to safeguard
                                     surfaces from severe fire damage.</p>
-                                <a href="#" class="btn btn-primary px-4 py-2 rounded-pill">Read More</a>
+                                <a href="fire.html" class="btn btn-primary px-4 py-2 rounded-pill">Read More</a>
                             </div>
                         </div>
                     </div>
@@ -1448,7 +1522,8 @@
                                     class="fab fa-twitter"></i></a>
                             <a href="#" class="btn btn-primary btn-sm-square me-2 rounded-circle"><i
                                     class="fab fa-instagram"></i></a>
-                            <a href="#" class="btn btn-primary btn-sm-square rounded-circle"><i
+                            <a href="https://www.linkedin.com/company/jkppaints/"
+                                class="btn btn-primary btn-sm-square rounded-circle"><i
                                     class="fab fa-linkedin-in"></i></a>
                         </div>
                     </div>
@@ -1458,28 +1533,34 @@
                         <h4 class="mb-4 mt-3 w-75 text-center">Our Products</h4>
                         <div class="row">
                             <div class="col-6 d-flex flex-column align-items-start">
-                                <a class="text-body mb-3" href=""><i class="fa fa-check text-primary me-2"></i>Interior
+                                <a class="text-body mb-3" href="interior.html"><i
+                                        class="fa fa-check text-primary me-2"></i>Interior
                                     Paints</a>
-                                <a class="text-body mb-3" href=""><i class="fa fa-check text-primary me-2"></i>Exterior
+                                <a class="text-body mb-3" href="exterior.html"><i
+                                        class="fa fa-check text-primary me-2"></i>Exterior
                                     Paints</a>
-                                <a class="text-body mb-3" href=""><i
+                                <a class="text-body mb-3" href="primer.html"><i
                                         class="fa fa-check text-primary me-2"></i>Primer</a>
-                                <a class="text-body mb-3" href=""><i
+                                <a class="text-body mb-3" href="distemper.html"><i
                                         class="fa fa-check text-primary me-2"></i>Distemper</a>
                                 <a class="text-body mb-3" href=""><i class="fa fa-check text-primary me-2"></i>Bullet
                                     Enamel</a>
                             </div>
                             <div class="col-6 d-flex flex-column align-items-start">
-                                <a class="text-body mb-3" href=""><i
+                                <a class="text-body mb-3" href="industrial.html"><i
                                         class="fa fa-check text-primary me-2"></i>Industrial Paints</a>
-                                <a class="text-body mb-3" href=""><i class="fa fa-check text-primary me-2"></i>Marine
+                                <a class="text-body mb-3" href="marine.html"><i
+                                        class="fa fa-check text-primary me-2"></i>Marine
                                     Paints</a>
-                                <a class="text-body mb-3" href=""><i class="fa fa-check text-primary me-2"></i>Red
+                                <a class="text-body mb-3" href="redOxide.html"><i
+                                        class="fa fa-check text-primary me-2"></i>Red
                                     Oxide
                                     Primer</a>
-                                <a class="text-body mb-3" href=""><i class="fa fa-check text-primary me-2"></i>Aluminum
+                                <a class="text-body mb-3" href="aluminium.html"><i
+                                        class="fa fa-check text-primary me-2"></i>Aluminum
                                     Paint</a>
-                                <a class="text-body mb-3" href=""><i class="fa fa-check text-primary me-2"></i>Fireproof
+                                <a class="text-body mb-3" href="fire.html"><i
+                                        class="fa fa-check text-primary me-2"></i>Fireproof
                                     Paint</a>
                             </div>
                         </div>
