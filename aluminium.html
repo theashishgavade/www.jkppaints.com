@@ -76,7 +76,7 @@
                                 <a href="aluminium.html" class="dropdown-item active">Aluminium Paints</a>
                                 <a href="fire.html" class="dropdown-item">Fire-Resistant Paints</a>
                                 <a href="textured.html" class="dropdown-item">Textured Finishes</a>
-                                <a href="elastomeric.html" class="dropdown-item">Elastomeric Coatings</a>
+                                <!-- <a href="elastomeric.html" class="dropdown-item">Elastomeric Coatings</a> -->
                             </div>
                         </div>
                         <a href="contact.html" class="nav-item nav-link">Contact</a>
@@ -194,10 +194,10 @@
     <!-- Hero Start -->
     <div class="container-fluid bg-light py-6 my-6 mt-0">
         <div class="container text-center animated bounceInDown">
-            <h1 class="display-1 mb-4">Luxury Interior Paints</h1>
+            <h1 class="display-1 mb-4">Aluminium Paints</h1>
             <ol class="breadcrumb justify-content-center mb-0 animated bounceInDown">
                 <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                <li class="breadcrumb-item text-dark" aria-current="page">Luxury Interior Paints</li>
+                <li class="breadcrumb-item text-dark" aria-current="page">Aluminium Paints</li>
             </ol>
         </div>
     </div>
@@ -223,8 +223,8 @@
                 const res = await fetch('js/products.json');
                 const productsData = await res.json();
 
-                // Access the "interior" array inside products.json
-                const products = productsData.Fireproof;
+                // Access the "Aluminium" array inside products.json
+                const products = productsData.Aluminium;
 
                 const list = document.getElementById('product-detail-list');
                 list.innerHTML = '';

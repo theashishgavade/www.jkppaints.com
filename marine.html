@@ -66,17 +66,17 @@
                             <a href="#" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown">All
                                 Products</a>
                             <div class="dropdown-menu bg-light">
-                                <a href="interior.html" class="dropdown-item active">Luxury Interior Paints</a>
+                                <a href="interior.html" class="dropdown-item">Luxury Interior Paints</a>
                                 <a href="exterior.html" class="dropdown-item">Exterior Coatings</a>
                                 <a href="primer.html" class="dropdown-item">Primers</a>
                                 <a href="distemper.html" class="dropdown-item">Distempers</a>
                                 <a href="enamel.html" class="dropdown-item">Enamel Paints</a>
                                 <a href="industrial.html" class="dropdown-item">Industrial Coatings</a>
-                                <a href="marine.html" class="dropdown-item">Marine Paints</a>
+                                <a href="marine.html" class="dropdown-item active">Marine Paints</a>
                                 <a href="aluminium.html" class="dropdown-item">Aluminium Paints</a>
                                 <a href="fire.html" class="dropdown-item">Fire-Resistant Paints</a>
                                 <a href="textured.html" class="dropdown-item">Textured Finishes</a>
-                                <a href="elastomeric.html" class="dropdown-item">Elastomeric Coatings</a>
+                                <!-- <a href="elastomeric.html" class="dropdown-item">Elastomeric Coatings</a> -->
                             </div>
                         </div>
                         <a href="contact.html" class="nav-item nav-link">Contact</a>
@@ -194,10 +194,10 @@
     <!-- Hero Start -->
     <div class="container-fluid bg-light py-6 my-6 mt-0">
         <div class="container text-center animated bounceInDown">
-            <h1 class="display-1 mb-4">Luxury Interior Paints</h1>
+            <h1 class="display-1 mb-4">Marine Paints</h1>
             <ol class="breadcrumb justify-content-center mb-0 animated bounceInDown">
                 <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                <li class="breadcrumb-item text-dark" aria-current="page">Luxury Interior Paints</li>
+                <li class="breadcrumb-item text-dark" aria-current="page">Marine Paints</li>
             </ol>
         </div>
     </div>
@@ -210,7 +210,7 @@
                 class="d-inline-block fw-bold text-dark text-uppercase bg-light border border-primary rounded-pill px-4 py-1 mb-3">
                 Our Products
             </small>
-            <h1 class="display-5 mb-4">Our Luxury Interior Paints</h1>
+            <h1 class="display-5 mb-4">Our Marine Paints</h1>
         </div>
     </div>
     <div id="product-detail-list">
@@ -223,8 +223,8 @@
                 const res = await fetch('js/products.json');
                 const productsData = await res.json();
 
-                // Access the "interior" array inside products.json
-                const products = productsData.Interior;
+                // Access the "Marine" array inside products.json
+                const products = productsData.Marine;
 
                 const list = document.getElementById('product-detail-list');
                 list.innerHTML = '';
@@ -889,9 +889,9 @@
         </div>
         <div class="container" id="slider"
             style="max-width:600px;height:400px;position:relative;overflow:hidden;cursor:ew-resize;">
-            <img src="img/Slider/Dull/interior.png" alt="Before"
+            <img src="img/Slider/Dull/Marine.png" alt="Before"
                 style="position:absolute;width:100%;height:100%;object-fit:cover;top:0;left:0;">
-            <img src="img/Slider/Og/interior.png" alt="After" id="afterImg"
+            <img src="img/Slider/Og/Marine.png" alt="After" id="afterImg"
                 style="position:absolute;width:100%;height:100%;object-fit:cover;top:0;left:0;clip-path:inset(0 50% 0 0);transition:none;">
             <div id="sliderLine"
                 style="position:absolute;top:0;bottom:0;width:2px;background:#fff;z-index:10;left:50%;transition:none;">

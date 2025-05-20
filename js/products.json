@@ -51,9 +51,9 @@
                 "Excellent UV Resistance",
                 "Advanced Dirt Pick-Up Resistance",
                 "Superior Algae Resistance",
-                "Excellent Durability"
+                "Excellent Durability & Fade Resistance"
             ],
-            "description": "Champion is a high-quality exterior emulsion that provides excellent weather and fade resistance. Its advanced formula offers superior UV resistance and advanced Dirt Pick-Up Resistance (DPUR), helping to keep your exterior looking fresh. The paint film also resists peeling and chalking, making it easy to maintain while providing long-lasting protection.",
+            "description": "Champion Exterior Emulsion is a super-premium anti-algae paint designed to withstand harsh weather conditions. Its advanced formula ensures excellent UV protection, dirt pick-up resistance, and superior durability, maintaining the beauty of exteriors with minimal maintenance.",
             "image": "img/Buckets/Exterior/Champion1.png",
             "email": "mailto:sales@jkppaints.com",
             "whatsapp": "https://wa.me/919999999999"
@@ -63,10 +63,11 @@
             "category": "Exterior Emulsion",
             "qualities": [
                 "Good Weather Resistance",
-                "Alkali & Fungal Protection",
-                "Economical"
+                "Superior Alkali Resistance",
+                "Effective Algae & Fungal Resistance",
+                "Enhanced Surface Coverage"
             ],
-            "description": "Budget-friendly exterior emulsion with decent resistance against weather and fungal growth.",
+            "description": "ProShine Exterior Emulsion is a premium-quality paint designed for decorative and protective exterior finishes. It offers good coverage, effective weather and fungal resistance, and excellent protection against algae and alkali, making it ideal for long-lasting performance.",
             "image": "img/Buckets/Exterior/Proshine1.png",
             "email": "mailto:sales@jkppaints.com",
             "whatsapp": "https://wa.me/919999999999"
@@ -75,12 +76,12 @@
             "name": "Wondershield",
             "category": "Exterior Emulsion",
             "qualities": [
-                "All-Weather Protection",
-                "Anti-Fungal",
-                "Fade & Peel Resistant",
-                "Slight Sheen"
+                "Excellent Durability & Color Retention",
+                "Excellent Water & Dust Resistance",
+                "Excellent Algae & Fungal Resistance",
+                "Good Resistance to Peeling & Chalking"
             ],
-            "description": "High-quality exterior emulsion with vibrant finish and excellent protection against weather and algae.",
+            "description": "Wondershield Exterior Emulsion is an ultra-premium all-weather repellent paint, formulated to deliver superior protection against extreme weather, algae, and fungal growth. It offers a smooth finish with a slight sheen, vibrant color retention, and excellent resistance to peeling, chalking, and fading.",
             "image": "img/Buckets/Exterior/Wondershield1.png",
             "email": "mailto:sales@jkppaints.com",
             "whatsapp": "https://wa.me/919999999999"
@@ -91,12 +92,12 @@
             "name": "Truebond Exterior Primer",
             "category": "Primer",
             "qualities": [
-                "High Whiteness",
-                "Strong Adhesion",
-                "Good Sealing",
-                "Reduces Porosity"
+                "Excellent Coverage",
+                "High Whiteness and Opacity",
+                "Reduces Surface Porosity",
+                "Good Sealing Properties"
             ],
-            "description": "Exterior wall primer offering excellent opacity and strong foundation for topcoats.",
+            "description": "TrueBond Exterior Primer is a high-performance primer designed to prepare and protect exterior surfaces. With excellent coverage, high whiteness, and superior opacity, it reduces surface porosity and enhances paint adhesion, ensuring a longer-lasting topcoat.",
             "image": "img/Buckets/Primer/Trubond-ex1.png",
             "email": "mailto:sales@jkppaints.com",
             "whatsapp": "https://wa.me/919999999999"
@@ -105,12 +106,12 @@
             "name": "Truebond Interior Primer",
             "category": "Primer",
             "qualities": [
-                "Good Coverage",
-                "Brightens Finish",
-                "Matt Base",
-                "Easy to Apply"
+                "Excellent Coverage",
+                "High Whiteness and Opacity",
+                "Reduces Surface Porosity",
+                "Good Sealing Properties"
             ],
-            "description": "Interior primer designed for enhancing the wall finish and improving paint adhesion.",
+            "description": "TrueBond Interior Primer is specially formulated for interior surfaces to improve paint performance. It provides excellent coverage and opacity, enhances whiteness, seals porous substrates effectively, and helps achieve a smooth, even finish.",
             "image": "img/Buckets/Primer/Truebond-in1.png",
             "email": "mailto:sales@jkppaints.com",
             "whatsapp": "https://wa.me/919999999999"
@@ -119,11 +120,12 @@
             "name": "Ultrabond Exterior Primer",
             "category": "Primer",
             "qualities": [
-                "Good Adhesion",
-                "Crack Resistance",
-                "Durable Finish"
+                "Excellent Coverage",
+                "High Whiteness and Opacity",
+                "Reduces Surface Porosity",
+                "Good Sealing Properties"
             ],
-            "description": "Exterior primer with durable bonding strength and high coverage, ideal for topcoat durability.",
+            "description": "UltraBond Exterior Primer is a premium-quality primer designed for exterior walls. It offers excellent hiding power, enhances surface whiteness, reduces porosity, and provides a strong base for the topcoat to ensure improved durability and finish.",
             "image": "img/Buckets/Primer/Ultrabond-ex1.png",
             "email": "mailto:sales@jkppaints.com",
             "whatsapp": "https://wa.me/919999999999"
@@ -132,12 +134,27 @@
             "name": "Ultrabond Interior Primer",
             "category": "Primer",
             "qualities": [
-                "Smooth Base",
-                "Pocket Friendly",
-                "Enhances Topcoat Look"
+                "Excellent Coverage",
+                "High Whiteness and Opacity",
+                "Reduces Surface Porosity",
+                "Good Sealing Properties"
             ],
-            "description": "Interior primer offering a smooth matt base and bright finish at economical cost.",
+            "description": "UltraBond Interior Primer is formulated to offer a perfect base coat for interior walls. It provides excellent coverage, bright whiteness, and strong sealing ability to minimize surface absorption, promoting better adhesion and a superior topcoat finish.",
             "image": "img/Buckets/Primer/Ultrabond-in1.png",
+            "email": "mailto:sales@jkppaints.com",
+            "whatsapp": "https://wa.me/919999999999"
+        },
+        {
+            "name": "Universal Primer",
+            "category": "Primer",
+            "qualities": [
+                "Excellent Coverage",
+                "High Whiteness and Opacity",
+                "Reduces Surface Porosity",
+                "Good Sealing Properties"
+            ],
+            "description": "Universal Primer is a versatile, high-opacity primer suitable for both interior and exterior surfaces. Its advanced formulation offers excellent coverage, superior whiteness, and effective sealing to prepare the surface for a long-lasting and even finish.",
+            "image": "img/Buckets/Primer/Universal Primer1.png",
             "email": "mailto:sales@jkppaints.com",
             "whatsapp": "https://wa.me/919999999999"
         },
@@ -145,12 +162,12 @@
             "name": "Red Oxide Primer",
             "category": "Primer",
             "qualities": [
-                "Rust Protection",
-                "Strong Adhesion",
-                "Metal Surface Ready",
-                "Long-Lasting Finish"
+                "Excellent Rust Protection",
+                "Ideal for Ferrous Metal Surfaces",
+                "Strong Adhesion to Topcoats",
+                "Suitable for Gates, Railings, and Outdoor Equipment"
             ],
-            "description": "Red oxide primer protects metal surfaces from rust and prepares them for final coatings.",
+            "description": "Red Oxide Primer is a high-performance metal primer formulated to prevent rust formation on ferrous surfaces exposed to air and humidity. Commonly used on gates, railings, and outdoor structures, it creates a strong protective base layer and enhances the adhesion and longevity of topcoats.",
             "image": "img/Buckets/Red-Oxide/Red Oxide Primer1.png",
             "email": "mailto:sales@jkppaints.com",
             "whatsapp": "https://wa.me/919999999999"
@@ -161,12 +178,12 @@
             "name": "Tiger Distemper",
             "category": "Distemper",
             "qualities": [
-                "High Whiteness",
-                "Seals Surface",
-                "Good Opacity",
-                "Economical"
+                "Enhances Whiteness for Brighter Shades",
+                "Pocket-Friendly Option",
+                "Smooth Matt Finish",
+                "Easy to Apply"
             ],
-            "description": "A traditional distemper with excellent sealing properties and brightness for interior walls.",
+            "description": "Tiger Distemper is a cost-effective interior wall coating designed to deliver bright, vibrant shades with enhanced whiteness. It offers a smooth matt finish that is easy to apply, making it an ideal choice for economical yet aesthetically pleasing wall decoration.",
             "image": "img/Buckets/Distemper/Tiger-Distemper1.png",
             "email": "mailto:sales@jkppaints.com",
             "whatsapp": "https://wa.me/919999999999"
@@ -177,13 +194,61 @@
             "name": "Bullet Enamel",
             "category": "Enamel Paint",
             "qualities": [
-                "Glossy Finish",
-                "Weatherproof",
-                "Corrosion Resistance",
-                "For Wood & Metal"
+                "Tough Film with Mirror-Like Gloss",
+                "All-Weather Resistance",
+                "Powerful Anti-Fungal Properties",
+                "Protects Wood and Metal from Corrosion"
             ],
-            "description": "High-gloss enamel suitable for wood and metal surfaces, with strong protection against rain and heat.",
+            "description": "Enamel Paint is a high-gloss, tough-finish coating designed to provide lasting beauty and protection. It forms a durable film with a mirror-like gloss that resists harsh weather, fungal growth, and corrosion, making it ideal for safeguarding wood and metal surfaces in both interior and exterior environments.",
             "image": "img/Buckets/Enamel/Bullet-Enamel1.png",
+            "email": "mailto:sales@jkppaints.com",
+            "whatsapp": "https://wa.me/919999999999"
+        }
+    ],
+    "Industrial": [
+        {
+            "name": "Industrial Paint",
+            "category": "Industrial Coating",
+            "qualities": [
+                "High-Performance Protective Coating",
+                "Enhances Service Life of Equipment and Infrastructure",
+                "Meets International Quality Standards",
+                "Environmentally Responsible Formulation"
+            ],
+            "description": "JKP Industrial Paint is a high-performance coating solution developed to protect and enhance the durability of plant machinery and infrastructure. Engineered to meet and exceed international standards, it supports industrial applications through continuous innovation and environmentally conscious practices, delivering long-term reliability and protection.",
+            "image": "img/Buckets/Industrial/Industrial-Paint1.png",
+            "email": "mailto:sales@jkppaints.com",
+            "whatsapp": "https://wa.me/919999999999"
+        }
+    ],
+    "Marine": [
+        {
+            "name": "Marine Paint",
+            "category": "Marine Coating",
+            "qualities": [
+                "Antifouling Protection for Boats",
+                "Resists Marine Organism Growth",
+                "Enhances Durability in Saltwater Conditions",
+                "Suitable for Hulls and Underwater Surfaces"
+            ],
+            "description": "JKP Marine Paint is a specialized antifouling coating designed to protect boats and marine vessels from biofouling caused by algae, barnacles, and other organisms. Formulated for long-lasting performance in harsh saltwater environments, it ensures improved efficiency, durability, and maintenance of marine surfaces.",
+            "image": "img/Buckets/Marine/Marine-Guard1.png",
+            "email": "mailto:sales@jkppaints.com",
+            "whatsapp": "https://wa.me/919999999999"
+        }
+    ],
+    "Aluminium": [
+        {
+            "name": "Aluminium Paint",
+            "category": "Metal Coating",
+            "qualities": [
+                "Protective Metallic Luster",
+                "Prevents Corrosion on Metal Surfaces",
+                "Water-Resistant Coating",
+                "Ideal for Grills, Gates, Roofs, and Pipes"
+            ],
+            "description": "Aluminium Paint is a premium protective coating that imparts a bright, metallic luster while safeguarding metal surfaces from corrosion. Its water-resistant formulation makes it ideal for outdoor applications such as metal grills, gates, roofs, and pipes, ensuring both durability and decorative appeal.",
+            "image": "img/Buckets/Aluminum/Aluminium-paint1.png",
             "email": "mailto:sales@jkppaints.com",
             "whatsapp": "https://wa.me/919999999999"
         }
@@ -193,12 +258,85 @@
             "name": "Fire Guard",
             "category": "Fireproof Paint",
             "qualities": [
-                "Explosion & Fire Resistant",
-                "Cryo-Immersion Resistant",
-                "Multi-Surface Use"
+                "Non-Flammable Base",
+                "Prevents Fire Spread and Localizes Fire",
+                "Suitable for Masonry, Wood, Metal Surfaces",
+                "Explosion and Hose Stream Resistant"
             ],
-            "description": "Fire-retardant paint that delays the spread of flames and provides critical escape time.",
+            "description": "Fire Guard is a specialized fire-retarding paint formulated with a non-flammable base and additives that slow down the spread of fire, providing crucial extra time in emergencies. It adheres effectively to masonry, wood, and metal surfaces, and offers resistance against explosions and hose stream impact.",
             "image": "img/Buckets/Fireproof/Fire-Guard1.png",
+            "email": "mailto:sales@jkppaints.com",
+            "whatsapp": "https://wa.me/919999999999"
+        },
+        {
+            "name": "Fire Retardant",
+            "category": "Fire Retardant Paint",
+            "qualities": [
+                "Fire Retardant Formula",
+                "Explosion Resistant",
+                "Hose Stream Resistant",
+                "Cryogenic Immersion, Splash & Spill Resistant"
+            ],
+            "description": "Fire Retarding paint offers advanced protection against fire hazards with its fire-resistant formula. It is engineered to resist explosions, hose stream impacts, and cryogenic immersion, making it suitable for a wide range of industrial and commercial applications requiring high-level fire safety.",
+            "image": "img/Buckets/Fireproof/Fire-Retardant1.png",
+            "email": "mailto:sales@jkppaints.com",
+            "whatsapp": "https://wa.me/919999999999"
+        }
+    ],
+    "Texture": [
+        {
+            "name": "Wonder Tex",
+            "category": "Texture Finish",
+            "qualities": [
+                "Premium Decorative and Protective Finish",
+                "Excellent Water Resistance",
+                "Crack-Resistant Film",
+                "Anti-Fungal and Anti-Algae Protection"
+            ],
+            "description": "Wonder Tex is a premium quality acrylic synthetic plaster that combines decoration with long-lasting protection. Formulated with high-performance hydrophobic acrylic polymers, it offers excellent water resistance, strong adhesion, and helps prevent surface cracks. The built-in biocide blend provides outstanding protection against fungal and algal growth.",
+            "image": "img/Buckets/Texture/WonderTex1.png",
+            "email": "mailto:sales@jkppaints.com",
+            "whatsapp": "https://wa.me/919999999999"
+        },
+        {
+            "name": "Volcano Finish",
+            "category": "Texture Finish",
+            "qualities": [
+                "Spray-Applied Bubble Finish",
+                "Based on Natural Marble Powder",
+                "Decorative and Protective",
+                "Antifungal and Antibacterial Properties"
+            ],
+            "description": "Volcano Finish is a spray texture coating featuring a dynamic bubble-type press pattern with multicolor aesthetics. Made using natural marble powder, it offers both decorative appeal and durable protection. Its antifungal and antibacterial properties make it ideal for long-term surface protection.",
+            "image": "img/Buckets/Texture/VolcanoFinish1.png",
+            "email": "mailto:sales@jkppaints.com",
+            "whatsapp": "https://wa.me/919999999999"
+        },
+        {
+            "name": "Dholpur Stone",
+            "category": "Texture Finish",
+            "qualities": [
+                "Natural Stone Appearance",
+                "Synthetic Plaster Finish",
+                "Reinforced with Marble Powder",
+                "Blended with Silica Sand"
+            ],
+            "description": "Dholpur Stone texture is a synthetic plaster designed to replicate the look of natural stone. Reinforced with marble powder and silica sand, it provides an elegant and durable stone-like finish for both interior and exterior surfaces.",
+            "image": "img/Buckets/Texture/DholpurStone1.png",
+            "email": "mailto:sales@jkppaints.com",
+            "whatsapp": "https://wa.me/919999999999"
+        },
+        {
+            "name": "JKP Superfine",
+            "category": "Texture Finish",
+            "qualities": [
+                "Textured Roller Finish",
+                "Reinforced with Marble Powder",
+                "Durable and Decorative",
+                "Ideal for Modern Wall Designs"
+            ],
+            "description": "JKP Superfine is a new-age textured finish designed for roller application. Reinforced with marble powder, it offers a subtle and refined texture that enhances the visual appeal of modern spaces while providing a durable protective layer.",
+            "image": "img/Buckets/Texture/JKPSuperfine1.png",
             "email": "mailto:sales@jkppaints.com",
             "whatsapp": "https://wa.me/919999999999"
         }
