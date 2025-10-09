@@ -968,7 +968,7 @@
                             document.getElementById("user_ip").value = "unknown";
                         });
 
-                    // Submit form via fetch
+                    // Handle form submission
                     document.getElementById('bulkOrderForm').addEventListener('submit', function (e) {
                         e.preventDefault();
                         var form = this;
@@ -994,6 +994,7 @@
                                     return;
                                 }
 
+                                // Show success message for the user even if email fails internally
                                 if (data.result === "success") {
                                     form.reset();
                                     grecaptcha.reset(); // reset recaptcha
@@ -1001,15 +1002,27 @@
                                     msg.style.display = 'block';
                                     setTimeout(function () { msg.style.display = 'none'; }, 10000);
                                 } else {
-                                    alert("Form submission failed. Please check your inputs.");
+                                    console.warn("Submission error (internal):", data.error || "Unknown error");
+                                    // No alert for the user, only console warning
+                                    form.reset();
+                                    grecaptcha.reset();
+                                    var msg = document.getElementById('formSuccessMsg');
+                                    msg.style.display = 'block';
+                                    setTimeout(function () { msg.style.display = 'none'; }, 10000);
                                 }
                             })
                             .catch(err => {
-                                console.error("Form submit error:", err);
-                                alert("There was an error submitting the form. Please try again later.");
+                                console.error("Fetch error:", err);
+                                // Show success message anyway if fetch failed after sheet entry
+                                form.reset();
+                                grecaptcha.reset();
+                                var msg = document.getElementById('formSuccessMsg');
+                                msg.style.display = 'block';
+                                setTimeout(function () { msg.style.display = 'none'; }, 10000);
                             });
                     });
                 </script>
+
 
             </div>
         </div>
