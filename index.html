@@ -801,196 +801,220 @@
 
 
 
-<!-- Book Us Start -->
-<div class="container-fluid contact py-5 wow bounceInUp" id="Bulk-order-form" data-wow-delay="0.1s"
-    style="background-image:url(img/form-bg.webp); ">
-    <div class="container">
-        <div class="row g-0">
+    <!-- Book Us Start -->
+    <div class="container-fluid contact py-5 wow bounceInUp" id="Bulk-order-form" data-wow-delay="0.1s"
+        style="background-image:url(img/form-bg.webp); ">
+        <div class="container">
+            <div class="row g-0">
 
-            <form
-                id="bulkOrderForm"
-                action="https://script.google.com/macros/s/AKfycbyKqq3Ue1kZHfrpzoeOr8XJVceE7nR5NF_fWXA64RM0JInNm8zjQaOFS40kVDnORt-1Cw/exec"
-                method="POST">
-                <div class="py-5 px-4"
-                    style="border-radius: 15px;background: rgb(255, 255, 255,0.2); backdrop-filter: blur(5px);">
-                    <div class="text-center">
-                        <small
-                            class="d-inline-block fw-bold text-dark text-uppercase bg-light border border-primary rounded-pill px-4 py-1 mb-3">
-                            Bulk Order Form
-                        </small>
-                        <h1 class="display-5 mb-5" style="text-shadow: 0px 0px 10px white;">Request Bulk Paint
-                            Supply</h1>
-                    </div>
-                    <div class="row g-4 form">
-                        <!-- Name, Company, Business Type -->
-                        <div class="col-lg-4 col-md-6">
-                            <input type="text" name="full_name" class="form-control border-primary p-2"
-                                placeholder="Full Name" required>
+                <form id="bulkOrderForm"
+                    action="https://script.google.com/macros/s/AKfycbyw1sfSMKvRbWX2VPAZIJgMaVruKIY3DzGFfTRJa0hlskdpMmw4jID9GFZgT7d7Ge9kTw/exec"
+                    method="POST">
+                    <div class="py-5 px-4"
+                        style="border-radius: 15px;background: rgb(255, 255, 255,0.2); backdrop-filter: blur(5px);">
+                        <div class="text-center">
+                            <small
+                                class="d-inline-block fw-bold text-dark text-uppercase bg-light border border-primary rounded-pill px-4 py-1 mb-3">
+                                Bulk Order Form
+                            </small>
+                            <h1 class="display-5 mb-5" style="text-shadow: 0px 0px 10px white;">Request Bulk Paint
+                                Supply</h1>
                         </div>
-                        <div class="col-lg-4 col-md-6">
-                            <input type="text" name="company_name" class="form-control border-primary p-2"
-                                placeholder="Company Name" required>
-                        </div>
-                        <div class="col-lg-4 col-md-6">
-                            <select class="form-select border-primary p-2" name="business_type" required>
-                                <option value="" disabled selected>Select Business Type</option>
-                                <option value="Builder">Builder</option>
-                                <option value="Contractor">Contractor</option>
-                                <option value="Trader">Trader</option>
-                                <option value="Distributor">Distributor</option>
-                                <option value="Other">Other</option>
-                            </select>
-                        </div>
-
-                        <!-- Phone, Email, State -->
-                        <div class="col-lg-4 col-md-6">
-                            <input type="tel" name="phone" class="form-control border-primary p-2"
-                                placeholder="Phone Number" required pattern="[0-9]{10}" maxlength="10">
-                        </div>
-                        <div class="col-lg-4 col-md-6">
-                            <input type="email" name="email" class="form-control border-primary p-2"
-                                placeholder="Email Address" required>
-                        </div>
-                        <div class="col-lg-4 col-md-6">
-                            <select class="form-select border-primary p-2" name="state" id="inputState" required>
-                                <option value="" disabled selected>Select State</option>
-                                <!-- All your state options here -->
-                                <option value="" disabled selected>Select State</option>
-                                <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
-                                <option value="Andhra Pradesh">Andhra Pradesh</option>
-                                <option value="Arunachal Pradesh">Arunachal Pradesh</option>
-                                <option value="Assam">Assam</option>
-                                <option value="Bihar">Bihar</option>
-                                <option value="Chandigarh">Chandigarh</option>
-                                <option value="Chhattisgarh">Chhattisgarh</option>
-                                <option value="Delhi">Delhi</option>
-                                <option value="Dadra and Nagar Haveli and Daman and Diu">Dadra and Nagar Haveli and Daman and Diu</option>
-                                <option value="Goa">Goa</option>
-                                <option value="Gujarat">Gujarat</option>
-                                <option value="Haryana">Haryana</option>
-                                <option value="Himachal Pradesh">Himachal Pradesh</option>
-                                <option value="Jharkhand">Jharkhand</option>
-                                <option value="Karnataka">Karnataka</option>
-                                <option value="Kerala">Kerala</option>
-                                <option value="Lakshadweep">Lakshadweep</option>
-                                <option value="Madhya Pradesh">Madhya Pradesh</option>
-                                <option value="Maharashtra">Maharashtra</option>
-                                <option value="Manipur">Manipur</option>
-                                <option value="Meghalaya">Meghalaya</option>
-                                <option value="Mizoram">Mizoram</option>
-                                <option value="Nagaland">Nagaland</option>
-                                <option value="Odisha">Odisha</option>
-                                <option value="Puducherry">Puducherry</option>
-                                <option value="Punjab">Punjab</option>
-                                <option value="Rajasthan">Rajasthan</option>
-                                <option value="Sikkim">Sikkim</option>
-                                <option value="Tamil Nadu">Tamil Nadu</option>
-                                <option value="Telangana">Telangana</option>
-                                <option value="Tripura">Tripura</option>
-                                <option value="Uttarakhand">Uttarakhand</option>
-                                <option value="Uttar Pradesh">Uttar Pradesh</option>
-                                <option value="West Bengal">West Bengal</option>
-                                <option value="Jammu and Kashmir">Jammu and Kashmir</option>
-                                <option value="Ladakh">Ladakh</option>
-                            </select>
-                        </div>
-
-                        <!-- Products and Quantity -->
-                        <div class="col-lg-6 col-md-6">
-                            <input list="productsOfInterest" name="products" class="form-control border-primary p-2"
-                                placeholder="Product(s) of Interest" required autocomplete="off">
-                            <datalist id="productsOfInterest">
-                                <option value="Interior Paints">
-                                <option value="Exterior Paints">
-                                <option value="Primers">
-                                <option value="Distempers">
-                                <option value="Bullet Enamel">
-                                <option value="Industrial Paints">
-                                <option value="Marine Paints">
-                                <option value="Red Oxide Primers">
-                                <option value="Aluminum Paint">
-                                <option value="Fireproof Paint">
-                            </datalist>
-                        </div>
-                        <div class="col-lg-6 col-md-6">
-                            <div style="position: relative;">
-                                <input type="text" name="quantity" class="form-control border-primary p-2"
-                                    placeholder="Quantity Requirement" required style="padding-right: 110px;">
-                                <select name="unit" required
-                                    style="position: absolute; top: 0; right: 0; height: 100%; border: none; background: transparent; border-left: 1px solid #0d6efd; padding: 0 10px; color: #000; appearance: none; border-top-right-radius: 6px; border-bottom-right-radius: 6px;">
-                                    <option value="" disabled selected>Unit</option>
-                                    <option value="kg">KG</option>
-                                    <option value="liters">Liters</option>
-                                    <option value="tons">Tons</option>
-                                    <option value="mts">MTs</option>
+                        <div class="row g-4 form">
+                            <!-- Name, Company, Business Type -->
+                            <div class="col-lg-4 col-md-6">
+                                <input type="text" name="full_name" class="form-control border-primary p-2"
+                                    placeholder="Full Name" required>
+                            </div>
+                            <div class="col-lg-4 col-md-6">
+                                <input type="text" name="company_name" class="form-control border-primary p-2"
+                                    placeholder="Company Name" required>
+                            </div>
+                            <div class="col-lg-4 col-md-6">
+                                <select class="form-select border-primary p-2" name="business_type" required>
+                                    <option value="" disabled selected>Select Business Type</option>
+                                    <option value="Builder">Builder</option>
+                                    <option value="Contractor">Contractor</option>
+                                    <option value="Trader">Trader</option>
+                                    <option value="Distributor">Distributor</option>
+                                    <option value="Other">Other</option>
                                 </select>
                             </div>
-                        </div>
 
-                        <!-- Additional Details -->
-                        <div class="col-12">
-                            <textarea class="form-control border-primary p-2" name="message"
-                                placeholder="Additional Details / Message" rows="3" required></textarea>
-                        </div>
+                            <!-- Phone, Email, State -->
+                            <div class="col-lg-4 col-md-6">
+                                <input type="tel" name="phone" class="form-control border-primary p-2"
+                                    placeholder="Phone Number" required pattern="[0-9]{10}" maxlength="10">
+                            </div>
+                            <div class="col-lg-4 col-md-6">
+                                <input type="email" name="email" class="form-control border-primary p-2"
+                                    placeholder="Email Address" required>
+                            </div>
+                            <div class="col-lg-4 col-md-6">
+                                <select class="form-select border-primary p-2" name="state" id="inputState" required>
+                                    <option value="" disabled selected>Select State</option>
+                                    <!-- All your state options here -->
+                                    <option value="" disabled selected>Select State</option>
+                                    <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+                                    <option value="Andhra Pradesh">Andhra Pradesh</option>
+                                    <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                                    <option value="Assam">Assam</option>
+                                    <option value="Bihar">Bihar</option>
+                                    <option value="Chandigarh">Chandigarh</option>
+                                    <option value="Chhattisgarh">Chhattisgarh</option>
+                                    <option value="Delhi">Delhi</option>
+                                    <option value="Dadra and Nagar Haveli and Daman and Diu">Dadra and Nagar Haveli and
+                                        Daman and Diu</option>
+                                    <option value="Goa">Goa</option>
+                                    <option value="Gujarat">Gujarat</option>
+                                    <option value="Haryana">Haryana</option>
+                                    <option value="Himachal Pradesh">Himachal Pradesh</option>
+                                    <option value="Jharkhand">Jharkhand</option>
+                                    <option value="Karnataka">Karnataka</option>
+                                    <option value="Kerala">Kerala</option>
+                                    <option value="Lakshadweep">Lakshadweep</option>
+                                    <option value="Madhya Pradesh">Madhya Pradesh</option>
+                                    <option value="Maharashtra">Maharashtra</option>
+                                    <option value="Manipur">Manipur</option>
+                                    <option value="Meghalaya">Meghalaya</option>
+                                    <option value="Mizoram">Mizoram</option>
+                                    <option value="Nagaland">Nagaland</option>
+                                    <option value="Odisha">Odisha</option>
+                                    <option value="Puducherry">Puducherry</option>
+                                    <option value="Punjab">Punjab</option>
+                                    <option value="Rajasthan">Rajasthan</option>
+                                    <option value="Sikkim">Sikkim</option>
+                                    <option value="Tamil Nadu">Tamil Nadu</option>
+                                    <option value="Telangana">Telangana</option>
+                                    <option value="Tripura">Tripura</option>
+                                    <option value="Uttarakhand">Uttarakhand</option>
+                                    <option value="Uttar Pradesh">Uttar Pradesh</option>
+                                    <option value="West Bengal">West Bengal</option>
+                                    <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+                                    <option value="Ladakh">Ladakh</option>
+                                </select>
+                            </div>
 
-                        <!-- Hidden field for IP -->
-                        <input type="hidden" id="user_ip" name="user_ip">
+                            <!-- Products and Quantity -->
+                            <div class="col-lg-6 col-md-6">
+                                <input list="productsOfInterest" name="products" class="form-control border-primary p-2"
+                                    placeholder="Product(s) of Interest" required autocomplete="off">
+                                <datalist id="productsOfInterest">
+                                    <option value="Interior Paints">
+                                    <option value="Exterior Paints">
+                                    <option value="Primers">
+                                    <option value="Distempers">
+                                    <option value="Bullet Enamel">
+                                    <option value="Industrial Paints">
+                                    <option value="Marine Paints">
+                                    <option value="Red Oxide Primers">
+                                    <option value="Aluminum Paint">
+                                    <option value="Fireproof Paint">
+                                </datalist>
+                            </div>
+                            <div class="col-lg-6 col-md-6">
+                                <div style="position: relative;">
+                                    <input type="text" name="quantity" class="form-control border-primary p-2"
+                                        placeholder="Quantity Requirement" required style="padding-right: 110px;">
+                                    <select name="unit" required
+                                        style="position: absolute; top: 0; right: 0; height: 100%; border: none; background: transparent; border-left: 1px solid #0d6efd; padding: 0 10px; color: #000; appearance: none; border-top-right-radius: 6px; border-bottom-right-radius: 6px;">
+                                        <option value="" disabled selected>Unit</option>
+                                        <option value="kg">KG</option>
+                                        <option value="liters">Liters</option>
+                                        <option value="tons">Tons</option>
+                                        <option value="mts">MTs</option>
+                                    </select>
+                                </div>
+                            </div>
 
-                        <!-- reCAPTCHA -->
-                        <div class="col-12 text-center mt-3">
-                            <div class="g-recaptcha" data-sitekey="6LcOtuMrAAAAALUZgbfLbH7A0AzbGIV7_tqs2YlX"></div>
-                        </div>
+                            <!-- Additional Details -->
+                            <div class="col-12">
+                                <textarea class="form-control border-primary p-2" name="message"
+                                    placeholder="Additional Details / Message" rows="3" required></textarea>
+                            </div>
 
-                        <!-- Submit Button -->
-                        <div class="col-12 text-center mt-3">
-                            <button type="submit" class="btn btn-primary px-5 py-3 rounded-pill">Submit Now</button>
-                        </div>
+                            <!-- Hidden field for IP -->
+                            <input type="hidden" id="user_ip" name="user_ip">
 
-                        <div id="formSuccessMsg" class="alert alert-success text-center"
-                            style="display:none; border-radius: 8px; font-size: 1.15rem; box-shadow: 0 2px 8px rgba(33,0,115,0.08); background: linear-gradient(90deg, #e0f7fa 0%, #e3ffe6 100%); color: #210073; font-weight: 600;">
-                            <i class="fas fa-check-circle me-2" style="color: #28a745;"></i>
-                            Thank you! Your request has been submitted successfully. We will contact you soon.
+                            <!-- reCAPTCHA -->
+                            <div class="col-12 text-center mt-3">
+                                <div class="g-recaptcha" data-sitekey="6LcOtuMrAAAAALUZgbfLbH7A0AzbGIV7_tqs2YlX"></div>
+                            </div>
+
+                            <!-- Submit Button -->
+                            <div class="col-12 text-center mt-3">
+                                <button type="submit" class="btn btn-primary px-5 py-3 rounded-pill">Submit Now</button>
+                            </div>
+
+                            <div id="formSuccessMsg" class="alert alert-success text-center"
+                                style="display:none; border-radius: 8px; font-size: 1.15rem; box-shadow: 0 2px 8px rgba(33,0,115,0.08); background: linear-gradient(90deg, #e0f7fa 0%, #e3ffe6 100%); color: #210073; font-weight: 600;">
+                                <i class="fas fa-check-circle me-2" style="color: #28a745;"></i>
+                                Thank you! Your request has been submitted successfully. We will contact you soon.
+                            </div>
                         </div>
                     </div>
-                </div>
-            </form>
+                </form>
 
-            <!-- JS -->
-            <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-            <script>
-                // Fetch user IP
-                fetch("https://api.ipify.org?format=json")
-                    .then(res => res.json())
-                    .then(data => {
-                        document.getElementById("user_ip").value = data.ip;
+                <!-- JS -->
+                <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+                <script>
+                    // Fetch user IP
+                    fetch("https://api.ipify.org?format=json")
+                        .then(res => res.json())
+                        .then(data => {
+                            document.getElementById("user_ip").value = data.ip || "unknown";
+                        })
+                        .catch(() => {
+                            document.getElementById("user_ip").value = "unknown";
+                        });
+
+                    // Submit form via fetch
+                    document.getElementById('bulkOrderForm').addEventListener('submit', function (e) {
+                        e.preventDefault();
+                        var form = this;
+
+                        // Check if reCAPTCHA is completed
+                        var captcha = grecaptcha.getResponse();
+                        if (!captcha) {
+                            alert("Please complete the reCAPTCHA before submitting the form.");
+                            return;
+                        }
+
+                        var formData = new FormData(form);
+
+                        fetch(form.action, {
+                            method: "POST",
+                            body: formData
+                        })
+                            .then(res => res.json())
+                            .then(data => {
+                                if (data.result === "captcha_failed" || data.result === "captcha_missing") {
+                                    alert("reCAPTCHA verification failed. Please try again.");
+                                    grecaptcha.reset();
+                                    return;
+                                }
+
+                                if (data.result === "success") {
+                                    form.reset();
+                                    grecaptcha.reset(); // reset recaptcha
+                                    var msg = document.getElementById('formSuccessMsg');
+                                    msg.style.display = 'block';
+                                    setTimeout(function () { msg.style.display = 'none'; }, 10000);
+                                } else {
+                                    alert("Form submission failed. Please check your inputs.");
+                                }
+                            })
+                            .catch(err => {
+                                console.error("Form submit error:", err);
+                                alert("There was an error submitting the form. Please try again later.");
+                            });
                     });
+                </script>
 
-                // Submit form via fetch
-                document.getElementById('bulkOrderForm').addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    var form = this;
-                    var formData = new FormData(form);
-
-                    fetch(form.action, {
-                        method: "POST",
-                        body: formData
-                    })
-                    .then(res => res.json())
-                    .then(data => {
-                        form.reset();
-                        grecaptcha.reset(); // reset recaptcha
-                        var msg = document.getElementById('formSuccessMsg');
-                        msg.style.display = 'block';
-                        setTimeout(function() { msg.style.display = 'none'; }, 10000);
-                    })
-                    .catch(err => console.error("Form submit error:", err));
-                });
-            </script>
-
+            </div>
         </div>
     </div>
-</div>
-<!-- Book Us End -->
+    <!-- Book Us End -->
 
 
 
@@ -1199,8 +1223,8 @@
                 </div>
                 <div class="testimonial-item rounded bg-light">
                     <div class="d-flex mb-3">
-                        <img src="img/testimonials/Pranav_Developers.webp" class="img-fluid rounded-circle flex-shrink-0"
-                            alt="">
+                        <img src="img/testimonials/Pranav_Developers.webp"
+                            class="img-fluid rounded-circle flex-shrink-0" alt="">
                         <div class="position-absolute" style="top: 15px; right: 20px;">
                             <i class="fa fa-quote-right fa-2x"></i>
                         </div>
@@ -1416,8 +1440,8 @@
                 </div>
                 <div class="testimonial-item rounded bg-light">
                     <div class="d-flex mb-3">
-                        <img src="img/testimonials/Supreme_Infratech.webp" class="img-fluid rounded-circle flex-shrink-0"
-                            alt="">
+                        <img src="img/testimonials/Supreme_Infratech.webp"
+                            class="img-fluid rounded-circle flex-shrink-0" alt="">
                         <div class="position-absolute" style="top: 15px; right: 20px;">
                             <i class="fa fa-quote-right fa-2x"></i>
                         </div>
