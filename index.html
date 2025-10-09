@@ -801,271 +801,159 @@
 
 
 
-    <!-- Book Us Start -->
-    <div class="container-fluid contact py-5 wow bounceInUp" id="Bulk-order-form" data-wow-delay="0.1s"
-        style="background-image:url(img/form-bg.webp); ">
-        <div class="container">
-            <div class="row g-0">
+<!-- Book Us Start -->
+<div class="container-fluid contact py-5 wow bounceInUp" id="Bulk-order-form" data-wow-delay="0.1s"
+    style="background-image:url(img/form-bg.webp); ">
+    <div class="container">
+        <div class="row g-0">
 
-                <!-- <div class="border border-p""rimary py-5 px-4"
-                style="border-radius: 15px;background: rgb(255, 255, 255,0.2); backdrop-filter: blur(5px);"> -->
-                <form
-                    action="https://script.google.com/macros/s/AKfycbwWoLnAxHckEczDMpNbjpdJHDYDLgD_3fVAOnmJv_iUoSNCEcBmmEXYL_TS2jv48mN56w/exec"
-                    method="POST">
-                    <div class="py-5 px-4"
-                        style="border-radius: 15px;background: rgb(255, 255, 255,0.2); backdrop-filter: blur(5px);">
-                        <div class="text-center">
-                            <small
-                                class="d-inline-block fw-bold text-dark text-uppercase bg-light border border-primary rounded-pill px-4 py-1 mb-3">
-                                Bulk Order Form
-                            </small>
-                            <h1 class="display-5 mb-5" style="text-shadow: 0px 0px 10px white;">Request Bulk Paint
-                                Supply</h1>
+            <form
+                id="bulkOrderForm"
+                action="https://script.google.com/macros/s/AKfycbyKqq3Ue1kZHfrpzoeOr8XJVceE7nR5NF_fWXA64RM0JInNm8zjQaOFS40kVDnORt-1Cw/exec"
+                method="POST">
+                <div class="py-5 px-4"
+                    style="border-radius: 15px;background: rgb(255, 255, 255,0.2); backdrop-filter: blur(5px);">
+                    <div class="text-center">
+                        <small
+                            class="d-inline-block fw-bold text-dark text-uppercase bg-light border border-primary rounded-pill px-4 py-1 mb-3">
+                            Bulk Order Form
+                        </small>
+                        <h1 class="display-5 mb-5" style="text-shadow: 0px 0px 10px white;">Request Bulk Paint
+                            Supply</h1>
+                    </div>
+                    <div class="row g-4 form">
+                        <!-- Name, Company, Business Type -->
+                        <div class="col-lg-4 col-md-6">
+                            <input type="text" name="full_name" class="form-control border-primary p-2"
+                                placeholder="Full Name" required>
                         </div>
-                        <div class="row g-4 form">
-                            <!-- Row 1: 3 Fields -->
-                            <div class="col-lg-4 col-md-6">
-                                <input type="text" name="full_name" class="form-control border-primary p-2"
-                                    placeholder="Full Name" required>
-                            </div>
-                            <div class="col-lg-4 col-md-6">
-                                <input type="text" name="company_name" class="form-control border-primary p-2"
-                                    placeholder="Company Name" required>
-                            </div>
-                            <div class="col-lg-4 col-md-6">
-                                <select class="form-select border-primary p-2" name="business_type"
-                                    aria-label="Select Business Type" required>
-                                    <option value="" disabled selected>Select Business Type</option>
-                                    <option value="Builder">Builder</option>
-                                    <option value="Contractor">Contractor</option>
-                                    <option value="Trader">Trader</option>
-                                    <option value="Distributor">Distributor</option>
-                                    <option value="Other">Other</option>
+                        <div class="col-lg-4 col-md-6">
+                            <input type="text" name="company_name" class="form-control border-primary p-2"
+                                placeholder="Company Name" required>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <select class="form-select border-primary p-2" name="business_type" required>
+                                <option value="" disabled selected>Select Business Type</option>
+                                <option value="Builder">Builder</option>
+                                <option value="Contractor">Contractor</option>
+                                <option value="Trader">Trader</option>
+                                <option value="Distributor">Distributor</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+
+                        <!-- Phone, Email, State -->
+                        <div class="col-lg-4 col-md-6">
+                            <input type="tel" name="phone" class="form-control border-primary p-2"
+                                placeholder="Phone Number" required pattern="[0-9]{10}" maxlength="10">
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <input type="email" name="email" class="form-control border-primary p-2"
+                                placeholder="Email Address" required>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <select class="form-select border-primary p-2" name="state" id="inputState" required>
+                                <option value="" disabled selected>Select State</option>
+                                <!-- All your state options here -->
+                            </select>
+                        </div>
+
+                        <!-- Products and Quantity -->
+                        <div class="col-lg-6 col-md-6">
+                            <input list="productsOfInterest" name="products" class="form-control border-primary p-2"
+                                placeholder="Product(s) of Interest" required autocomplete="off">
+                            <datalist id="productsOfInterest">
+                                <option value="Interior Paints">
+                                <option value="Exterior Paints">
+                                <option value="Primers">
+                                <option value="Distempers">
+                                <option value="Bullet Enamel">
+                                <option value="Industrial Paints">
+                                <option value="Marine Paints">
+                                <option value="Red Oxide Primers">
+                                <option value="Aluminum Paint">
+                                <option value="Fireproof Paint">
+                            </datalist>
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            <div style="position: relative;">
+                                <input type="text" name="quantity" class="form-control border-primary p-2"
+                                    placeholder="Quantity Requirement" required style="padding-right: 110px;">
+                                <select name="unit" required
+                                    style="position: absolute; top: 0; right: 0; height: 100%; border: none; background: transparent; border-left: 1px solid #0d6efd; padding: 0 10px; color: #000; appearance: none; border-top-right-radius: 6px; border-bottom-right-radius: 6px;">
+                                    <option value="" disabled selected>Unit</option>
+                                    <option value="kg">KG</option>
+                                    <option value="liters">Liters</option>
+                                    <option value="tons">Tons</option>
+                                    <option value="mts">MTs</option>
                                 </select>
                             </div>
+                        </div>
 
-                            <!-- Row 2: 3 Fields -->
-                            <div class="col-lg-4 col-md-6">
-                                <input type="tel" name="phone" class="form-control border-primary p-2"
-                                    placeholder="Phone Number" required pattern="[0-9]{10}" maxlength="10"
-                                    inputmode="numeric" title="Please enter a valid 10-digit phone number">
-                            </div>
-                            <div class="col-lg-4 col-md-6">
-                                <input type="email" name="email" class="form-control border-primary p-2"
-                                    placeholder="Email Address" required>
-                            </div>
-                            <div class="col-lg-4 col-md-6">
-                                <select class="form-select border-primary p-2" name="state" id="inputState"
-                                    aria-label="Select State" required>
-                                    <option value="" disabled selected>Select State</option>
-                                    <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
-                                    <option value="Andhra Pradesh">Andhra Pradesh</option>
-                                    <option value="Arunachal Pradesh">Arunachal Pradesh</option>
-                                    <option value="Assam">Assam</option>
-                                    <option value="Bihar">Bihar</option>
-                                    <option value="Chandigarh">Chandigarh</option>
-                                    <option value="Chhattisgarh">Chhattisgarh</option>
-                                    <option value="Delhi">Delhi</option>
-                                    <option value="Dadra and Nagar Haveli and Daman and Diu">Dadra and Nagar Haveli and
-                                        Daman and Diu</option>
-                                    <option value="Goa">Goa</option>
-                                    <option value="Gujarat">Gujarat</option>
-                                    <option value="Haryana">Haryana</option>
-                                    <option value="Himachal Pradesh">Himachal Pradesh</option>
-                                    <option value="Jharkhand">Jharkhand</option>
-                                    <option value="Karnataka">Karnataka</option>
-                                    <option value="Kerala">Kerala</option>
-                                    <option value="Lakshadweep">Lakshadweep</option>
-                                    <option value="Madhya Pradesh">Madhya Pradesh</option>
-                                    <option value="Maharashtra">Maharashtra</option>
-                                    <option value="Manipur">Manipur</option>
-                                    <option value="Meghalaya">Meghalaya</option>
-                                    <option value="Mizoram">Mizoram</option>
-                                    <option value="Nagaland">Nagaland</option>
-                                    <option value="Odisha">Odisha</option>
-                                    <option value="Puducherry">Puducherry</option>
-                                    <option value="Punjab">Punjab</option>
-                                    <option value="Rajasthan">Rajasthan</option>
-                                    <option value="Sikkim">Sikkim</option>
-                                    <option value="Tamil Nadu">Tamil Nadu</option>
-                                    <option value="Telangana">Telangana</option>
-                                    <option value="Tripura">Tripura</option>
-                                    <option value="Uttarakhand">Uttarakhand</option>
-                                    <option value="Uttar Pradesh">Uttar Pradesh</option>
-                                    <option value="West Bengal">West Bengal</option>
-                                    <option value="Jammu and Kashmir">Jammu and Kashmir</option>
-                                    <option value="Ladakh">Ladakh</option>
-                                </select>
-                            </div>
+                        <!-- Additional Details -->
+                        <div class="col-12">
+                            <textarea class="form-control border-primary p-2" name="message"
+                                placeholder="Additional Details / Message" rows="3" required></textarea>
+                        </div>
 
-                            <!-- Row 3: 2 Fields -->
-                            <div class="col-lg-6 col-md-6">
-                                <input list="productsOfInterest" name="products" class="form-control border-primary p-2"
-                                    placeholder="Product(s) of Interest" required autocomplete="off">
-                                <datalist id="productsOfInterest">
-                                    <option value="Interior Paints">
-                                    <option value="Exterior Paints">
-                                    <option value="Primers">
-                                    <option value="Distempers">
-                                    <option value="Bullet Enamel">
-                                    <option value="Industrial Paints">
-                                    <option value="Marine Paints">
-                                    <option value="Red Oxide Primers">
-                                    <option value="Aluminum Paint">
-                                    <option value="Fireproof Paint">
-                                </datalist>
-                            </div>
-                            <div class="col-lg-6 col-md-6">
-                                <div style="position: relative;">
-                                    <input type="text" name="quantity" class="form-control border-primary p-2"
-                                        placeholder="Quantity Requirement" required style="padding-right: 110px;">
-                                    <select name="unit" required
-                                        style="position: absolute; top: 0; right: 0; height: 100%; border: none; background: transparent; border-left: 1px solid #0d6efd; padding: 0 10px; color: #000; appearance: none; border-top-right-radius: 6px; border-bottom-right-radius: 6px;">
-                                        <option value="" disabled selected>Unit</option>
-                                        <option value="kg">KG</option>
-                                        <option value="liters">Liters</option>
-                                        <option value="tons">Tons</option>
-                                        <option value="mts">MTs</option>
-                                    </select>
-                                </div>
-                            </div>
+                        <!-- Hidden field for IP -->
+                        <input type="hidden" id="user_ip" name="user_ip">
 
-                            <!-- Row 4: Additional Details -->
-                            <div class="col-12">
-                                <textarea class="form-control border-primary p-2" name="message"
-                                    placeholder="Additional Details / Message" rows="3" required></textarea>
-                            </div>
+                        <!-- reCAPTCHA -->
+                        <div class="col-12 text-center mt-3">
+                            <div class="g-recaptcha" data-sitekey="6LcOtuMrAAAAALUZgbfLbH7A0AzbGIV7_tqs2YlX"></div>
+                        </div>
 
-                            <!-- Submit Button -->
-                            <div class="col-12 text-center">
-                                <button type="submit" class="btn btn-primary px-5 py-3 rounded-pill">Submit Now</button>
-                            </div>
-                            <div id="formSuccessMsg" class="alert alert-success text-center"
-                                style="display:none; border-radius: 8px; font-size: 1.15rem; box-shadow: 0 2px 8px rgba(33,0,115,0.08); background: linear-gradient(90deg, #e0f7fa 0%, #e3ffe6 100%); color: #210073; font-weight: 600;">
-                                <i class="fas fa-check-circle me-2" style="color: #28a745;"></i>
-                                Thank you! Your request has been submitted successfully. We will contact you soon.
-                            </div>
+                        <!-- Submit Button -->
+                        <div class="col-12 text-center mt-3">
+                            <button type="submit" class="btn btn-primary px-5 py-3 rounded-pill">Submit Now</button>
+                        </div>
+
+                        <div id="formSuccessMsg" class="alert alert-success text-center"
+                            style="display:none; border-radius: 8px; font-size: 1.15rem; box-shadow: 0 2px 8px rgba(33,0,115,0.08); background: linear-gradient(90deg, #e0f7fa 0%, #e3ffe6 100%); color: #210073; font-weight: 600;">
+                            <i class="fas fa-check-circle me-2" style="color: #28a745;"></i>
+                            Thank you! Your request has been submitted successfully. We will contact you soon.
                         </div>
                     </div>
-                </form>
-                <!-- Success message -->
+                </div>
+            </form>
 
-                <script>
-                    document.querySelector('form').addEventListener('submit', function (e) {
-                        e.preventDefault();
-                        // Reset form fields
-                        this.reset();
-                        // Show success message
+            <!-- JS -->
+            <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+            <script>
+                // Fetch user IP
+                fetch("https://api.ipify.org?format=json")
+                    .then(res => res.json())
+                    .then(data => {
+                        document.getElementById("user_ip").value = data.ip;
+                    });
+
+                // Submit form via fetch
+                document.getElementById('bulkOrderForm').addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    var form = this;
+                    var formData = new FormData(form);
+
+                    fetch(form.action, {
+                        method: "POST",
+                        body: formData
+                    })
+                    .then(res => res.json())
+                    .then(data => {
+                        form.reset();
+                        grecaptcha.reset(); // reset recaptcha
                         var msg = document.getElementById('formSuccessMsg');
                         msg.style.display = 'block';
-                        // Hide after 5 seconds
-                        setTimeout(function () {
-                            msg.style.display = 'none';
-                        }, 10000);
-                    });
-                </script>
+                        setTimeout(function() { msg.style.display = 'none'; }, 10000);
+                    })
+                    .catch(err => console.error("Form submit error:", err));
+                });
+            </script>
 
-            </div>
         </div>
     </div>
-    <!-- Book Us End -->
-
-    <!-- Add JavaScript to handle dynamic district population based on selected state -->
-    <script>
-        document.getElementById("inputState").addEventListener("change", function () {
-            const stateId = this.value;
-            const districtSelect = document.getElementById("inputDistrict");
-
-            // Clear previous options
-            districtSelect.innerHTML = '<option selected>Select District</option>';
-
-            let districts = [];
-
-            // Districts based on selected state
-            if (stateId == "1") { // Andaman and Nicobar Islands
-                districts = ["South Andaman", "Nicobar", "North and Middle Andaman"];
-            } else if (stateId == "2") { // Andhra Pradesh
-                districts = ["Hyderabad", "Visakhapatnam", "Vijayawada", "Warangal", "Guntur", "Khammam", "Kurnool", "Nellore", "Chittoor", "East Godavari", "West Godavari", "Krishna", "Srikakulam", "Prakasam", "Anantapur", "Rajahmundry", "Kadapa"];
-            } else if (stateId == "3") { // Arunachal Pradesh
-                districts = ["Tawang", "West Kameng", "East Kameng", "Papum Pare", "Kra Daadi", "Kurung Kumey", "Lower Subansiri", "Upper Subansiri", "West Siang", "East Siang", "Siang", "Lower Dibang Valley", "Upper Dibang Valley", "Anjaw", "Lohit", "Namsai", "Changlang", "Tirap", "Longding"];
-            } else if (stateId == "4") { // Assam
-                districts = ["Guwahati", "Jorhat", "Dibrugarh", "Silchar", "Nagaon", "Tinsukia", "Bongaigaon", "Dhubri", "Goalpara", "Sonitpur", "Barpeta", "Karbi Anglong", "Cachar", "Hailakandi", "Kokrajhar", "Morigaon", "Baksa", "Nalbari"];
-            } else if (stateId == "5") { // Bihar
-                districts = ["Patna", "Gaya", "Bhagalpur", "Muzaffarpur", "Darbhanga", "Purnia", "Sasaram", "Chapra", "Munger", "Arrah", "Khagaria", "Siwan", "Buxar", "Nalanda", "Vaishali", "Samastipur", "Madhepura", "Begusarai"];
-            } else if (stateId == "6") { // Chandigarh
-                districts = ["Chandigarh"];
-            } else if (stateId == "7") { // Chhattisgarh
-                districts = ["Raipur", "Bilaspur", "Durg", "Korba", "Jagdalpur", "Raigarh", "Rajnandgaon", "Surguja", "Janjgir", "Kabirdham", "Baloda Bazar", "Mahasamund", "Balrampur", "Bemetara"];
-            } else if (stateId == "8") { // Delhi
-                districts = ["New Delhi", "South Delhi", "North Delhi", "West Delhi", "East Delhi", "Shahdara", "South West Delhi", "North West Delhi", "Central Delhi"];
-            } else if (stateId == "9") { // Dadra and Nagar Haveli and Daman and Diu
-                districts = ["Dadra and Nagar Haveli", "Daman", "Diu"];
-            } else if (stateId == "10") { // Goa
-                districts = ["North Goa", "South Goa"];
-            } else if (stateId == "11") { // Gujarat
-                districts = ["Ahmedabad", "Surat", "Vadodara", "Rajkot", "Bhavnagar", "Junagadh", "Narmada", "Anand", "Kheda", "Sabarkantha", "Mehsana", "Banaskantha", "Patan", "Navsari", "Valsad", "Gandhinagar", "Dang", "Morbi"];
-            } else if (stateId == "12") { // Haryana
-                districts = ["Gurugram", "Faridabad", "Hisar", "Karnal", "Ambala", "Rohtak", "Yamunanagar", "Sirsa", "Bhiwani", "Jind", "Sonipat", "Panipat", "Mahendragarh", "Fatehabad", "Rewari"];
-            } else if (stateId == "13") { // Himachal Pradesh
-                districts = ["Shimla", "Manali", "Kullu", "Solan", "Kangra", "Mandi", "Chamba", "Bilaspur", "Kullu", "Una", "Hamirpur", "Sirmaur", "Kangra"];
-            } else if (stateId == "14") { // Jharkhand
-                districts = ["Ranchi", "Jamshedpur", "Dhanbad", "Dumka", "Hazaribagh", "Deoghar", "Giridih", "Chatra", "Khunti", "Pakur", "Godda", "Palamu", "Latehar", "Lohardaga", "Ramgarh"];
-            } else if (stateId == "15") { // Karnataka
-                districts = ["Bengaluru", "Mysuru", "Hubli", "Belagavi", "Mangalore", "Mandya", "Shimoga", "Chikkamagaluru", "Chitradurga", "Tumkur", "Dakshina Kannada", "Udupi", "Bidar", "Raichur", "Bellary", "Kolar", "Hassan", "Davanagere"];
-            } else if (stateId == "16") { // Kerala
-                districts = ["Thiruvananthapuram", "Kochi", "Kottayam", "Kozhikode", "Thrissur", "Malappuram", "Ernakulam", "Alappuzha", "Pathanamthitta", "Idukki", "Wayanad", "Kannur", "Kasaragod", "Palakkad"];
-            } else if (stateId == "17") { // Lakshadweep
-                districts = ["Lakshadweep"];
-            } else if (stateId == "18") { // Madhya Pradesh
-                districts = ["Bhopal", "Indore", "Gwalior", "Jabalpur", "Ujjain", "Sagar", "Shivpuri", "Ratlam", "Khargone", "Dewas", "Satna", "Rewa", "Sehore", "Chhindwara", "Balaghat"];
-            } else if (stateId == "19") { // Maharashtra
-                districts = ["Mumbai", "Pune", "Nagpur", "Nashik", "Thane", "Kolhapur", "Aurangabad", "Solapur", "Satara", "Ratnagiri", "Palghar", "Beed", "Osmanabad", "Jalna", "Nandurbar", "Akola", "Buldhana"];
-            } else if (stateId == "20") { // Manipur
-                districts = ["Imphal", "Bishnupur", "Churachandpur", "Thoubal", "Senapati", "Tamenglong", "Chandel", "Ukhrul"];
-            } else if (stateId == "21") { // Meghalaya
-                districts = ["East Khasi Hills", "West Khasi Hills", "Jaintia Hills", "Ri Bhoi", "South Garo Hills", "West Garo Hills", "East Garo Hills"];
-            } else if (stateId == "22") { // Mizoram
-                districts = ["Aizawl", "Champhai", "Kolasib", "Lunglei", "Mamit", "Serchhip", "Lawngtlai"];
-            } else if (stateId == "23") { // Nagaland
-                districts = ["Dimapur", "Kohima", "Mokokchung", "Mon", "Peren", "Phek", "Tuensang", "Wokha", "Zunheboto"];
-            } else if (stateId == "24") { // Odisha
-                districts = ["Bhubaneswar", "Cuttack", "Rourkela", "Berhampur", "Sambalpur", "Balasore", "Kendrapara", "Angul", "Dhenkanal", "Jagatsinghpur"];
-            } else if (stateId == "25") { // Puducherry
-                districts = ["Puducherry", "Karaikal", "Mahe", "Yanam"];
-            } else if (stateId == "26") { // Punjab
-                districts = ["Chandigarh", "Amritsar", "Ludhiana", "Jalandhar", "Patiala", "Bathinda", "Moga", "Fatehgarh Sahib", "Hoshiarpur", "Rupnagar"];
-            } else if (stateId == "27") { // Rajasthan
-                districts = ["Jaipur", "Udaipur", "Jodhpur", "Kota", "Ajmer", "Bikaner", "Alwar", "Pali", "Sikar", "Churu", "Bhilwara"];
-            } else if (stateId == "28") { // Sikkim
-                districts = ["East Sikkim", "West Sikkim", "South Sikkim", "North Sikkim"];
-            } else if (stateId == "29") { // Tamil Nadu
-                districts = ["Chennai", "Coimbatore", "Madurai", "Tiruchirappalli", "Salem", "Tirunelveli", "Vellore", "Erode", "Tiruvallur", "Dharmapuri", "Kanchipuram"];
-            } else if (stateId == "30") { // Telangana
-                districts = ["Hyderabad", "Warangal", "Khammam", "Karimnagar", "Nizamabad", "Mahbubnagar", "Medak", "Adilabad"];
-            } else if (stateId == "31") { // Tripura
-                districts = ["West Tripura", "South Tripura", "North Tripura", "Dhalai", "Unakoti"];
-            } else if (stateId == "32") { // Uttarakhand
-                districts = ["Dehradun", "Haridwar", "Nainital", "Rishikesh", "Haldwani", "Udham Singh Nagar", "Pauri Garhwal", "Tehri Garhwal", "Chamoli"];
-            } else if (stateId == "33") { // Uttar Pradesh 
-                districts = ["Lucknow", "Kanpur", "Agra", "Varanasi", "Meerut", "Ghaziabad", "Aligarh", "Bareilly", "Moradabad", "Mathura", "Muzaffarnagar"];
-            } else if (stateId == "34") { // West Bengal 
-                districts = ["Kolkata", "Howrah", "Durgapur", "Siliguri", "Asansol", "Murshidabad", "Medinipur", "Jalpaiguri", "Hooghly", "Birbhum"];
-            } else if (stateId == "35") { // Jammu and Kashmir 
-                districts = ["Srinagar", "Jammu", "Baramulla", "Kathua", "Pulwama", "Anantnag", "Rajouri", "Poonch", "Kupwara"];
-            } else if (stateId == "36") { // Ladakh 
-                districts = ["Leh", "Kargil"];
-            }
-
-
-            // Populate districts dynamically
-            districts.forEach(district => {
-                let option = document.createElement("option");
-                option.value = district;
-                option.textContent = district;
-                districtSelect.appendChild(option);
-            });
-        });
-    </script>
+</div>
+<!-- Book Us End -->
 
 
 
