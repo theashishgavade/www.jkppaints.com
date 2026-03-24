@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JKP Admin Dashboard</title>
+    <style>
+        :root {
+            --bg: #f4f7fb;
+            --bg2: #eef3f9;
+            --card: #ffffff;
+            --text: #14243a;
+            --muted: #607086;
+            --line: #dbe5f0;
+            --primary: #1d4ed8;
+            --primary-dark: #153aa8;
+            --dark: #0f172a;
+            --success: #0f9d58;
+            --danger: #dc2626;
+            --warn: #d97706;
+            --shadow: 0 12px 30px rgba(15, 23, 42, .08);
+            --radius: 20px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            color: var(--text);
+            background: linear-gradient(180deg, var(--bg2) 0%, var(--bg) 100%);
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .page {
+            min-height: 100vh;
+        }
+
+        .dashboard-wrap {
+            max-width: 1360px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .topbar-left h1 {
+            margin: 0;
+            font-size: 30px;
+            color: var(--dark);
+        }
+
+        .topbar-left p {
+            margin: 8px 0 0;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .topbar-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            border: none;
+            background: var(--primary);
+            color: #fff;
+            padding: 13px 16px;
+            border-radius: 14px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 700;
+            transition: .2s ease;
+        }
+
+        .btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-1px);
+        }
+
+        .btn.secondary {
+            background: var(--dark);
+        }
+
+        .btn.ghost {
+            background: #e8f0ff;
+            color: #1a3d9c;
+        }
+
+        .panel {
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: 22px;
+            box-shadow: var(--shadow);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .hero {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 16px;
+            flex-wrap: wrap;
+            background: linear-gradient(135deg, #ffffff 0%, #f7faff 100%);
+            border: 1px solid var(--line);
+            border-radius: 24px;
+            box-shadow: var(--shadow);
+            padding: 22px;
+            margin-bottom: 20px;
+        }
+
+        .hero h2 {
+            margin: 0 0 6px;
+            font-size: 24px;
+        }
+
+        .hero p {
+            margin: 0;
+            color: var(--muted);
+            line-height: 1.5;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 14px;
+            margin-bottom: 20px;
+        }
+
+        .stat-card {
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            padding: 18px;
+        }
+
+        .stat-card .k {
+            font-size: 13px;
+            color: var(--muted);
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .stat-card .v {
+            font-size: 30px;
+            font-weight: 800;
+            color: var(--dark);
+        }
+
+        .section-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+
+        .section-head h3 {
+            margin: 0;
+            font-size: 20px;
+            color: var(--dark);
+        }
+
+        .filters {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .input,
+        .select {
+            width: 100%;
+            padding: 13px 14px;
+            border: 1px solid #d4dfeb;
+            border-radius: 14px;
+            outline: none;
+            font-size: 14px;
+            background: #fbfdff;
+            transition: .2s ease;
+        }
+
+        .mini-input,
+        .mini-select {
+            padding: 11px 12px;
+            border: 1px solid #d7e2ee;
+            border-radius: 12px;
+            background: #fbfdff;
+            font-size: 14px;
+            min-width: 170px;
+            outline: none;
+        }
+
+        .input:focus,
+        .select:focus,
+        .mini-input:focus,
+        .mini-select:focus {
+            border-color: #9cb9ff;
+            box-shadow: 0 0 0 4px rgba(29, 78, 216, .08);
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 400px 1fr;
+            gap: 18px;
+            margin-bottom: 20px;
+        }
+
+        .form-grid {
+            display: grid;
+            gap: 12px;
+        }
+
+        .msg {
+            margin-top: 10px;
+            font-size: 14px;
+            font-weight: 700;
+            min-height: 20px;
+        }
+
+        .msg.error {
+            color: var(--danger);
+        }
+
+        .msg.success {
+            color: var(--success);
+        }
+
+        .table-wrap {
+            overflow: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 1000px;
+        }
+
+        th,
+        td {
+            text-align: left;
+            padding: 12px 10px;
+            border-bottom: 1px solid #edf2f8;
+            font-size: 14px;
+            white-space: nowrap;
+        }
+
+        th {
+            color: #4d5f76;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: .3px;
+        }
+
+        .empty-note {
+            color: var(--muted);
+            font-size: 14px;
+            padding: 14px 0 4px;
+        }
+
+        @media (max-width: 1180px) {
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .topbar-left h1 {
+                font-size: 24px;
+            }
+
+            .hero h2 {
+                font-size: 21px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page">
+        <div class="dashboard-wrap">
+            <div class="topbar">
+                <div class="topbar-left">
+                    <h1>Admin Dashboard</h1>
+                    <p id="adminWelcome">Checking session...</p>
+                </div>
+                <div class="topbar-actions">
+                    <button class="btn ghost" onclick="loadAllAdminData()">Refresh</button>
+                    <button class="btn secondary" onclick="logout()">Logout</button>
+                </div>
+            </div>
+
+            <div class="hero">
+                <div>
+                    <h2>Attendance Management</h2>
+                    <p>View employee summaries, apply filters, export CSV, create employees, and check month-wise
+                        attendance records.</p>
+                </div>
+            </div>
+
+            <div class="stats">
+                <div class="stat-card">
+                    <div class="k">Total Employees</div>
+                    <div class="v" id="totalEmployees">0</div>
+                </div>
+                <div class="stat-card">
+                    <div class="k">Total Present</div>
+                    <div class="v" id="totalPresent">0</div>
+                </div>
+                <div class="stat-card">
+                    <div class="k">Total Absent</div>
+                    <div class="v" id="totalAbsent">0</div>
+                </div>
+                <div class="stat-card">
+                    <div class="k">Total Half Days</div>
+                    <div class="v" id="totalHalf">0</div>
+                </div>
+                <div class="stat-card">
+                    <div class="k">Total Late Marks</div>
+                    <div class="v" id="totalLate">0</div>
+                </div>
+            </div>
+
+            <div class="panel">
+                <div class="section-head">
+                    <h3>Filters</h3>
+                    <div class="filters">
+                        <input class="mini-input" type="month" id="monthKey" />
+                        <select class="mini-select" id="employeeSelect"></select>
+                        <button class="btn ghost" onclick="loadAdminData()">Apply Filters</button>
+                        <button class="btn ghost" onclick="exportAdminCSV()">Export Summary CSV</button>
+                        <button class="btn ghost" onclick="exportAttendanceCSV()">Export Attendance CSV</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid-2">
+                <div class="panel">
+                    <div class="section-head">
+                        <h3>Create Employee</h3>
+                    </div>
+
+                    <div class="form-grid">
+                        <input class="input" id="newEmpId" type="text" placeholder="Employee ID" />
+                        <input class="input" id="newEmpName" type="text" placeholder="Employee Name" />
+                        <select class="select" id="newEmpRole">
+                            <option value="Employee">Employee</option>
+                            <option value="Admin">Admin</option>
+                        </select>
+                        <input class="input" id="newEmpPassword" type="text" placeholder="Password" />
+                        <input class="input" id="newEmpActive" type="text" value="Yes" placeholder="Yes / No" />
+                        <input class="input" id="newEmpLat" type="number" step="any" placeholder="Office Latitude" />
+                        <input class="input" id="newEmpLng" type="number" step="any" placeholder="Office Longitude" />
+                        <button class="btn" onclick="createEmployee()">Create Employee</button>
+                        <div id="createMsg" class="msg"></div>
+                    </div>
+                </div>
+
+                <div class="panel">
+                    <div class="section-head">
+                        <h3>Employee Summary</h3>
+                    </div>
+
+                    <div class="table-wrap">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Emp ID</th>
+                                    <th>Name</th>
+                                    <th>Present</th>
+                                    <th>Absent</th>
+                                    <th>Half Day</th>
+                                    <th>Late</th>
+                                    <th>Late → Half</th>
+                                    <th>Early Leave</th>
+                                    <th>Outside</th>
+                                    <th>Working Days</th>
+                                </tr>
+                            </thead>
+                            <tbody id="summaryBody"></tbody>
+                        </table>
+                    </div>
+                    <div id="summaryEmpty" class="empty-note"></div>
+                </div>
+            </div>
+
+            <div class="panel">
+                <div class="section-head">
+                    <h3>Attendance Records</h3>
+                    <button class="btn ghost" onclick="loadAttendanceRecords()">Load Attendance</button>
+                </div>
+
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Emp ID</th>
+                                <th>Name</th>
+                                <th>IN Time</th>
+                                <th>OUT Time</th>
+                                <th>IN Status</th>
+                                <th>OUT Status</th>
+                                <th>Late</th>
+                                <th>Half Day</th>
+                                <th>Early Leave</th>
+                                <th>Remark</th>
+                            </tr>
+                        </thead>
+                        <tbody id="attendanceBody"></tbody>
+                    </table>
+                </div>
+                <div id="attendanceEmpty" class="empty-note"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_URL = 'https://script.google.com/macros/s/AKfycbxyqSNr9RRUNsyjKjg1Z_eVKwT7Fii77up3ibRwxpFFcUDpNwQ1XW5l44vPNvsheymc/exec';
+
+        function qs(id) {
+            return document.getElementById(id);
+        }
+
+        function getSession() {
+            const raw = sessionStorage.getItem('attendance_session');
+            return raw ? JSON.parse(raw) : null;
+        }
+
+        function clearSession() {
+            sessionStorage.removeItem('attendance_session');
+        }
+
+        async function api(payload) {
+            const response = await fetch(API_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                body: JSON.stringify(payload)
+            });
+            return await response.json();
+        }
+
+        function getCurrentMonthValue() {
+            const d = new Date();
+            const y = d.getFullYear();
+            const m = String(d.getMonth() + 1).padStart(2, '0');
+            return y + '-' + m;
+        }
+
+        async function validateAdminSession() {
+            const session = getSession();
+
+            if (!session || !session.token) {
+                window.location.href = 'jkp-core.html';
+                return false;
+            }
+
+            try {
+                const result = await api({
+                    action: 'validateSession',
+                    token: session.token
+                });
+
+                if (!result.success || result.role !== 'Admin') {
+                    clearSession();
+                    window.location.href = 'jkp-core.html';
+                    return false;
+                }
+
+                qs('adminWelcome').textContent = result.name + ' • ' + result.empId + ' • Admin';
+                return true;
+            } catch (error) {
+                clearSession();
+                window.location.href = 'jkp-core.html';
+                return false;
+            }
+        }
+
+        async function logout() {
+            const session = getSession();
+
+            try {
+                if (session && session.token) {
+                    await api({
+                        action: 'logout',
+                        token: session.token
+                    });
+                }
+            } catch (error) {
+            }
+
+            clearSession();
+            window.location.href = 'jkp-core.html';
+        }
+
+        async function loadEmployees() {
+            const session = getSession();
+            if (!session) return;
+
+            try {
+                const result = await api({
+                    action: 'getEmployees',
+                    token: session.token
+                });
+
+                if (!result.success) {
+                    return;
+                }
+
+                const select = qs('employeeSelect');
+                select.innerHTML = '<option value="">All Employees</option>';
+
+                let totalEmployees = 0;
+
+                result.data.forEach(emp => {
+                    if (String(emp.role) === 'Employee') {
+                        totalEmployees++;
+                    }
+
+                    const option = document.createElement('option');
+                    option.value = emp.empId;
+                    option.textContent = emp.empId + ' - ' + emp.name + ' (' + emp.role + ')';
+                    select.appendChild(option);
+                });
+
+                qs('totalEmployees').textContent = totalEmployees;
+            } catch (error) {
+            }
+        }
+
+        async function loadAdminData() {
+            const session = getSession();
+            if (!session) return;
+
+            const monthKey = qs('monthKey').value || getCurrentMonthValue();
+            const empId = qs('employeeSelect').value || '';
+
+            try {
+                const result = await api({
+                    action: 'getAdminDashboardData',
+                    token: session.token,
+                    monthKey: monthKey,
+                    empId: empId
+                });
+
+                const body = qs('summaryBody');
+                const empty = qs('summaryEmpty');
+                body.innerHTML = '';
+                empty.textContent = '';
+
+                let totalPresent = 0;
+                let totalAbsent = 0;
+                let totalHalf = 0;
+                let totalLate = 0;
+
+                if (!result.success || !result.data || !result.data.length) {
+                    qs('totalPresent').textContent = 0;
+                    qs('totalAbsent').textContent = 0;
+                    qs('totalHalf').textContent = 0;
+                    qs('totalLate').textContent = 0;
+                    empty.textContent = 'No employee summary found for selected filters.';
+                    return;
+                }
+
+                result.data.forEach(row => {
+                    totalPresent += Number(row.presentDays || 0);
+                    totalAbsent += Number(row.absentDays || 0);
+                    totalHalf += Number(row.halfDays || 0);
+                    totalLate += Number(row.lateMarks || 0);
+
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+            <td>${fmt(row.empId)}</td>
+            <td>${fmt(row.name)}</td>
+            <td>${fmt(row.presentDays)}</td>
+            <td>${fmt(row.absentDays)}</td>
+            <td>${fmt(row.halfDays)}</td>
+            <td>${fmt(row.lateMarks)}</td>
+            <td>${fmt(row.halfDaysFromLate)}</td>
+            <td>${fmt(row.earlyLeaveWarnings)}</td>
+            <td>${fmt(row.outsideRangeCount)}</td>
+            <td>${fmt(row.workingDays)}</td>
+          `;
+                    body.appendChild(tr);
+                });
+
+                qs('totalPresent').textContent = totalPresent;
+                qs('totalAbsent').textContent = totalAbsent;
+                qs('totalHalf').textContent = totalHalf;
+                qs('totalLate').textContent = totalLate;
+            } catch (error) {
+                qs('summaryEmpty').textContent = 'Unable to load employee summary.';
+            }
+        }
+
+        async function loadAttendanceRecords() {
+            const session = getSession();
+            if (!session) return;
+
+            const monthKey = qs('monthKey').value || getCurrentMonthValue();
+            const empId = qs('employeeSelect').value || '';
+
+            try {
+                const result = await api({
+                    action: 'getAttendanceByMonth',
+                    token: session.token,
+                    monthKey: monthKey,
+                    empId: empId
+                });
+
+                const body = qs('attendanceBody');
+                const empty = qs('attendanceEmpty');
+                body.innerHTML = '';
+                empty.textContent = '';
+
+                if (!result.success || !result.data || !result.data.length) {
+                    empty.textContent = 'No attendance records found for selected filters.';
+                    return;
+                }
+
+                result.data.forEach(row => {
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+            <td>${fmt(row.date)}</td>
+            <td>${fmt(row.empId)}</td>
+            <td>${fmt(row.name)}</td>
+            <td>${fmt(row.inTime)}</td>
+            <td>${fmt(row.outTime)}</td>
+            <td>${fmt(row.inStatus)}</td>
+            <td>${fmt(row.outStatus)}</td>
+            <td>${fmt(row.lateMark)}</td>
+            <td>${fmt(row.halfDay)}</td>
+            <td>${fmt(row.earlyLeaveWarning)}</td>
+            <td>${fmt(row.finalRemark)}</td>
+          `;
+                    body.appendChild(tr);
+                });
+            } catch (error) {
+                qs('attendanceEmpty').textContent = 'Unable to load attendance records.';
+            }
+        }
+
+        async function createEmployee() {
+            const session = getSession();
+            if (!session) return;
+
+            const employee = {
+                empId: qs('newEmpId').value.trim(),
+                name: qs('newEmpName').value.trim(),
+                role: qs('newEmpRole').value,
+                password: qs('newEmpPassword').value.trim(),
+                active: qs('newEmpActive').value.trim(),
+                officeLat: qs('newEmpLat').value.trim(),
+                officeLng: qs('newEmpLng').value.trim()
+            };
+
+            const msgBox = qs('createMsg');
+
+            if (!employee.empId || !employee.name || !employee.password) {
+                msgBox.textContent = 'Please fill Employee ID, Name and Password';
+                msgBox.className = 'msg error';
+                return;
+            }
+
+            try {
+                const result = await api({
+                    action: 'createEmployee',
+                    token: session.token,
+                    employee: employee
+                });
+
+                msgBox.textContent = result.message || '';
+                msgBox.className = 'msg ' + (result.success ? 'success' : 'error');
+
+                if (result.success) {
+                    clearCreateForm();
+                    await loadEmployees();
+                    await loadAdminData();
+                }
+            } catch (error) {
+                msgBox.textContent = 'Unable to create employee';
+                msgBox.className = 'msg error';
+            }
+        }
+
+        function clearCreateForm() {
+            qs('newEmpId').value = '';
+            qs('newEmpName').value = '';
+            qs('newEmpRole').value = 'Employee';
+            qs('newEmpPassword').value = '';
+            qs('newEmpActive').value = 'Yes';
+            qs('newEmpLat').value = '';
+            qs('newEmpLng').value = '';
+        }
+
+        function exportAdminCSV() {
+            const rows = [];
+            rows.push(['Emp ID', 'Name', 'Present', 'Absent', 'Half Day', 'Late', 'Late Half', 'Early Leave', 'Outside Range', 'Working Days']);
+
+            document.querySelectorAll('#summaryBody tr').forEach(tr => {
+                const cols = Array.from(tr.querySelectorAll('td')).map(td => {
+                    return (td.innerText || '').replace(/,/g, ' ');
+                });
+                if (cols.length) {
+                    rows.push(cols);
+                }
+            });
+
+            if (rows.length === 1) {
+                alert('No summary data available to export.');
+                return;
+            }
+
+            downloadCSV(rows, 'admin_summary.csv');
+        }
+
+        function exportAttendanceCSV() {
+            const rows = [];
+            rows.push(['Date', 'Emp ID', 'Name', 'IN Time', 'OUT Time', 'IN Status', 'OUT Status', 'Late', 'Half Day', 'Early Leave', 'Remark']);
+
+            document.querySelectorAll('#attendanceBody tr').forEach(tr => {
+                const cols = Array.from(tr.querySelectorAll('td')).map(td => {
+                    return (td.innerText || '').replace(/,/g, ' ');
+                });
+                if (cols.length) {
+                    rows.push(cols);
+                }
+            });
+
+            if (rows.length === 1) {
+                alert('No attendance data available to export.');
+                return;
+            }
+
+            downloadCSV(rows, 'admin_attendance.csv');
+        }
+
+        function downloadCSV(rows, filename) {
+            const csv = rows.map(r => r.join(',')).join('\n');
+            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = filename;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        function fmt(v) {
+            return (v === null || v === undefined || v === '') ? '-' : v;
+        }
+
+        async function loadAllAdminData() {
+            await loadEmployees();
+            await loadAdminData();
+            await loadAttendanceRecords();
+        }
+
+        window.onload = async function () {
+            const ok = await validateAdminSession();
+            if (!ok) return;
+
+            qs('monthKey').value = getCurrentMonthValue();
+            await loadAllAdminData();
+        };
+    </script>
+</body>
+
+</html>

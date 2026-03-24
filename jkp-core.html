@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JKP Core Attendance</title>
+    <style>
+        :root {
+            --bg: #f4f7fb;
+            --bg2: #eef3f9;
+            --card: #ffffff;
+            --text: #14243a;
+            --muted: #607086;
+            --line: #dbe5f0;
+            --primary: #1d4ed8;
+            --primary-dark: #153aa8;
+            --dark: #0f172a;
+            --success: #0f9d58;
+            --danger: #dc2626;
+            --warn: #d97706;
+            --shadow: 0 12px 30px rgba(15, 23, 42, .08);
+            --radius: 20px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            color: var(--text);
+            background: linear-gradient(180deg, var(--bg2) 0%, var(--bg) 100%);
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .page {
+            min-height: 100vh;
+        }
+
+        .login-wrap {
+            min-height: 100vh;
+            display: grid;
+            place-items: center;
+            padding: 24px;
+        }
+
+        .login-card {
+            width: 100%;
+            max-width: 460px;
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: 24px;
+            box-shadow: var(--shadow);
+            padding: 30px;
+        }
+
+        .brand {
+            font-size: 30px;
+            font-weight: 800;
+            margin-bottom: 8px;
+            color: var(--dark);
+        }
+
+        .subtitle {
+            color: var(--muted);
+            font-size: 14px;
+            margin-bottom: 24px;
+            line-height: 1.5;
+        }
+
+        .field {
+            margin-bottom: 16px;
+        }
+
+        .label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 13px;
+            font-weight: 700;
+            color: #304258;
+        }
+
+        .input {
+            width: 100%;
+            padding: 14px 14px;
+            border: 1px solid #d4dfeb;
+            border-radius: 14px;
+            outline: none;
+            font-size: 15px;
+            background: #fbfdff;
+            transition: .2s ease;
+        }
+
+        .input:focus {
+            border-color: #9cb9ff;
+            box-shadow: 0 0 0 4px rgba(29, 78, 216, .08);
+        }
+
+        .btn {
+            border: none;
+            background: var(--primary);
+            color: #fff;
+            padding: 13px 16px;
+            border-radius: 14px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 700;
+            transition: .2s ease;
+        }
+
+        .btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-1px);
+        }
+
+        .btn.full {
+            width: 100%;
+        }
+
+        .btn.secondary {
+            background: var(--dark);
+        }
+
+        .btn.ghost {
+            background: #e8f0ff;
+            color: #1a3d9c;
+        }
+
+        .btn.warn {
+            background: #c56c10;
+        }
+
+        .msg {
+            margin-top: 14px;
+            font-size: 14px;
+            font-weight: 700;
+            min-height: 20px;
+        }
+
+        .msg.error {
+            color: var(--danger);
+        }
+
+        .msg.success {
+            color: var(--success);
+        }
+
+        .dashboard-wrap {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .topbar-left h1 {
+            margin: 0;
+            font-size: 30px;
+            color: var(--dark);
+        }
+
+        .topbar-left p {
+            margin: 8px 0 0;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .topbar-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .hero {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 16px;
+            flex-wrap: wrap;
+            background: linear-gradient(135deg, #ffffff 0%, #f7faff 100%);
+            border: 1px solid var(--line);
+            border-radius: 24px;
+            box-shadow: var(--shadow);
+            padding: 22px;
+            margin-bottom: 20px;
+        }
+
+        .hero h2 {
+            margin: 0 0 6px;
+            font-size: 24px;
+        }
+
+        .hero p {
+            margin: 0;
+            color: var(--muted);
+            line-height: 1.5;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 14px;
+            margin-bottom: 20px;
+        }
+
+        .card-stat {
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            padding: 18px;
+        }
+
+        .card-stat .k {
+            font-size: 13px;
+            color: var(--muted);
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .card-stat .v {
+            font-size: 30px;
+            font-weight: 800;
+            color: var(--dark);
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1.1fr .9fr;
+            gap: 18px;
+            margin-bottom: 20px;
+        }
+
+        .panel {
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: 22px;
+            box-shadow: var(--shadow);
+            padding: 20px;
+        }
+
+        .panel-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+
+        .panel-head h3 {
+            margin: 0;
+            font-size: 20px;
+            color: var(--dark);
+        }
+
+        .filters {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .mini-input {
+            padding: 11px 12px;
+            border: 1px solid #d7e2ee;
+            border-radius: 12px;
+            background: #fbfdff;
+            font-size: 14px;
+            min-width: 160px;
+        }
+
+        .status-list {
+            display: grid;
+            gap: 12px;
+        }
+
+        .status-item {
+            padding: 14px;
+            border-radius: 16px;
+            background: #f8fbff;
+            border: 1px solid #e2ebf5;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .status-item strong {
+            color: var(--dark);
+        }
+
+        .table-wrap {
+            overflow: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 900px;
+        }
+
+        th,
+        td {
+            text-align: left;
+            padding: 12px 10px;
+            border-bottom: 1px solid #edf2f8;
+            font-size: 14px;
+            white-space: nowrap;
+        }
+
+        th {
+            color: #4d5f76;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: .3px;
+        }
+
+        .empty-note {
+            color: var(--muted);
+            font-size: 14px;
+            padding: 14px 0 4px;
+        }
+
+        @media (max-width: 1100px) {
+            .cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .login-card {
+                padding: 24px;
+            }
+
+            .topbar-left h1 {
+                font-size: 24px;
+            }
+
+            .hero h2 {
+                font-size: 21px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="loginView" class="page login-wrap">
+        <div class="login-card">
+            <div class="brand">JKP Attendance</div>
+            <div class="subtitle">Login with your Employee ID and password. Admin will be redirected to Admin dashboard
+                automatically.</div>
+
+            <div class="field">
+                <label class="label">Employee ID</label>
+                <input class="input" id="empId" type="text" placeholder="Enter Employee ID" />
+            </div>
+
+            <div class="field">
+                <label class="label">Password</label>
+                <input class="input" id="password" type="password" placeholder="Enter Password" />
+            </div>
+
+            <button class="btn full" onclick="handleLogin()">Login</button>
+            <div id="loginMsg" class="msg"></div>
+        </div>
+    </div>
+
+    <div id="employeeView" class="page hidden">
+        <div class="dashboard-wrap">
+            <div class="topbar">
+                <div class="topbar-left">
+                    <h1>Employee Dashboard</h1>
+                    <p id="welcomeLine">Welcome</p>
+                </div>
+                <div class="topbar-actions">
+                    <button class="btn ghost" onclick="loadAllEmployeeData()">Refresh</button>
+                    <button class="btn secondary" onclick="logout()">Logout</button>
+                </div>
+            </div>
+
+            <div class="hero">
+                <div>
+                    <h2 id="empNameTitle">Hello</h2>
+                    <p>Mark attendance, check today status, view monthly summary, and export your records.</p>
+                </div>
+                <div class="hero-actions">
+                    <button class="btn" onclick="markIn()">Mark In</button>
+                    <button class="btn warn" onclick="markOut()">Mark Out</button>
+                </div>
+            </div>
+
+            <div class="cards">
+                <div class="card-stat">
+                    <div class="k">Present Days</div>
+                    <div class="v" id="cardPresent">0</div>
+                </div>
+                <div class="card-stat">
+                    <div class="k">Absent Days</div>
+                    <div class="v" id="cardAbsent">0</div>
+                </div>
+                <div class="card-stat">
+                    <div class="k">Half Days</div>
+                    <div class="v" id="cardHalf">0</div>
+                </div>
+                <div class="card-stat">
+                    <div class="k">Late Marks</div>
+                    <div class="v" id="cardLate">0</div>
+                </div>
+                <div class="card-stat">
+                    <div class="k">Half Days From Late</div>
+                    <div class="v" id="cardLateHalf">0</div>
+                </div>
+            </div>
+
+            <div class="grid-2">
+                <div class="panel">
+                    <div class="panel-head">
+                        <h3>Monthly Summary</h3>
+                        <div class="filters">
+                            <input class="mini-input" type="month" id="empMonth" />
+                            <button class="btn ghost" onclick="loadMonthlySummary()">Load Summary</button>
+                            <button class="btn ghost" onclick="exportEmployeeCSV()">Export CSV</button>
+                        </div>
+                    </div>
+
+                    <div class="table-wrap">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <th>Working Days</th>
+                                    <td id="sumWorking">-</td>
+                                </tr>
+                                <tr>
+                                    <th>Present Days</th>
+                                    <td id="sumPresent">-</td>
+                                </tr>
+                                <tr>
+                                    <th>Absent Days</th>
+                                    <td id="sumAbsent">-</td>
+                                </tr>
+                                <tr>
+                                    <th>Half Days</th>
+                                    <td id="sumHalf">-</td>
+                                </tr>
+                                <tr>
+                                    <th>Late Marks</th>
+                                    <td id="sumLate">-</td>
+                                </tr>
+                                <tr>
+                                    <th>Half Days From Late</th>
+                                    <td id="sumLateHalf">-</td>
+                                </tr>
+                                <tr>
+                                    <th>Outside Range Count</th>
+                                    <td id="sumOutside">-</td>
+                                </tr>
+                                <tr>
+                                    <th>Early Leave Warnings</th>
+                                    <td id="sumEarly">-</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="panel">
+                    <div class="panel-head">
+                        <h3>Today Status</h3>
+                        <button class="btn ghost" onclick="loadTodayStatus()">Refresh</button>
+                    </div>
+
+                    <div class="status-list">
+                        <div class="status-item"><strong>IN Marked:</strong> <span id="todayInMarked">-</span></div>
+                        <div class="status-item"><strong>OUT Marked:</strong> <span id="todayOutMarked">-</span></div>
+                        <div class="status-item"><strong>IN Status:</strong> <span id="todayInStatus">-</span></div>
+                        <div class="status-item"><strong>OUT Status:</strong> <span id="todayOutStatus">-</span></div>
+                        <div class="status-item"><strong>Late Mark:</strong> <span id="todayLateMark">-</span></div>
+                        <div class="status-item"><strong>Half Day:</strong> <span id="todayHalfDay">-</span></div>
+                        <div class="status-item"><strong>Early Leave Warning:</strong> <span id="todayEarly">-</span>
+                        </div>
+                        <div class="status-item"><strong>Remark:</strong> <span id="todayRemark">-</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel">
+                <div class="panel-head">
+                    <h3>Attendance Records</h3>
+                    <button class="btn ghost" onclick="loadAttendance()">Load Records</button>
+                </div>
+
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>IN Time</th>
+                                <th>OUT Time</th>
+                                <th>IN Status</th>
+                                <th>OUT Status</th>
+                                <th>Late</th>
+                                <th>Half Day</th>
+                                <th>Early Leave</th>
+                                <th>Remark</th>
+                            </tr>
+                        </thead>
+                        <tbody id="attendanceBody"></tbody>
+                    </table>
+                </div>
+                <div id="attendanceEmpty" class="empty-note"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_URL = 'https://script.google.com/macros/s/AKfycbxyqSNr9RRUNsyjKjg1Z_eVKwT7Fii77up3ibRwxpFFcUDpNwQ1XW5l44vPNvsheymc/exec';
+
+        function qs(id) {
+            return document.getElementById(id);
+        }
+
+        function getSession() {
+            const raw = sessionStorage.getItem('attendance_session');
+            return raw ? JSON.parse(raw) : null;
+        }
+
+        function saveSession(data) {
+            sessionStorage.setItem('attendance_session', JSON.stringify(data));
+        }
+
+        function clearSession() {
+            sessionStorage.removeItem('attendance_session');
+        }
+
+        async function api(payload) {
+            const response = await fetch(API_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                body: JSON.stringify(payload)
+            });
+            return await response.json();
+        }
+
+        function setLoginMsg(text, ok) {
+            const box = qs('loginMsg');
+            box.textContent = text || '';
+            box.className = 'msg ' + (ok ? 'success' : 'error');
+        }
+
+        async function handleLogin() {
+            const empId = qs('empId').value.trim();
+            const password = qs('password').value.trim();
+
+            if (!empId || !password) {
+                setLoginMsg('Please enter Employee ID and Password', false);
+                return;
+            }
+
+            try {
+                const result = await api({
+                    action: 'login',
+                    empId: empId,
+                    password: password
+                });
+
+                if (!result.success) {
+                    setLoginMsg(result.message || 'Login failed', false);
+                    return;
+                }
+
+                saveSession(result);
+
+                if (result.role === 'Admin') {
+                    window.location.href = 'Admin.html';
+                    return;
+                }
+
+                showEmployeeDashboard();
+                setLoginMsg('', true);
+            } catch (error) {
+                setLoginMsg('Unable to connect to server', false);
+            }
+        }
+
+        async function validateEmployeeSession() {
+            const session = getSession();
+
+            if (!session || !session.token) {
+                return false;
+            }
+
+            try {
+                const result = await api({
+                    action: 'validateSession',
+                    token: session.token
+                });
+
+                if (!result.success) {
+                    clearSession();
+                    return false;
+                }
+
+                if (result.role === 'Admin') {
+                    window.location.href = 'Admin.html';
+                    return false;
+                }
+
+                return true;
+            } catch (error) {
+                clearSession();
+                return false;
+            }
+        }
+
+        function showEmployeeDashboard() {
+            const session = getSession();
+            if (!session) return;
+
+            qs('loginView').classList.add('hidden');
+            qs('employeeView').classList.remove('hidden');
+
+            const monthValue = getCurrentMonthValue();
+            qs('empMonth').value = monthValue;
+            qs('welcomeLine').textContent = session.empId + ' • ' + session.role;
+            qs('empNameTitle').textContent = 'Hello, ' + session.name;
+
+            loadAllEmployeeData();
+        }
+
+        async function logout() {
+            const session = getSession();
+
+            try {
+                if (session && session.token) {
+                    await api({
+                        action: 'logout',
+                        token: session.token
+                    });
+                }
+            } catch (error) {
+            }
+
+            clearSession();
+            window.location.href = 'jkp-core.html';
+        }
+
+        function getCurrentMonthValue() {
+            const d = new Date();
+            const y = d.getFullYear();
+            const m = String(d.getMonth() + 1).padStart(2, '0');
+            return y + '-' + m;
+        }
+
+        function getCurrentLocation() {
+            return new Promise((resolve, reject) => {
+                if (!navigator.geolocation) {
+                    reject('Geolocation not supported in this browser');
+                    return;
+                }
+
+                navigator.geolocation.getCurrentPosition(
+                    position => {
+                        resolve({
+                            lat: position.coords.latitude,
+                            lng: position.coords.longitude
+                        });
+                    },
+                    error => {
+                        reject('Location permission denied or unavailable');
+                    },
+                    {
+                        enableHighAccuracy: true,
+                        timeout: 12000,
+                        maximumAge: 0
+                    }
+                );
+            });
+        }
+
+        async function markIn() {
+            const session = getSession();
+            if (!session) return;
+
+            try {
+                const loc = await getCurrentLocation();
+
+                const result = await api({
+                    action: 'markIn',
+                    token: session.token,
+                    lat: loc.lat,
+                    lng: loc.lng
+                });
+
+                if (result.success) {
+                    alert(result.message + ' | Status: ' + (result.inStatus || '-') + ' | Distance: ' + (result.inDistance || 0) + 'm');
+                    await loadAllEmployeeData();
+                } else {
+                    alert(result.message || 'Unable to mark IN');
+                }
+            } catch (error) {
+                alert(error);
+            }
+        }
+
+        async function markOut() {
+            const session = getSession();
+            if (!session) return;
+
+            try {
+                const loc = await getCurrentLocation();
+
+                const result = await api({
+                    action: 'markOut',
+                    token: session.token,
+                    lat: loc.lat,
+                    lng: loc.lng
+                });
+
+                if (result.success) {
+                    let msg = result.message + ' | Status: ' + (result.outStatus || '-') + ' | Distance: ' + (result.outDistance || 0) + 'm';
+                    if (result.earlyLeaveWarning) {
+                        msg += ' | Early Leave Warning';
+                    }
+                    alert(msg);
+                    await loadAllEmployeeData();
+                } else {
+                    alert(result.message || 'Unable to mark OUT');
+                }
+            } catch (error) {
+                alert(error);
+            }
+        }
+
+        async function loadTodayStatus() {
+            const session = getSession();
+            if (!session) return;
+
+            try {
+                const result = await api({
+                    action: 'getTodayStatus',
+                    token: session.token
+                });
+
+                if (!result.success) {
+                    return;
+                }
+
+                const d = result.data || {};
+
+                qs('todayInMarked').textContent = d.inMarked ? 'Yes' : 'No';
+                qs('todayOutMarked').textContent = d.outMarked ? 'Yes' : 'No';
+                qs('todayInStatus').textContent = d.inStatus || '-';
+                qs('todayOutStatus').textContent = d.outStatus || '-';
+                qs('todayLateMark').textContent = valueOrZero(d.lateMark);
+                qs('todayHalfDay').textContent = valueOrZero(d.halfDay);
+                qs('todayEarly').textContent = d.earlyLeaveWarning || '-';
+                qs('todayRemark').textContent = d.finalRemark || '-';
+            } catch (error) {
+            }
+        }
+
+        async function loadMonthlySummary() {
+            const session = getSession();
+            if (!session) return;
+
+            const monthKey = qs('empMonth').value || getCurrentMonthValue();
+
+            try {
+                const result = await api({
+                    action: 'getMonthlySummary',
+                    token: session.token,
+                    monthKey: monthKey
+                });
+
+                if (!result.success) {
+                    return;
+                }
+
+                const d = result.data || {};
+
+                qs('sumWorking').textContent = valueOrDash(d.workingDays);
+                qs('sumPresent').textContent = valueOrZero(d.presentDays);
+                qs('sumAbsent').textContent = valueOrZero(d.absentDays);
+                qs('sumHalf').textContent = valueOrZero(d.halfDays);
+                qs('sumLate').textContent = valueOrZero(d.lateMarks);
+                qs('sumLateHalf').textContent = valueOrZero(d.halfDaysFromLate);
+                qs('sumOutside').textContent = valueOrZero(d.outsideRangeCount);
+                qs('sumEarly').textContent = valueOrZero(d.earlyLeaveWarnings);
+
+                qs('cardPresent').textContent = valueOrZero(d.presentDays);
+                qs('cardAbsent').textContent = valueOrZero(d.absentDays);
+                qs('cardHalf').textContent = valueOrZero(d.halfDays);
+                qs('cardLate').textContent = valueOrZero(d.lateMarks);
+                qs('cardLateHalf').textContent = valueOrZero(d.halfDaysFromLate);
+            } catch (error) {
+            }
+        }
+
+        async function loadAttendance() {
+            const session = getSession();
+            if (!session) return;
+
+            const monthKey = qs('empMonth').value || getCurrentMonthValue();
+
+            try {
+                const result = await api({
+                    action: 'getAttendanceByMonth',
+                    token: session.token,
+                    monthKey: monthKey
+                });
+
+                const body = qs('attendanceBody');
+                const empty = qs('attendanceEmpty');
+
+                body.innerHTML = '';
+                empty.textContent = '';
+
+                if (!result.success || !result.data || !result.data.length) {
+                    empty.textContent = 'No attendance records found for selected month.';
+                    return;
+                }
+
+                result.data.forEach(row => {
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+            <td>${fmt(row.date)}</td>
+            <td>${fmt(row.inTime)}</td>
+            <td>${fmt(row.outTime)}</td>
+            <td>${fmt(row.inStatus)}</td>
+            <td>${fmt(row.outStatus)}</td>
+            <td>${fmt(row.lateMark)}</td>
+            <td>${fmt(row.halfDay)}</td>
+            <td>${fmt(row.earlyLeaveWarning)}</td>
+            <td>${fmt(row.finalRemark)}</td>
+          `;
+                    body.appendChild(tr);
+                });
+            } catch (error) {
+                qs('attendanceEmpty').textContent = 'Unable to load attendance records.';
+            }
+        }
+
+        async function loadAllEmployeeData() {
+            await loadTodayStatus();
+            await loadMonthlySummary();
+            await loadAttendance();
+        }
+
+        function exportEmployeeCSV() {
+            const rows = [];
+            rows.push(['Date', 'IN Time', 'OUT Time', 'IN Status', 'OUT Status', 'Late', 'Half Day', 'Early Leave', 'Remark']);
+
+            document.querySelectorAll('#attendanceBody tr').forEach(tr => {
+                const cols = Array.from(tr.querySelectorAll('td')).map(td => {
+                    return (td.innerText || '').replace(/,/g, ' ');
+                });
+                if (cols.length) {
+                    rows.push(cols);
+                }
+            });
+
+            if (rows.length === 1) {
+                alert('No attendance records available to export.');
+                return;
+            }
+
+            downloadCSV(rows, 'employee_attendance.csv');
+        }
+
+        function downloadCSV(rows, filename) {
+            const csv = rows.map(r => r.join(',')).join('\n');
+            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = filename;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        function fmt(v) {
+            return (v === null || v === undefined || v === '') ? '-' : v;
+        }
+
+        function valueOrZero(v) {
+            return (v === null || v === undefined || v === '') ? 0 : v;
+        }
+
+        function valueOrDash(v) {
+            return (v === null || v === undefined || v === '') ? '-' : v;
+        }
+
+        window.onload = async function () {
+            const ok = await validateEmployeeSession();
+            if (ok) {
+                showEmployeeDashboard();
+            }
+        };
+    </script>
+</body>
+
+</html>
