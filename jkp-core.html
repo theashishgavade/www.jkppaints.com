@@ -198,6 +198,8 @@
             margin-bottom: 18px;
             position: relative;
             overflow: hidden;
+            z-index: 1;
+            /* ✅ ensures content is above background */
         }
 
         .hero::after {
@@ -208,6 +210,8 @@
             background: radial-gradient(circle, rgba(255, 255, 255, 0.1), transparent);
             top: -50%;
             left: -50%;
+            pointer-events: none;
+            /* ✅ THIS FIXES YOUR BUTTON ISSUE */
         }
 
         .hero h2 {
@@ -411,6 +415,7 @@
 
         .logo {
             width: 250px;
+            filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.2));
             /* perfect for 2182x991 ratio */
             height: auto;
             object-fit: contain;
