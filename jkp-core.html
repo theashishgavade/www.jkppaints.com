@@ -5,363 +5,469 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>JKP Core Attendance</title>
+
     <style>
         :root {
-            --bg: #f4f7fb;
-            --bg2: #eef3f9;
+            --bg: #0f172a;
+            --bg-soft: #111827;
             --card: #ffffff;
-            --text: #14243a;
-            --muted: #607086;
-            --line: #dbe5f0;
-            --primary: #1d4ed8;
-            --primary-dark: #153aa8;
-            --dark: #0f172a;
-            --success: #0f9d58;
+            --text: #0f172a;
+            --muted: #64748b;
+            --line: #e2e8f0;
+
+            --primary: #2563eb;
+            --primary2: #7c3aed;
+            --gradient: linear-gradient(135deg, #2563eb, #7c3aed);
+
+            --success: #16a34a;
             --danger: #dc2626;
             --warn: #d97706;
-            --shadow: 0 12px 30px rgba(15, 23, 42, .08);
-            --radius: 20px;
+
+            --radius: 18px;
+            --shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 15px 35px rgba(0, 0, 0, 0.15);
         }
 
+        /* RESET */
         * {
             box-sizing: border-box;
         }
 
         body {
             margin: 0;
-            font-family: Arial, Helvetica, sans-serif;
-            color: var(--text);
-            background: linear-gradient(180deg, var(--bg2) 0%, var(--bg) 100%);
+            font-family: Inter, system-ui, Arial;
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            color: #fff;
+        }
+
+        /* ---------- COMMON ---------- */
+
+        .page {
+            min-height: 100vh;
         }
 
         .hidden {
             display: none !important;
         }
 
-        .page {
-            min-height: 100vh;
-        }
-
-        .login-wrap {
-            min-height: 100vh;
-            display: grid;
-            place-items: center;
-            padding: 24px;
-        }
-
-        .login-card {
-            width: 100%;
-            max-width: 460px;
-            background: var(--card);
-            border: 1px solid var(--line);
-            border-radius: 24px;
-            box-shadow: var(--shadow);
-            padding: 30px;
-        }
-
-        .brand {
-            font-size: 30px;
-            font-weight: 800;
-            margin-bottom: 8px;
-            color: var(--dark);
-        }
-
-        .subtitle {
-            color: var(--muted);
-            font-size: 14px;
-            margin-bottom: 24px;
-            line-height: 1.5;
-        }
-
-        .field {
-            margin-bottom: 16px;
-        }
-
-        .label {
-            display: block;
-            margin-bottom: 8px;
-            font-size: 13px;
-            font-weight: 700;
-            color: #304258;
-        }
-
-        .input {
-            width: 100%;
-            padding: 14px 14px;
-            border: 1px solid #d4dfeb;
-            border-radius: 14px;
-            outline: none;
-            font-size: 15px;
-            background: #fbfdff;
-            transition: .2s ease;
-        }
-
-        .input:focus {
-            border-color: #9cb9ff;
-            box-shadow: 0 0 0 4px rgba(29, 78, 216, .08);
-        }
-
+        /* BUTTON */
         .btn {
             border: none;
-            background: var(--primary);
-            color: #fff;
-            padding: 13px 16px;
-            border-radius: 14px;
+            padding: 12px 16px;
+            border-radius: 12px;
             cursor: pointer;
-            font-size: 15px;
-            font-weight: 700;
-            transition: .2s ease;
+            font-weight: 600;
+            transition: all .25s ease;
+            white-space: nowrap;
         }
 
         .btn:hover {
-            background: var(--primary-dark);
-            transform: translateY(-1px);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .btn.primary {
+            background: var(--gradient);
+            color: #fff;
+        }
+
+        .btn.secondary {
+            background: #1e293b;
+            color: #fff;
+        }
+
+        .btn.ghost {
+            background: #e0e7ff;
+            color: #3730a3;
+        }
+
+        .btn.warn {
+            background: #f59e0b;
+            color: #fff;
         }
 
         .btn.full {
             width: 100%;
         }
 
-        .btn.secondary {
-            background: var(--dark);
+        /* ---------- LOGIN ---------- */
+
+        .login-wrap {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
         }
 
-        .btn.ghost {
-            background: #e8f0ff;
-            color: #1a3d9c;
+        .login-card {
+            width: 100%;
+            max-width: 420px;
+            background: #fff;
+            color: #000;
+            border-radius: 20px;
+            padding: 28px;
+            box-shadow: var(--shadow);
+            animation: fadeUp .5s ease;
         }
 
-        .btn.warn {
-            background: #c56c10;
+        .brand {
+            font-size: 26px;
+            font-weight: 800;
+            margin-bottom: 6px;
+        }
+
+        .subtitle {
+            font-size: 13px;
+            color: var(--muted);
+            margin-bottom: 20px;
+        }
+
+        .field {
+            margin-bottom: 14px;
+        }
+
+        .label {
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 6px;
+            display: block;
+        }
+
+        .input {
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
+            border: 1px solid #cbd5f5;
+            transition: .2s;
+        }
+
+        .input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
         }
 
         .msg {
-            margin-top: 14px;
-            font-size: 14px;
-            font-weight: 700;
-            min-height: 20px;
+            margin-top: 10px;
+            font-size: 13px;
+            font-weight: 600;
         }
 
         .msg.error {
-            color: var(--danger);
+            color: red;
         }
 
         .msg.success {
-            color: var(--success);
+            color: green;
         }
+
+        /* ---------- DASHBOARD ---------- */
 
         .dashboard-wrap {
-            max-width: 1240px;
-            margin: 0 auto;
-            padding: 24px;
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
         }
 
+        /* TOPBAR */
         .topbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            gap: 16px;
+            gap: 12px;
             flex-wrap: wrap;
-            margin-bottom: 20px;
+            margin-bottom: 18px;
         }
 
-        .topbar-left h1 {
+        .topbar h1 {
             margin: 0;
-            font-size: 30px;
-            color: var(--dark);
-        }
-
-        .topbar-left p {
-            margin: 8px 0 0;
-            color: var(--muted);
-            font-size: 14px;
-        }
-
-        .topbar-actions {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-
-        .hero {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            gap: 16px;
-            flex-wrap: wrap;
-            background: linear-gradient(135deg, #ffffff 0%, #f7faff 100%);
-            border: 1px solid var(--line);
-            border-radius: 24px;
-            box-shadow: var(--shadow);
-            padding: 22px;
-            margin-bottom: 20px;
-        }
-
-        .hero h2 {
-            margin: 0 0 6px;
             font-size: 24px;
         }
 
-        .hero p {
+        .topbar p {
+            margin: 4px 0 0;
+            color: #cbd5e1;
+            font-size: 13px;
+        }
+
+        /* HERO */
+        .hero {
+            background: var(--gradient);
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 18px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1), transparent);
+            top: -50%;
+            left: -50%;
+        }
+
+        .hero h2 {
             margin: 0;
-            color: var(--muted);
-            line-height: 1.5;
         }
 
-        .hero-actions {
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
+        .hero p {
+            font-size: 13px;
+            color: #e0e7ff;
         }
 
+        /* CARDS */
         .cards {
             display: grid;
-            grid-template-columns: repeat(5, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
             gap: 14px;
-            margin-bottom: 20px;
+            margin-bottom: 18px;
         }
 
         .card-stat {
-            background: var(--card);
-            border: 1px solid var(--line);
-            border-radius: 20px;
+            background: #fff;
+            color: #000;
+            border-radius: 16px;
+            padding: 16px;
             box-shadow: var(--shadow);
-            padding: 18px;
+            transition: .25s;
+        }
+
+        .card-stat:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-hover);
         }
 
         .card-stat .k {
-            font-size: 13px;
+            font-size: 12px;
             color: var(--muted);
-            font-weight: 700;
-            margin-bottom: 8px;
         }
 
         .card-stat .v {
-            font-size: 30px;
+            font-size: 22px;
             font-weight: 800;
-            color: var(--dark);
         }
 
+        /* PANELS */
         .grid-2 {
             display: grid;
-            grid-template-columns: 1.1fr .9fr;
+            grid-template-columns: 1fr 1fr;
             gap: 18px;
-            margin-bottom: 20px;
+            margin-bottom: 18px;
         }
 
         .panel {
-            background: var(--card);
-            border: 1px solid var(--line);
-            border-radius: 22px;
+            background: #fff;
+            color: #000;
+            border-radius: 16px;
+            padding: 18px;
             box-shadow: var(--shadow);
-            padding: 20px;
+            transition: .25s;
         }
 
-        .panel-head {
+        .panel:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        /* SUMMARY */
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .summary-item {
+            background: #f8fafc;
+            border-radius: 14px;
+            padding: 14px;
+            border: 1px solid #e2e8f0;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            gap: 12px;
-            flex-wrap: wrap;
-            margin-bottom: 16px;
         }
 
-        .panel-head h3 {
-            margin: 0;
-            font-size: 20px;
-            color: var(--dark);
+        .summary-item span {
+            font-size: 13px;
+            color: #64748b;
+            font-weight: 600;
         }
 
-        .filters {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
+        .summary-item strong {
+            font-size: 18px;
+            font-weight: 800;
         }
 
-        .mini-input {
-            padding: 11px 12px;
-            border: 1px solid #d7e2ee;
-            border-radius: 12px;
-            background: #fbfdff;
-            font-size: 14px;
-            min-width: 160px;
-        }
-
+        /* STATUS */
         .status-list {
             display: grid;
-            gap: 12px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
         }
 
         .status-item {
-            padding: 14px;
-            border-radius: 16px;
-            background: #f8fbff;
-            border: 1px solid #e2ebf5;
-            font-size: 14px;
-            line-height: 1.5;
+            background: #ffffff;
+            border-radius: 14px;
+            padding: 12px;
+            border: 1px solid #e2e8f0;
+            display: flex;
+            flex-direction: column;
         }
 
         .status-item strong {
-            color: var(--dark);
+            font-size: 12px;
+            color: #64748b;
         }
 
+        .status-item span {
+            font-size: 16px;
+            font-weight: 800;
+        }
+
+        /* COLORS */
+        .status-yes {
+            color: var(--success) !important;
+        }
+
+        .status-no {
+            color: var(--danger) !important;
+        }
+
+        .status-warning {
+            color: var(--warn) !important;
+        }
+
+        /* TABLE */
         .table-wrap {
-            overflow: auto;
+            overflow-x: auto;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
-            min-width: 900px;
+            font-size: 13px;
+            min-width: 700px;
         }
 
         th,
         td {
-            text-align: left;
-            padding: 12px 10px;
-            border-bottom: 1px solid #edf2f8;
-            font-size: 14px;
-            white-space: nowrap;
+            padding: 10px;
+            border-bottom: 1px solid #e2e8f0;
         }
 
         th {
-            color: #4d5f76;
-            font-size: 13px;
+            font-size: 11px;
+            color: #64748b;
             text-transform: uppercase;
-            letter-spacing: .3px;
         }
 
-        .empty-note {
-            color: var(--muted);
+        /* 🔥 PREMIUM MONTH INPUT */
+        input[type="month"] {
+            appearance: none;
+            -webkit-appearance: none;
+            background: #fff;
+            color: #0f172a;
+            border: 1px solid #e2e8f0;
+            padding: 10px 14px;
+            border-radius: 12px;
+            font-family: inherit;
             font-size: 14px;
-            padding: 14px 0 4px;
+            transition: all 0.25s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
         }
 
-        @media (max-width: 1100px) {
-            .cards {
-                grid-template-columns: repeat(2, 1fr);
+        /* hover */
+        input[type="month"]:hover {
+            border-color: #2563eb;
+        }
+
+        /* focus */
+        input[type="month"]:focus {
+            outline: none;
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+        }
+
+        /* calendar icon fix (chrome) */
+        input[type="month"]::-webkit-calendar-picker-indicator {
+            cursor: pointer;
+            filter: invert(0.3);
+            transition: 0.2s;
+        }
+
+        input[type="month"]::-webkit-calendar-picker-indicator:hover {
+            transform: scale(1.1);
+        }
+
+        /* 🔥 LOGO STYLING */
+        .logo-wrap {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 12px;
+        }
+
+        .logo {
+            width: 250px;
+            /* perfect for 2182x991 ratio */
+            height: auto;
+            object-fit: contain;
+            transition: 0.3s ease;
+        }
+
+        /* subtle hover effect */
+        .logo:hover {
+            transform: scale(1.03);
+        }
+
+        /* ANIMATION */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
             }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* MOBILE */
+        @media(max-width:768px) {
 
             .grid-2 {
                 grid-template-columns: 1fr;
             }
+
+            .hero {
+                flex-direction: column;
+            }
+
+            .topbar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .topbar-actions {
+                display: flex;
+                gap: 10px;
+                width: 100%;
+            }
+
+            .topbar-actions .btn {
+                flex: 1;
+                text-align: center;
+            }
         }
 
-        @media (max-width: 640px) {
-            .cards {
+        @media (max-width:640px) {
+
+            .summary-grid,
+            .status-list {
                 grid-template-columns: 1fr;
-            }
-
-            .login-card {
-                padding: 24px;
-            }
-
-            .topbar-left h1 {
-                font-size: 24px;
-            }
-
-            .hero h2 {
-                font-size: 21px;
             }
         }
     </style>
@@ -371,9 +477,14 @@
 
     <div id="loginView" class="page login-wrap">
         <div class="login-card">
+            <div class="logo-wrap">
+                <img src="./img/Picture2 (1).png" class="logo" alt="JKP Logo">
+            </div>
+
             <div class="brand">JKP Attendance</div>
-            <div class="subtitle">Login with your Employee ID and password. Admin will be redirected to Admin dashboard
-                automatically.</div>
+            <div class="subtitle">
+                Login with your Employee ID and password.
+            </div>
 
             <div class="field">
                 <label class="label">Employee ID</label>
@@ -385,35 +496,41 @@
                 <input class="input" id="password" type="password" placeholder="Enter Password" />
             </div>
 
-            <button class="btn full" onclick="handleLogin()">Login</button>
+            <button class="btn primary full" onclick="handleLogin()">Login</button>
             <div id="loginMsg" class="msg"></div>
         </div>
     </div>
 
     <div id="employeeView" class="page hidden">
         <div class="dashboard-wrap">
+
+            <!-- TOPBAR -->
             <div class="topbar">
-                <div class="topbar-left">
+                <div>
                     <h1>Employee Dashboard</h1>
                     <p id="welcomeLine">Welcome</p>
                 </div>
+
                 <div class="topbar-actions">
                     <button class="btn ghost" onclick="loadAllEmployeeData()">Refresh</button>
                     <button class="btn secondary" onclick="logout()">Logout</button>
                 </div>
             </div>
 
+            <!-- HERO -->
             <div class="hero">
                 <div>
                     <h2 id="empNameTitle">Hello</h2>
-                    <p>Mark attendance, check today status, view monthly summary, and export your records.</p>
+                    <p>Mark attendance, check today status, view monthly summary, and export records.</p>
                 </div>
-                <div class="hero-actions">
-                    <button class="btn" onclick="markIn()">Mark In</button>
+
+                <div class="hero-actions" style="display:flex; gap:10px; flex-wrap:wrap;">
+                    <button class="btn primary" onclick="markIn()">Mark In</button>
                     <button class="btn warn" onclick="markOut()">Mark Out</button>
                 </div>
             </div>
 
+            <!-- STATS -->
             <div class="cards">
                 <div class="card-stat">
                     <div class="k">Present Days</div>
@@ -432,89 +549,103 @@
                     <div class="v" id="cardLate">0</div>
                 </div>
                 <div class="card-stat">
-                    <div class="k">Half Days From Late</div>
+                    <div class="k">Late → Half</div>
                     <div class="v" id="cardLateHalf">0</div>
                 </div>
             </div>
 
+            <!-- GRID -->
             <div class="grid-2">
+
+                <!-- MONTHLY SUMMARY -->
                 <div class="panel">
-                    <div class="panel-head">
-                        <h3>Monthly Summary</h3>
-                        <div class="filters">
+                    <div class="panel-head"
+                        style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+                        <h3 style="margin:0;">Monthly Summary</h3>
+
+                        <div style="display:flex; gap:10px; flex-wrap:wrap;">
                             <input class="mini-input" type="month" id="empMonth" />
-                            <button class="btn ghost" onclick="loadMonthlySummary()">Load Summary</button>
-                            <button class="btn ghost" onclick="exportEmployeeCSV()">Export CSV</button>
+                            <button class="btn ghost" onclick="loadMonthlySummary()">Load</button>
+                            <button class="btn ghost" onclick="exportEmployeeCSV()">Export</button>
                         </div>
                     </div>
 
-                    <div class="table-wrap">
-                        <table>
-                            <tbody>
-                                <tr>
-                                    <th>Working Days</th>
-                                    <td id="sumWorking">-</td>
-                                </tr>
-                                <tr>
-                                    <th>Present Days</th>
-                                    <td id="sumPresent">-</td>
-                                </tr>
-                                <tr>
-                                    <th>Absent Days</th>
-                                    <td id="sumAbsent">-</td>
-                                </tr>
-                                <tr>
-                                    <th>Half Days</th>
-                                    <td id="sumHalf">-</td>
-                                </tr>
-                                <tr>
-                                    <th>Late Marks</th>
-                                    <td id="sumLate">-</td>
-                                </tr>
-                                <tr>
-                                    <th>Half Days From Late</th>
-                                    <td id="sumLateHalf">-</td>
-                                </tr>
-                                <tr>
-                                    <th>Outside Range Count</th>
-                                    <td id="sumOutside">-</td>
-                                </tr>
-                                <tr>
-                                    <th>Early Leave Warnings</th>
-                                    <td id="sumEarly">-</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <div style="margin-top:12px;">
+                        <div class="summary-grid">
+
+                            <div class="summary-item">
+                                <span>Working Days</span>
+                                <strong id="sumWorking">-</strong>
+                            </div>
+
+                            <div class="summary-item">
+                                <span>Present Days</span>
+                                <strong id="sumPresent">-</strong>
+                            </div>
+
+                            <div class="summary-item">
+                                <span>Absent Days</span>
+                                <strong id="sumAbsent">-</strong>
+                            </div>
+
+                            <div class="summary-item">
+                                <span>Half Days</span>
+                                <strong id="sumHalf">-</strong>
+                            </div>
+
+                            <div class="summary-item">
+                                <span>Late Marks</span>
+                                <strong id="sumLate">-</strong>
+                            </div>
+
+                            <div class="summary-item">
+                                <span>Late → Half</span>
+                                <strong id="sumLateHalf">-</strong>
+                            </div>
+
+                            <div class="summary-item">
+                                <span>Outside Range</span>
+                                <strong id="sumOutside">-</strong>
+                            </div>
+
+                            <div class="summary-item">
+                                <span>Early Leave</span>
+                                <strong id="sumEarly">-</strong>
+                            </div>
+
+                        </div>
                     </div>
                 </div>
 
+                <!-- TODAY STATUS -->
                 <div class="panel">
-                    <div class="panel-head">
-                        <h3>Today Status</h3>
+                    <div class="panel-head" style="display:flex; justify-content:space-between; align-items:center;">
+                        <h3 style="margin:0;">Today Status</h3>
                         <button class="btn ghost" onclick="loadTodayStatus()">Refresh</button>
                     </div>
 
-                    <div class="status-list">
-                        <div class="status-item"><strong>IN Marked:</strong> <span id="todayInMarked">-</span></div>
-                        <div class="status-item"><strong>OUT Marked:</strong> <span id="todayOutMarked">-</span></div>
-                        <div class="status-item"><strong>IN Status:</strong> <span id="todayInStatus">-</span></div>
-                        <div class="status-item"><strong>OUT Status:</strong> <span id="todayOutStatus">-</span></div>
-                        <div class="status-item"><strong>Late Mark:</strong> <span id="todayLateMark">-</span></div>
-                        <div class="status-item"><strong>Half Day:</strong> <span id="todayHalfDay">-</span></div>
-                        <div class="status-item"><strong>Early Leave Warning:</strong> <span id="todayEarly">-</span>
-                        </div>
-                        <div class="status-item"><strong>Remark:</strong> <span id="todayRemark">-</span></div>
+                    <div class="status-list" style="margin-top:12px;">
+                        <div class="status-item"><strong>IN Marked</strong><span id="todayInMarked">-</span></div>
+                        <div class="status-item"><strong>OUT Marked</strong><span id="todayOutMarked">-</span></div>
+                        <div class="status-item"><strong>IN Status</strong><span id="todayInStatus">-</span></div>
+                        <div class="status-item"><strong>OUT Status</strong><span id="todayOutStatus">-</span></div>
+                        <div class="status-item"><strong>Late Mark</strong><span id="todayLateMark">-</span></div>
+                        <div class="status-item"><strong>Half Day</strong><span id="todayHalfDay">-</span></div>
+                        <div class="status-item"><strong>Early Leave</strong><span id="todayEarly">-</span></div>
+                        <div class="status-item"><strong>Remark</strong><span id="todayRemark">-</span></div>
                     </div>
                 </div>
+
             </div>
 
+            <!-- ATTENDANCE -->
             <div class="panel">
-                <div class="panel-head">
-                    <h3>Attendance Records</h3>
+                <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+                    <h3 style="margin:0;">Attendance Records</h3>
                     <button class="btn ghost" onclick="loadAttendance()">Load Records</button>
                 </div>
 
-                <div class="table-wrap">
+                <div class="table-wrap" style="margin-top:10px;">
                     <table>
                         <thead>
                             <tr>
@@ -532,8 +663,10 @@
                         <tbody id="attendanceBody"></tbody>
                     </table>
                 </div>
+
                 <div id="attendanceEmpty" class="empty-note"></div>
             </div>
+
         </div>
     </div>
 
@@ -557,6 +690,74 @@
             sessionStorage.removeItem('attendance_session');
         }
 
+        /* ========================= */
+        /* 🔥 PREMIUM HELPERS */
+        /* ========================= */
+
+        function fadeIn(el) {
+            if (!el) return;
+            el.style.opacity = 0;
+            el.style.transform = "translateY(10px)";
+            el.style.transition = "all 0.4s ease";
+
+            setTimeout(() => {
+                el.style.opacity = 1;
+                el.style.transform = "translateY(0)";
+            }, 50);
+        }
+
+        function animateCount(el, target) {
+            if (!el) return;
+            let start = 0;
+            const duration = 600;
+            const stepTime = 20;
+            const increment = target / (duration / stepTime);
+
+            const timer = setInterval(() => {
+                start += increment;
+                if (start >= target) {
+                    el.textContent = target;
+                    clearInterval(timer);
+                } else {
+                    el.textContent = Math.floor(start);
+                }
+            }, stepTime);
+        }
+
+        function animateTableRows(container) {
+            const rows = container.querySelectorAll("tr");
+            rows.forEach((row, index) => {
+                row.style.opacity = 0;
+                row.style.transform = "translateY(10px)";
+                row.style.transition = "all 0.3s ease";
+
+                setTimeout(() => {
+                    row.style.opacity = 1;
+                    row.style.transform = "translateY(0)";
+                }, index * 40);
+            });
+        }
+
+        function buttonRipple(e) {
+            const btn = e.currentTarget;
+            if (!btn || !btn.style) return;
+
+            btn.style.transform = "scale(0.96)";
+            setTimeout(() => {
+                btn.style.transform = "scale(1)";
+            }, 150);
+        }
+
+        // FIXED ripple (no error)
+        document.addEventListener("click", function (e) {
+            const btn = e.target.closest(".btn");
+            if (btn) {
+                buttonRipple({ currentTarget: btn });
+            }
+        });
+
+        /* ========================= */
+
         async function api(payload) {
             const response = await fetch(API_URL, {
                 method: 'POST',
@@ -570,6 +771,7 @@
             const box = qs('loginMsg');
             box.textContent = text || '';
             box.className = 'msg ' + (ok ? 'success' : 'error');
+            fadeIn(box);
         }
 
         async function handleLogin() {
@@ -610,9 +812,7 @@
         async function validateEmployeeSession() {
             const session = getSession();
 
-            if (!session || !session.token) {
-                return false;
-            }
+            if (!session || !session.token) return false;
 
             try {
                 const result = await api({
@@ -646,8 +846,11 @@
 
             const monthValue = getCurrentMonthValue();
             qs('empMonth').value = monthValue;
+
             qs('welcomeLine').textContent = session.empId + ' • ' + session.role;
             qs('empNameTitle').textContent = 'Hello, ' + session.name;
+
+            document.querySelectorAll(".panel, .card-stat, .hero").forEach(fadeIn);
 
             loadAllEmployeeData();
         }
@@ -662,8 +865,7 @@
                         token: session.token
                     });
                 }
-            } catch (error) {
-            }
+            } catch (error) { }
 
             clearSession();
             window.location.href = 'jkp-core.html';
@@ -679,25 +881,14 @@
         function getCurrentLocation() {
             return new Promise((resolve, reject) => {
                 if (!navigator.geolocation) {
-                    reject('Geolocation not supported in this browser');
+                    reject('Geolocation not supported');
                     return;
                 }
 
                 navigator.geolocation.getCurrentPosition(
-                    position => {
-                        resolve({
-                            lat: position.coords.latitude,
-                            lng: position.coords.longitude
-                        });
-                    },
-                    error => {
-                        reject('Location permission denied or unavailable');
-                    },
-                    {
-                        enableHighAccuracy: true,
-                        timeout: 12000,
-                        maximumAge: 0
-                    }
+                    pos => resolve({ lat: pos.coords.latitude, lng: pos.coords.longitude }),
+                    () => reject('Location permission denied'),
+                    { enableHighAccuracy: true, timeout: 12000 }
                 );
             });
         }
@@ -717,7 +908,7 @@
                 });
 
                 if (result.success) {
-                    alert(result.message + ' | Status: ' + (result.inStatus || '-') + ' | Distance: ' + (result.inDistance || 0) + 'm');
+                    alert(result.message);
                     await loadAllEmployeeData();
                 } else {
                     alert(result.message || 'Unable to mark IN');
@@ -742,11 +933,7 @@
                 });
 
                 if (result.success) {
-                    let msg = result.message + ' | Status: ' + (result.outStatus || '-') + ' | Distance: ' + (result.outDistance || 0) + 'm';
-                    if (result.earlyLeaveWarning) {
-                        msg += ' | Early Leave Warning';
-                    }
-                    alert(msg);
+                    alert(result.message);
                     await loadAllEmployeeData();
                 } else {
                     alert(result.message || 'Unable to mark OUT');
@@ -766,9 +953,7 @@
                     token: session.token
                 });
 
-                if (!result.success) {
-                    return;
-                }
+                if (!result.success) return;
 
                 const d = result.data || {};
 
@@ -780,8 +965,10 @@
                 qs('todayHalfDay').textContent = valueOrZero(d.halfDay);
                 qs('todayEarly').textContent = d.earlyLeaveWarning || '-';
                 qs('todayRemark').textContent = d.finalRemark || '-';
-            } catch (error) {
-            }
+
+                document.querySelectorAll(".status-item span").forEach(fadeIn);
+
+            } catch (error) { }
         }
 
         async function loadMonthlySummary() {
@@ -797,28 +984,27 @@
                     monthKey: monthKey
                 });
 
-                if (!result.success) {
-                    return;
-                }
+                if (!result.success) return;
 
                 const d = result.data || {};
 
+                animateCount(qs('sumPresent'), valueOrZero(d.presentDays));
+                animateCount(qs('sumAbsent'), valueOrZero(d.absentDays));
+                animateCount(qs('sumHalf'), valueOrZero(d.halfDays));
+                animateCount(qs('sumLate'), valueOrZero(d.lateMarks));
+                animateCount(qs('sumLateHalf'), valueOrZero(d.halfDaysFromLate));
+
                 qs('sumWorking').textContent = valueOrDash(d.workingDays);
-                qs('sumPresent').textContent = valueOrZero(d.presentDays);
-                qs('sumAbsent').textContent = valueOrZero(d.absentDays);
-                qs('sumHalf').textContent = valueOrZero(d.halfDays);
-                qs('sumLate').textContent = valueOrZero(d.lateMarks);
-                qs('sumLateHalf').textContent = valueOrZero(d.halfDaysFromLate);
                 qs('sumOutside').textContent = valueOrZero(d.outsideRangeCount);
                 qs('sumEarly').textContent = valueOrZero(d.earlyLeaveWarnings);
 
-                qs('cardPresent').textContent = valueOrZero(d.presentDays);
-                qs('cardAbsent').textContent = valueOrZero(d.absentDays);
-                qs('cardHalf').textContent = valueOrZero(d.halfDays);
-                qs('cardLate').textContent = valueOrZero(d.lateMarks);
-                qs('cardLateHalf').textContent = valueOrZero(d.halfDaysFromLate);
-            } catch (error) {
-            }
+                animateCount(qs('cardPresent'), valueOrZero(d.presentDays));
+                animateCount(qs('cardAbsent'), valueOrZero(d.absentDays));
+                animateCount(qs('cardHalf'), valueOrZero(d.halfDays));
+                animateCount(qs('cardLate'), valueOrZero(d.lateMarks));
+                animateCount(qs('cardLateHalf'), valueOrZero(d.halfDaysFromLate));
+
+            } catch (error) { }
         }
 
         async function loadAttendance() {
@@ -841,27 +1027,30 @@
                 empty.textContent = '';
 
                 if (!result.success || !result.data || !result.data.length) {
-                    empty.textContent = 'No attendance records found for selected month.';
+                    empty.textContent = 'No attendance records found.';
                     return;
                 }
 
                 result.data.forEach(row => {
                     const tr = document.createElement('tr');
                     tr.innerHTML = `
-            <td>${fmt(row.date)}</td>
-            <td>${fmt(row.inTime)}</td>
-            <td>${fmt(row.outTime)}</td>
-            <td>${fmt(row.inStatus)}</td>
-            <td>${fmt(row.outStatus)}</td>
-            <td>${fmt(row.lateMark)}</td>
-            <td>${fmt(row.halfDay)}</td>
-            <td>${fmt(row.earlyLeaveWarning)}</td>
-            <td>${fmt(row.finalRemark)}</td>
-          `;
+                <td>${fmt(row.date)}</td>
+                <td>${fmt(row.inTime)}</td>
+                <td>${fmt(row.outTime)}</td>
+                <td>${fmt(row.inStatus)}</td>
+                <td>${fmt(row.outStatus)}</td>
+                <td>${fmt(row.lateMark)}</td>
+                <td>${fmt(row.halfDay)}</td>
+                <td>${fmt(row.earlyLeaveWarning)}</td>
+                <td>${fmt(row.finalRemark)}</td>
+            `;
                     body.appendChild(tr);
                 });
+
+                animateTableRows(body);
+
             } catch (error) {
-                qs('attendanceEmpty').textContent = 'Unable to load attendance records.';
+                qs('attendanceEmpty').textContent = 'Unable to load records.';
             }
         }
 
@@ -879,13 +1068,11 @@
                 const cols = Array.from(tr.querySelectorAll('td')).map(td => {
                     return (td.innerText || '').replace(/,/g, ' ');
                 });
-                if (cols.length) {
-                    rows.push(cols);
-                }
+                if (cols.length) rows.push(cols);
             });
 
             if (rows.length === 1) {
-                alert('No attendance records available to export.');
+                alert('No attendance records available.');
                 return;
             }
 

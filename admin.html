@@ -5,439 +5,450 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>JKP Admin Dashboard</title>
+
     <style>
         :root {
-            --bg: #f4f7fb;
-            --bg2: #eef3f9;
+            --bg: #0f172a;
+            --bg-soft: #111827;
             --card: #ffffff;
-            --text: #14243a;
-            --muted: #607086;
-            --line: #dbe5f0;
-            --primary: #1d4ed8;
-            --primary-dark: #153aa8;
-            --dark: #0f172a;
-            --success: #0f9d58;
-            --danger: #dc2626;
-            --warn: #d97706;
-            --shadow: 0 12px 30px rgba(15, 23, 42, .08);
-            --radius: 20px;
+            --text: #0f172a;
+            --muted: #64748b;
+            --line: #e2e8f0;
+
+            --primary: #2563eb;
+            --primary2: #7c3aed;
+            --gradient: linear-gradient(135deg, #2563eb, #7c3aed);
+
+            --radius: 18px;
+            --shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 15px 35px rgba(0, 0, 0, 0.15);
         }
 
+        /* RESET */
         * {
             box-sizing: border-box;
         }
 
+        /* BODY */
         body {
             margin: 0;
-            font-family: Arial, Helvetica, sans-serif;
-            color: var(--text);
-            background: linear-gradient(180deg, var(--bg2) 0%, var(--bg) 100%);
+            font-family: Inter, system-ui;
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            color: #fff;
+            overflow-x: hidden;
         }
 
-        .hidden {
-            display: none !important;
-        }
-
-        .page {
-            min-height: 100vh;
-        }
-
+        /* WRAP */
         .dashboard-wrap {
-            max-width: 1360px;
-            margin: 0 auto;
+            max-width: 1200px;
+            margin: auto;
             padding: 24px;
+            width: 100%;
         }
 
+        /* spacing */
+        .dashboard-wrap>* {
+            margin-bottom: 18px;
+        }
+
+        /* TOPBAR */
         .topbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            gap: 16px;
-            flex-wrap: wrap;
-            margin-bottom: 20px;
+            gap: 12px;
         }
 
-        .topbar-left h1 {
+        .topbar h1 {
             margin: 0;
-            font-size: 30px;
-            color: var(--dark);
+            font-size: 24px;
+            font-weight: 700;
         }
 
-        .topbar-left p {
-            margin: 8px 0 0;
-            color: var(--muted);
-            font-size: 14px;
+        .topbar p {
+            margin: 4px 0 0;
+            color: #cbd5e1;
+            font-size: 13px;
         }
 
-        .topbar-actions {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-
+        /* BUTTON */
         .btn {
             border: none;
-            background: var(--primary);
-            color: #fff;
-            padding: 13px 16px;
-            border-radius: 14px;
+            padding: 10px 14px;
+            border-radius: 12px;
             cursor: pointer;
-            font-size: 15px;
-            font-weight: 700;
-            transition: .2s ease;
+            font-weight: 600;
+            transition: all 0.25s ease;
         }
 
         .btn:hover {
-            background: var(--primary-dark);
-            transform: translateY(-1px);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .btn.primary {
+            background: var(--gradient);
+            color: #fff;
         }
 
         .btn.secondary {
-            background: var(--dark);
+            background: #1e293b;
+            color: #fff;
         }
 
         .btn.ghost {
-            background: #e8f0ff;
-            color: #1a3d9c;
+            background: #e0e7ff;
+            color: #3730a3;
         }
 
-        .panel {
-            background: var(--card);
-            border: 1px solid var(--line);
-            border-radius: 22px;
-            box-shadow: var(--shadow);
-            padding: 20px;
-            margin-bottom: 20px;
-        }
-
+        /* HERO */
         .hero {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            gap: 16px;
-            flex-wrap: wrap;
-            background: linear-gradient(135deg, #ffffff 0%, #f7faff 100%);
-            border: 1px solid var(--line);
-            border-radius: 24px;
-            box-shadow: var(--shadow);
-            padding: 22px;
-            margin-bottom: 20px;
-        }
-
-        .hero h2 {
-            margin: 0 0 6px;
-            font-size: 24px;
-        }
-
-        .hero p {
-            margin: 0;
-            color: var(--muted);
-            line-height: 1.5;
-        }
-
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 14px;
-            margin-bottom: 20px;
-        }
-
-        .stat-card {
-            background: var(--card);
-            border: 1px solid var(--line);
+            background: var(--gradient);
             border-radius: 20px;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* glow effect */
+        .hero::after {
+            content: "";
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1), transparent);
+            top: -50%;
+            left: -50%;
+        }
+
+        /* CARDS */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 16px;
+        }
+
+        .card-stat {
+            background: #fff;
+            color: #000;
+            border-radius: 16px;
+            padding: 16px;
             box-shadow: var(--shadow);
-            padding: 18px;
+            transition: all 0.25s ease;
         }
 
-        .stat-card .k {
-            font-size: 13px;
-            color: var(--muted);
-            font-weight: 700;
-            margin-bottom: 8px;
+        .card-stat:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-hover);
         }
 
-        .stat-card .v {
-            font-size: 30px;
+        .card-stat .k {
+            font-size: 12px;
+            color: #64748b;
+        }
+
+        .card-stat .v {
+            font-size: 22px;
             font-weight: 800;
-            color: var(--dark);
+            margin-top: 4px;
         }
 
-        .section-head {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 12px;
-            flex-wrap: wrap;
-            margin-bottom: 16px;
+        /* PANELS */
+        .panel {
+            background: #fff;
+            color: #000;
+            border-radius: 16px;
+            padding: 18px;
+            box-shadow: var(--shadow);
+            transition: all 0.25s ease;
         }
 
-        .section-head h3 {
-            margin: 0;
-            font-size: 20px;
-            color: var(--dark);
+        .panel:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
         }
 
-        .filters {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
+        /* GRID */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
         }
 
+        /* INPUTS */
         .input,
-        .select {
-            width: 100%;
-            padding: 13px 14px;
-            border: 1px solid #d4dfeb;
-            border-radius: 14px;
-            outline: none;
-            font-size: 14px;
-            background: #fbfdff;
-            transition: .2s ease;
-        }
-
+        .select,
         .mini-input,
         .mini-select {
-            padding: 11px 12px;
-            border: 1px solid #d7e2ee;
-            border-radius: 12px;
-            background: #fbfdff;
-            font-size: 14px;
-            min-width: 170px;
-            outline: none;
+            padding: 10px;
+            border-radius: 10px;
+            border: 1px solid #cbd5e1;
+            width: 100%;
+            transition: 0.2s;
         }
 
         .input:focus,
         .select:focus,
         .mini-input:focus,
         .mini-select:focus {
-            border-color: #9cb9ff;
-            box-shadow: 0 0 0 4px rgba(29, 78, 216, .08);
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
         }
 
-        .grid-2 {
-            display: grid;
-            grid-template-columns: 400px 1fr;
-            gap: 18px;
-            margin-bottom: 20px;
+        /* FILTER BAR */
+        .filter-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
         }
 
+        /* FORM GRID */
         .form-grid {
             display: grid;
-            gap: 12px;
+            gap: 10px;
         }
 
-        .msg {
-            margin-top: 10px;
-            font-size: 14px;
-            font-weight: 700;
-            min-height: 20px;
-        }
-
-        .msg.error {
-            color: var(--danger);
-        }
-
-        .msg.success {
-            color: var(--success);
-        }
-
+        /* TABLE */
         .table-wrap {
-            overflow: auto;
+            width: 100%;
+            overflow-x: auto;
+            border-radius: 12px;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
-            min-width: 1000px;
+            font-size: 13px;
+            min-width: 600px;
         }
 
         th,
         td {
-            text-align: left;
-            padding: 12px 10px;
-            border-bottom: 1px solid #edf2f8;
-            font-size: 14px;
+            padding: 12px;
+            border-bottom: 1px solid #e2e8f0;
             white-space: nowrap;
         }
 
         th {
-            color: #4d5f76;
-            font-size: 13px;
+            font-size: 11px;
+            color: #64748b;
             text-transform: uppercase;
-            letter-spacing: .3px;
         }
 
-        .empty-note {
-            color: var(--muted);
-            font-size: 14px;
-            padding: 14px 0 4px;
+        tr:hover {
+            background: #f8fafc;
         }
 
-        @media (max-width: 1180px) {
-            .stats {
-                grid-template-columns: repeat(2, 1fr);
+        /* ========================= */
+        /* 📱 MOBILE */
+        /* ========================= */
+        @media (max-width: 768px) {
+
+            .dashboard-wrap {
+                padding: 14px;
+            }
+
+            .topbar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .topbar h1 {
+                font-size: 18px;
             }
 
             .grid-2 {
-                grid-template-columns: 1fr;
+                display: flex;
+                flex-direction: column;
+            }
+
+            /* move create employee to bottom */
+            .create-employee {
+                order: 99;
+            }
+
+            .cards {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .topbar-actions {
+                display: flex;
+                gap: 10px;
+                width: 100%;
+            }
+
+            .topbar-actions .btn {
+                flex: 1;
+                text-align: center;
+            }
+
+            .filter-bar {
+                flex-direction: column;
+            }
+
+            table {
+                font-size: 12px;
             }
         }
 
-        @media (max-width: 640px) {
-            .stats {
+        /* SMALL DEVICES */
+        @media (max-width: 480px) {
+
+            .cards {
                 grid-template-columns: 1fr;
             }
 
-            .topbar-left h1 {
-                font-size: 24px;
-            }
-
-            .hero h2 {
-                font-size: 21px;
+            .card-stat .v {
+                font-size: 18px;
             }
         }
     </style>
 </head>
 
 <body>
-    <div class="page">
-        <div class="dashboard-wrap">
-            <div class="topbar">
-                <div class="topbar-left">
-                    <h1>Admin Dashboard</h1>
-                    <p id="adminWelcome">Checking session...</p>
-                </div>
-                <div class="topbar-actions">
-                    <button class="btn ghost" onclick="loadAllAdminData()">Refresh</button>
-                    <button class="btn secondary" onclick="logout()">Logout</button>
+    <div class="dashboard-wrap">
+
+        <!-- TOPBAR -->
+        <div class="topbar">
+            <div>
+                <h1>Admin Dashboard</h1>
+                <p id="adminWelcome">Checking session...</p>
+            </div>
+            <div class="topbar-actions">
+                <button class="btn ghost" onclick="loadAllAdminData()">Refresh</button>
+                <button class="btn secondary" onclick="logout()">Logout</button>
+            </div>
+        </div>
+
+        <!-- HERO -->
+        <div class="hero">
+            <h2>Attendance Management</h2>
+            <p>Manage employees, summaries, filters and attendance.</p>
+        </div>
+
+        <!-- STATS -->
+        <div class="cards">
+            <div class="card-stat">
+                <div class="k">Total Employees</div>
+                <div class="v" id="totalEmployees">0</div>
+            </div>
+            <div class="card-stat">
+                <div class="k">Total Present</div>
+                <div class="v" id="totalPresent">0</div>
+            </div>
+            <div class="card-stat">
+                <div class="k">Total Absent</div>
+                <div class="v" id="totalAbsent">0</div>
+            </div>
+            <div class="card-stat">
+                <div class="k">Total Half</div>
+                <div class="v" id="totalHalf">0</div>
+            </div>
+            <div class="card-stat">
+                <div class="k">Total Late</div>
+                <div class="v" id="totalLate">0</div>
+            </div>
+        </div>
+
+        <!-- FILTER -->
+        <div class="panel">
+            <h3>Filters</h3>
+            <div class="filter-bar">
+                <input class="mini-input" type="month" id="monthKey" />
+                <select class="mini-select" id="employeeSelect"></select>
+                <button class="btn ghost" onclick="loadAdminData()">Apply</button>
+                <button class="btn ghost" onclick="exportAdminCSV()">Summary CSV</button>
+                <button class="btn ghost" onclick="exportAttendanceCSV()">Attendance CSV</button>
+            </div>
+        </div>
+
+        <!-- GRID -->
+        <div class="grid-2">
+
+            <!-- CREATE EMP (🔥 IMPORTANT CLASS ADDED) -->
+            <div class="panel create-employee">
+                <h3>Create Employee</h3>
+                <div class="form-grid">
+                    <input class="input" id="newEmpId" placeholder="Employee ID">
+                    <input class="input" id="newEmpName" placeholder="Employee Name">
+                    <select class="select" id="newEmpRole">
+                        <option value="Employee">Employee</option>
+                        <option value="Admin">Admin</option>
+                    </select>
+                    <input class="input" id="newEmpPassword" placeholder="Password">
+                    <input class="input" id="newEmpActive" value="Yes">
+                    <input class="input" id="newEmpLat" placeholder="Latitude">
+                    <input class="input" id="newEmpLng" placeholder="Longitude">
+
+                    <button class="btn primary" onclick="createEmployee()">Create Employee</button>
+                    <div id="createMsg"></div>
                 </div>
             </div>
 
-            <div class="hero">
-                <div>
-                    <h2>Attendance Management</h2>
-                    <p>View employee summaries, apply filters, export CSV, create employees, and check month-wise
-                        attendance records.</p>
-                </div>
-            </div>
-
-            <div class="stats">
-                <div class="stat-card">
-                    <div class="k">Total Employees</div>
-                    <div class="v" id="totalEmployees">0</div>
-                </div>
-                <div class="stat-card">
-                    <div class="k">Total Present</div>
-                    <div class="v" id="totalPresent">0</div>
-                </div>
-                <div class="stat-card">
-                    <div class="k">Total Absent</div>
-                    <div class="v" id="totalAbsent">0</div>
-                </div>
-                <div class="stat-card">
-                    <div class="k">Total Half Days</div>
-                    <div class="v" id="totalHalf">0</div>
-                </div>
-                <div class="stat-card">
-                    <div class="k">Total Late Marks</div>
-                    <div class="v" id="totalLate">0</div>
-                </div>
-            </div>
-
+            <!-- SUMMARY -->
             <div class="panel">
-                <div class="section-head">
-                    <h3>Filters</h3>
-                    <div class="filters">
-                        <input class="mini-input" type="month" id="monthKey" />
-                        <select class="mini-select" id="employeeSelect"></select>
-                        <button class="btn ghost" onclick="loadAdminData()">Apply Filters</button>
-                        <button class="btn ghost" onclick="exportAdminCSV()">Export Summary CSV</button>
-                        <button class="btn ghost" onclick="exportAttendanceCSV()">Export Attendance CSV</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="grid-2">
-                <div class="panel">
-                    <div class="section-head">
-                        <h3>Create Employee</h3>
-                    </div>
-
-                    <div class="form-grid">
-                        <input class="input" id="newEmpId" type="text" placeholder="Employee ID" />
-                        <input class="input" id="newEmpName" type="text" placeholder="Employee Name" />
-                        <select class="select" id="newEmpRole">
-                            <option value="Employee">Employee</option>
-                            <option value="Admin">Admin</option>
-                        </select>
-                        <input class="input" id="newEmpPassword" type="text" placeholder="Password" />
-                        <input class="input" id="newEmpActive" type="text" value="Yes" placeholder="Yes / No" />
-                        <input class="input" id="newEmpLat" type="number" step="any" placeholder="Office Latitude" />
-                        <input class="input" id="newEmpLng" type="number" step="any" placeholder="Office Longitude" />
-                        <button class="btn" onclick="createEmployee()">Create Employee</button>
-                        <div id="createMsg" class="msg"></div>
-                    </div>
-                </div>
-
-                <div class="panel">
-                    <div class="section-head">
-                        <h3>Employee Summary</h3>
-                    </div>
-
-                    <div class="table-wrap">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Emp ID</th>
-                                    <th>Name</th>
-                                    <th>Present</th>
-                                    <th>Absent</th>
-                                    <th>Half Day</th>
-                                    <th>Late</th>
-                                    <th>Late → Half</th>
-                                    <th>Early Leave</th>
-                                    <th>Outside</th>
-                                    <th>Working Days</th>
-                                </tr>
-                            </thead>
-                            <tbody id="summaryBody"></tbody>
-                        </table>
-                    </div>
-                    <div id="summaryEmpty" class="empty-note"></div>
-                </div>
-            </div>
-
-            <div class="panel">
-                <div class="section-head">
-                    <h3>Attendance Records</h3>
-                    <button class="btn ghost" onclick="loadAttendanceRecords()">Load Attendance</button>
-                </div>
+                <h3>Employee Summary</h3>
 
                 <div class="table-wrap">
                     <table>
                         <thead>
                             <tr>
-                                <th>Date</th>
                                 <th>Emp ID</th>
                                 <th>Name</th>
-                                <th>IN Time</th>
-                                <th>OUT Time</th>
-                                <th>IN Status</th>
-                                <th>OUT Status</th>
+                                <th>Present</th>
+                                <th>Absent</th>
+                                <th>Half</th>
                                 <th>Late</th>
-                                <th>Half Day</th>
-                                <th>Early Leave</th>
-                                <th>Remark</th>
+                                <th>Late→Half</th>
+                                <th>Early</th>
+                                <th>Outside</th>
+                                <th>Working</th>
                             </tr>
                         </thead>
-                        <tbody id="attendanceBody"></tbody>
+                        <tbody id="summaryBody"></tbody>
                     </table>
                 </div>
-                <div id="attendanceEmpty" class="empty-note"></div>
+
+                <div id="summaryEmpty"></div>
             </div>
+
         </div>
+
+        <!-- ATTENDANCE -->
+        <div class="panel">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+                <h3 style="margin:0;">Attendance Records</h3>
+                <button class="btn ghost" onclick="loadAttendanceRecords()">Load Attendance</button>
+            </div>
+
+            <div class="table-wrap" style="margin-top:10px;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Emp ID</th>
+                            <th>Name</th>
+                            <th>IN</th>
+                            <th>OUT</th>
+                            <th>IN Status</th>
+                            <th>OUT Status</th>
+                            <th>Late</th>
+                            <th>Half</th>
+                            <th>Early</th>
+                            <th>Remark</th>
+                        </tr>
+                    </thead>
+                    <tbody id="attendanceBody"></tbody>
+                </table>
+            </div>
+
+            <div id="attendanceEmpty"></div>
+        </div>
+
     </div>
+
 
     <script>
         const API_URL = 'https://script.google.com/macros/s/AKfycbxyqSNr9RRUNsyjKjg1Z_eVKwT7Fii77up3ibRwxpFFcUDpNwQ1XW5l44vPNvsheymc/exec';
@@ -454,6 +465,74 @@
         function clearSession() {
             sessionStorage.removeItem('attendance_session');
         }
+
+        /* ========================= */
+        /* 🔥 PREMIUM HELPERS */
+        /* ========================= */
+
+        // Fade In Animation
+        function fadeIn(el) {
+            el.style.opacity = 0;
+            el.style.transform = "translateY(10px)";
+            el.style.transition = "all 0.4s ease";
+
+            setTimeout(() => {
+                el.style.opacity = 1;
+                el.style.transform = "translateY(0)";
+            }, 50);
+        }
+
+        // Count Animation
+        function animateCount(el, target) {
+            let start = 0;
+            const duration = 600;
+            const stepTime = 20;
+            const increment = target / (duration / stepTime);
+
+            const timer = setInterval(() => {
+                start += increment;
+                if (start >= target) {
+                    el.textContent = target;
+                    clearInterval(timer);
+                } else {
+                    el.textContent = Math.floor(start);
+                }
+            }, stepTime);
+        }
+
+        // Stagger Table Rows
+        function animateTableRows(container) {
+            const rows = container.querySelectorAll("tr");
+            rows.forEach((row, index) => {
+                row.style.opacity = 0;
+                row.style.transform = "translateY(10px)";
+                row.style.transition = "all 0.3s ease";
+
+                setTimeout(() => {
+                    row.style.opacity = 1;
+                    row.style.transform = "translateY(0)";
+                }, index * 50);
+            });
+        }
+
+        // Button Click Effect
+        function buttonRipple(e) {
+            const btn = e.currentTarget;
+            btn.style.transform = "scale(0.96)";
+            setTimeout(() => {
+                btn.style.transform = "scale(1)";
+            }, 150);
+        }
+
+        // Attach ripple to all buttons
+        document.addEventListener("click", function (e) {
+            const btn = e.target.closest(".btn"); // FIX
+            if (btn) {
+                buttonRipple({ currentTarget: btn });
+            }
+        });
+
+        /* ========================= */
 
         async function api(payload) {
             const response = await fetch(API_URL, {
@@ -492,6 +571,7 @@
                 }
 
                 qs('adminWelcome').textContent = result.name + ' • ' + result.empId + ' • Admin';
+                fadeIn(qs('adminWelcome'));
                 return true;
             } catch (error) {
                 clearSession();
@@ -510,8 +590,7 @@
                         token: session.token
                     });
                 }
-            } catch (error) {
-            }
+            } catch (error) { }
 
             clearSession();
             window.location.href = 'jkp-core.html';
@@ -527,9 +606,7 @@
                     token: session.token
                 });
 
-                if (!result.success) {
-                    return;
-                }
+                if (!result.success) return;
 
                 const select = qs('employeeSelect');
                 select.innerHTML = '<option value="">All Employees</option>';
@@ -547,9 +624,9 @@
                     select.appendChild(option);
                 });
 
-                qs('totalEmployees').textContent = totalEmployees;
-            } catch (error) {
-            }
+                animateCount(qs('totalEmployees'), totalEmployees);
+
+            } catch (error) { }
         }
 
         async function loadAdminData() {
@@ -594,24 +671,27 @@
 
                     const tr = document.createElement('tr');
                     tr.innerHTML = `
-            <td>${fmt(row.empId)}</td>
-            <td>${fmt(row.name)}</td>
-            <td>${fmt(row.presentDays)}</td>
-            <td>${fmt(row.absentDays)}</td>
-            <td>${fmt(row.halfDays)}</td>
-            <td>${fmt(row.lateMarks)}</td>
-            <td>${fmt(row.halfDaysFromLate)}</td>
-            <td>${fmt(row.earlyLeaveWarnings)}</td>
-            <td>${fmt(row.outsideRangeCount)}</td>
-            <td>${fmt(row.workingDays)}</td>
-          `;
+                <td>${fmt(row.empId)}</td>
+                <td>${fmt(row.name)}</td>
+                <td>${fmt(row.presentDays)}</td>
+                <td>${fmt(row.absentDays)}</td>
+                <td>${fmt(row.halfDays)}</td>
+                <td>${fmt(row.lateMarks)}</td>
+                <td>${fmt(row.halfDaysFromLate)}</td>
+                <td>${fmt(row.earlyLeaveWarnings)}</td>
+                <td>${fmt(row.outsideRangeCount)}</td>
+                <td>${fmt(row.workingDays)}</td>
+            `;
                     body.appendChild(tr);
                 });
 
-                qs('totalPresent').textContent = totalPresent;
-                qs('totalAbsent').textContent = totalAbsent;
-                qs('totalHalf').textContent = totalHalf;
-                qs('totalLate').textContent = totalLate;
+                animateTableRows(body);
+
+                animateCount(qs('totalPresent'), totalPresent);
+                animateCount(qs('totalAbsent'), totalAbsent);
+                animateCount(qs('totalHalf'), totalHalf);
+                animateCount(qs('totalLate'), totalLate);
+
             } catch (error) {
                 qs('summaryEmpty').textContent = 'Unable to load employee summary.';
             }
@@ -645,20 +725,23 @@
                 result.data.forEach(row => {
                     const tr = document.createElement('tr');
                     tr.innerHTML = `
-            <td>${fmt(row.date)}</td>
-            <td>${fmt(row.empId)}</td>
-            <td>${fmt(row.name)}</td>
-            <td>${fmt(row.inTime)}</td>
-            <td>${fmt(row.outTime)}</td>
-            <td>${fmt(row.inStatus)}</td>
-            <td>${fmt(row.outStatus)}</td>
-            <td>${fmt(row.lateMark)}</td>
-            <td>${fmt(row.halfDay)}</td>
-            <td>${fmt(row.earlyLeaveWarning)}</td>
-            <td>${fmt(row.finalRemark)}</td>
-          `;
+                <td>${fmt(row.date)}</td>
+                <td>${fmt(row.empId)}</td>
+                <td>${fmt(row.name)}</td>
+                <td>${fmt(row.inTime)}</td>
+                <td>${fmt(row.outTime)}</td>
+                <td>${fmt(row.inStatus)}</td>
+                <td>${fmt(row.outStatus)}</td>
+                <td>${fmt(row.lateMark)}</td>
+                <td>${fmt(row.halfDay)}</td>
+                <td>${fmt(row.earlyLeaveWarning)}</td>
+                <td>${fmt(row.finalRemark)}</td>
+            `;
                     body.appendChild(tr);
                 });
+
+                animateTableRows(body);
+
             } catch (error) {
                 qs('attendanceEmpty').textContent = 'Unable to load attendance records.';
             }
@@ -683,6 +766,7 @@
             if (!employee.empId || !employee.name || !employee.password) {
                 msgBox.textContent = 'Please fill Employee ID, Name and Password';
                 msgBox.className = 'msg error';
+                fadeIn(msgBox);
                 return;
             }
 
@@ -695,6 +779,7 @@
 
                 msgBox.textContent = result.message || '';
                 msgBox.className = 'msg ' + (result.success ? 'success' : 'error');
+                fadeIn(msgBox);
 
                 if (result.success) {
                     clearCreateForm();
@@ -704,6 +789,7 @@
             } catch (error) {
                 msgBox.textContent = 'Unable to create employee';
                 msgBox.className = 'msg error';
+                fadeIn(msgBox);
             }
         }
 
@@ -725,9 +811,7 @@
                 const cols = Array.from(tr.querySelectorAll('td')).map(td => {
                     return (td.innerText || '').replace(/,/g, ' ');
                 });
-                if (cols.length) {
-                    rows.push(cols);
-                }
+                if (cols.length) rows.push(cols);
             });
 
             if (rows.length === 1) {
@@ -746,9 +830,7 @@
                 const cols = Array.from(tr.querySelectorAll('td')).map(td => {
                     return (td.innerText || '').replace(/,/g, ' ');
                 });
-                if (cols.length) {
-                    rows.push(cols);
-                }
+                if (cols.length) rows.push(cols);
             });
 
             if (rows.length === 1) {
@@ -785,6 +867,9 @@
             if (!ok) return;
 
             qs('monthKey').value = getCurrentMonthValue();
+
+            document.querySelectorAll(".panel, .card-stat, .hero").forEach(fadeIn);
+
             await loadAllAdminData();
         };
     </script>
