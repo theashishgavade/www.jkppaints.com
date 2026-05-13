@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>JKP Payslip</title>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: #e8e8e8;
+            padding: 15px;
+        }
+
+        .topBar {
+            width: 210mm;
+            margin: 0 auto 12px;
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .topBar button {
+            border: none;
+            padding: 10px 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            color: #fff;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .downloadBtn {
+            background: #111827;
+        }
+
+        .logoutBtn {
+            background: #dc2626;
+        }
+
+        #payslip {
+            width: 210mm;
+            min-height: 297mm;
+            background: #f5f5f5;
+            margin: auto;
+            padding: 8mm;
+            color: #222;
+            overflow: hidden;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            border-bottom: 1px solid #cfd4da;
+            padding-bottom: 8px;
+        }
+
+        .company {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            width: 74%;
+        }
+
+        .logo {
+            width: 140px;
+            height: 90px;
+            object-fit: contain;
+            flex-shrink: 0;
+        }
+
+        .companyText h1 {
+            font-size: 17px;
+            font-weight: 700;
+            margin-bottom: 2px;
+            line-height: 22px;
+        }
+
+        .companyText p {
+            font-size: 10px;
+            line-height: 15px;
+            color: #555;
+            margin-bottom: 2px;
+        }
+
+        .companyExtra {
+            margin-top: 1px;
+            font-size: 9.5px;
+            color: #555;
+            line-height: 14px;
+        }
+
+        .month {
+            width: 26%;
+            text-align: right;
+        }
+
+        .month p {
+            font-size: 11px;
+            color: #666;
+        }
+
+        .month h2 {
+            font-size: 18px;
+            margin-top: 2px;
+            font-weight: 700;
+        }
+
+        .top {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            margin-top: 8px;
+        }
+
+        .employee {
+            width: 58%;
+        }
+
+        .employee h3 {
+            font-size: 12px;
+            margin-bottom: 6px;
+            color: #666;
+        }
+
+        .employee table {
+            width: 100%;
+        }
+
+        .employee td {
+            font-size: 11px;
+            padding: 3px 0;
+        }
+
+        .employee td:first-child {
+            width: 42%;
+            color: #555;
+        }
+
+        .salaryCard {
+            width: 42%;
+            background: #dff0e3;
+            border: 1px solid #b8d6c0;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .salaryTop {
+            padding: 12px;
+        }
+
+        .salaryTop h1 {
+            font-size: 20px;
+        }
+
+        .salaryTop p {
+            font-size: 11px;
+            color: #666;
+            margin-top: 3px;
+        }
+
+        .salaryBottom {
+            background: #f3f3f3;
+            border-top: 1px dashed #bfc5cb;
+            padding: 10px 12px;
+        }
+
+        .salaryBottom table {
+            width: 100%;
+        }
+
+        .salaryBottom td {
+            font-size: 11px;
+            padding: 3px 0;
+        }
+
+        .salaryTable {
+            width: 100%;
+            margin-top: 10px;
+            border: 1px solid #cfd4da;
+            border-radius: 8px;
+            overflow: hidden;
+            border-collapse: collapse;
+        }
+
+        .salaryTable th {
+            background: #f2f4f6;
+            border-bottom: 1px solid #cfd4da;
+            padding: 8px;
+            font-size: 11px;
+            text-align: left;
+        }
+
+        .salaryTable td {
+            padding: 8px;
+            font-size: 11px;
+            border-bottom: 1px solid #e3e7eb;
+        }
+
+        .salaryTable tr:last-child td {
+            border-bottom: none;
+        }
+
+        .right {
+            text-align: right;
+        }
+
+        .center {
+            text-align: center;
+        }
+
+        .bold {
+            font-weight: 600;
+        }
+
+        .totalRow {
+            background: #f1f1f1;
+            font-weight: 600;
+        }
+
+        .net {
+            margin-top: 10px;
+            border: 1px solid #cfd4da;
+            border-radius: 8px;
+            display: flex;
+            overflow: hidden;
+        }
+
+        .netLeft {
+            width: 70%;
+            padding: 10px 12px;
+        }
+
+        .netLeft h2 {
+            font-size: 13px;
+        }
+
+        .netLeft p {
+            font-size: 10px;
+            color: #666;
+            margin-top: 2px;
+        }
+
+        .netRight {
+            width: 30%;
+            background: #dff0e3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .words {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 10.5px;
+            color: #555;
+        }
+
+        .payment {
+            margin-top: 10px;
+            border: 1px solid #cfd4da;
+            border-radius: 8px;
+            display: flex;
+            overflow: hidden;
+        }
+
+        .paymentLeft {
+            width: 65%;
+            padding: 10px 12px;
+        }
+
+        .paymentLeft h3 {
+            font-size: 12px;
+            margin-bottom: 6px;
+        }
+
+        .paymentLeft table {
+            width: 100%;
+        }
+
+        .paymentLeft td {
+            padding: 3px 0;
+            font-size: 11px;
+        }
+
+        .paymentLeft td:first-child {
+            width: 45%;
+            color: #555;
+        }
+
+        .paymentRight {
+            width: 35%;
+            border-left: 1px solid #d8dde2;
+            text-align: center;
+            padding: 10px;
+        }
+
+        .paymentRight h3 {
+            font-size: 11px;
+            margin-bottom: 6px;
+        }
+
+        .paymentRight img {
+            width: 70px;
+        }
+
+        .footer {
+            margin-top: 10px;
+            border-top: 1px solid #cfd4da;
+            padding-top: 10px;
+            text-align: center;
+        }
+
+        .footer h3 {
+            font-size: 12px;
+            color: #2f855a;
+        }
+
+        .footer p {
+            font-size: 10px;
+            color: #666;
+            margin-top: 3px;
+        }
+
+        .notice {
+            margin-top: 8px;
+            font-size: 9px;
+            color: #777;
+        }
+
+        .loading {
+            text-align: center;
+            font-size: 20px;
+            margin-top: 50px;
+            font-weight: 600;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="topBar">
+
+        <button class="downloadBtn" onclick="downloadPDF()">
+            Download PDF
+        </button>
+
+        <button class="logoutBtn" onclick="logout()">
+            Logout
+        </button>
+
+    </div>
+
+    <div id="loading" class="loading">
+        Loading Payslip...
+    </div>
+
+    <div id="payslip" style="display:none;">
+
+        <div class="header">
+
+            <div class="company">
+
+                <img src="https://jkpmicrominerals.com/images/logos/Picture2.png" class="logo" />
+
+                <div class="companyText">
+
+                    <h1>JKP Microminerals (I) Pvt.Ltd.</h1>
+
+                    <p>
+                        904, 9th Floor, Zion Tower, Plot No. 273,
+                        Kopra Rd Navi Mumbai–410210 India
+                    </p>
+
+                    <div class="companyExtra">
+                        account@jkpmicrominerals.com<br>
+                        admin@jkpmicrominerals.com<br>
+                        www.jkpmicrominerals.com<br>
+                        CIN : U14200MH2010PTC20852 |
+                        GST : 27AACCJ4537A1ZX |
+                        PAN : AACCJ4537A
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="month">
+
+                <p>Payslip For the Month</p>
+                <h2 id="monthText"></h2>
+
+            </div>
+
+        </div>
+
+        <div class="top">
+
+            <div class="employee">
+
+                <h3>EMPLOYEE SUMMARY</h3>
+
+                <table>
+
+                    <tr>
+                        <td>Employee Name</td>
+                        <td>: <span id="employeeName"></span></td>
+                    </tr>
+
+                    <tr>
+                        <td>Employee ID</td>
+                        <td>: <span id="employeeID"></span></td>
+                    </tr>
+
+                    <tr>
+                        <td>Designation</td>
+                        <td>: <span id="designation"></span></td>
+                    </tr>
+
+                    <tr>
+                        <td>Work Location</td>
+                        <td>: <span id="location"></span></td>
+                    </tr>
+
+                    <tr>
+                        <td>Pay Period</td>
+                        <td>: <span id="payPeriod"></span></td>
+                    </tr>
+
+                    <tr>
+                        <td>Pay Date</td>
+                        <td>: <span id="payDate"></span></td>
+                    </tr>
+
+                    <tr>
+                        <td>PAN Number</td>
+                        <td>: <span id="pan"></span></td>
+                    </tr>
+
+                    <tr>
+                        <td>Bank Account No.</td>
+                        <td>: <span id="bank"></span></td>
+                    </tr>
+
+                    <tr>
+                        <td>IFSC Code</td>
+                        <td>: <span id="ifsc"></span></td>
+                    </tr>
+
+                </table>
+
+            </div>
+
+            <div class="salaryCard">
+
+                <div class="salaryTop">
+
+                    <h1 id="netSalaryTop"></h1>
+                    <p>Total Net Pay</p>
+
+                </div>
+
+                <div class="salaryBottom">
+
+                    <table>
+
+                        <tr>
+                            <td>Working Days</td>
+                            <td class="right" id="workingDays"></td>
+                        </tr>
+
+                        <tr>
+                            <td>Paid Days</td>
+                            <td class="right" id="paidDays"></td>
+                        </tr>
+
+                        <tr>
+                            <td>Paid Sunday</td>
+                            <td class="right" id="paidSunday"></td>
+                        </tr>
+
+                        <tr>
+                            <td>Holidays</td>
+                            <td class="right" id="holidays"></td>
+                        </tr>
+
+                        <tr>
+                            <td>Absent Days</td>
+                            <td class="right" id="absentDays"></td>
+                        </tr>
+
+                        <tr>
+                            <td>Half Days</td>
+                            <td class="right" id="halfDays"></td>
+                        </tr>
+
+                        <tr>
+                            <td>Late to Half</td>
+                            <td class="right" id="lateToHalf"></td>
+                        </tr>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <table class="salaryTable">
+
+            <tr>
+
+                <th style="width:35%">EARNINGS</th>
+                <th class="right" style="width:15%">AMOUNT</th>
+
+                <th class="center" style="width:10%">DAYS</th>
+
+                <th style="width:25%">DEDUCTIONS</th>
+                <th class="right" style="width:15%">AMOUNT</th>
+
+            </tr>
+
+            <tr>
+
+                <td>Basic Salary</td>
+                <td class="right" id="basicSalary"></td>
+
+                <td class="center" id="absentDaysTable"></td>
+
+                <td>Income Tax</td>
+                <td class="right" id="tds"></td>
+
+            </tr>
+
+            <tr>
+
+                <td></td>
+                <td></td>
+
+                <td class="center" id="halfDaysTable"></td>
+
+                <td>Attendance Deduction</td>
+                <td class="right" id="absentAmt"></td>
+
+            </tr>
+
+            <tr>
+
+                <td></td>
+                <td></td>
+
+                <td class="center" id="lateToHalfTable"></td>
+
+                <td>Half Day Deduction</td>
+                <td class="right" id="halfAmt"></td>
+
+            </tr>
+
+            <tr>
+
+                <td></td>
+                <td></td>
+
+                <td></td>
+
+                <td>Late to Half Deduction</td>
+                <td class="right" id="lthAmt"></td>
+
+            </tr>
+
+            <tr class="totalRow">
+
+                <td>Gross Earnings</td>
+                <td class="right bold" id="grossSalary"></td>
+
+                <td></td>
+
+                <td>Total Deductions</td>
+                <td class="right bold" id="totalDeductions"></td>
+
+            </tr>
+
+        </table>
+
+        <div class="net">
+
+            <div class="netLeft">
+
+                <h2>TOTAL NET PAYABLE</h2>
+
+                <p>Gross Earnings - Total Deductions</p>
+
+            </div>
+
+            <div class="netRight" id="netSalaryBottom"></div>
+
+        </div>
+
+        <div class="words">
+
+            Amount In Words :
+            <span id="amountWords"></span>
+
+        </div>
+
+        <div class="payment">
+
+            <div class="paymentLeft">
+
+                <h3>PAYMENT INFORMATION</h3>
+
+                <table>
+
+                    <tr>
+                        <td>Payment Mode</td>
+                        <td>: NEFT / RTGS</td>
+                    </tr>
+
+                    <tr>
+                        <td>Bank Name</td>
+                        <td>: SBI</td>
+                    </tr>
+
+                    <tr>
+                        <td>Salary Credited Date</td>
+                        <td>: <span id="salaryDate"></span></td>
+                    </tr>
+
+                </table>
+
+            </div>
+
+            <div class="paymentRight">
+
+                <h3>SCAN TO VERIFY</h3>
+
+                <div id="qrcode"></div>
+
+            </div>
+
+        </div>
+
+        <div class="footer">
+
+            <h3>✔ Digitally Signed By JKP Accounts</h3>
+
+            <p>This is a system-generated payslip.</p>
+
+            <div class="notice">
+
+                Confidentiality Notice :
+                This payslip contains confidential salary information intended only for the employee.
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+
+        const API_URL = 'https://script.google.com/macros/s/AKfycbxYe9uonKo23j843TLEfD5k3vLA0Okt1UIz33MuaETdbVF-r_ZI9SQL8DZ-pO-nqAbzMg/exec';
+
+        const token = localStorage.getItem('token');
+        const month = localStorage.getItem('month');
+
+        if (!token) {
+
+            window.location.href = 'login.html';
+        }
+
+        /* ==================================================
+           VALIDATE SESSION
+        ================================================== */
+
+        fetch(`${API_URL}?action=validateSession&token=${token}`)
+            .then(res => res.json())
+            .then(data => {
+
+                if (!data.status) {
+
+                    localStorage.clear();
+                    window.location.href = 'login.html';
+
+                } else {
+
+                    loadPayslip();
+                }
+
+            });
+
+        /* ==================================================
+           LOAD PAYSLIP
+        ================================================== */
+
+        function loadPayslip() {
+
+            fetch(`${API_URL}?action=getPayslip&token=${token}&month=${month}`)
+
+                .then(res => res.json())
+
+                .then(data => {
+
+                    document.getElementById('loading').style.display = 'none';
+                    document.getElementById('payslip').style.display = 'block';
+
+                    /* HEADER */
+
+                    document.getElementById('monthText').innerText = data.payslip.month;
+
+                    /* EMPLOYEE */
+
+                    document.getElementById('employeeName').innerText = data.employee.name;
+                    document.getElementById('employeeID').innerText = data.employee.empid;
+                    document.getElementById('designation').innerText = data.employee.designation;
+                    document.getElementById('location').innerText = data.employee.location;
+                    document.getElementById('payPeriod').innerText = data.payslip.month;
+                    document.getElementById('payDate').innerText = data.payslip.salaryDate;
+                    document.getElementById('pan').innerText = data.employee.pan;
+                    document.getElementById('bank').innerText = maskBankAccount(data.employee.bank);
+                    document.getElementById('ifsc').innerText = data.employee.ifsc;
+
+                    /* SUMMARY */
+
+                    document.getElementById('workingDays').innerText = data.payslip.workingDays;
+                    document.getElementById('paidDays').innerText = data.payslip.totalPaidDays;
+                    document.getElementById('paidSunday').innerText = data.payslip.paidSunday;
+                    document.getElementById('holidays').innerText = data.payslip.holidays;
+                    document.getElementById('absentDays').innerText = data.payslip.absentDays;
+                    document.getElementById('halfDays').innerText = data.payslip.halfDays;
+                    document.getElementById('lateToHalf').innerText = data.payslip.lateToHalfDays;
+
+                    /* TABLE */
+
+                    document.getElementById('basicSalary').innerText = formatMoney(data.employee.salary);
+
+                    document.getElementById('tds').innerText = formatMoney(data.payslip.tds || 0);
+
+                    document.getElementById('absentAmt').innerText = formatMoney(data.payslip.absentAmt || 0);
+
+                    document.getElementById('halfAmt').innerText = formatMoney(data.payslip.halfAmt || 0);
+
+                    document.getElementById('lthAmt').innerText = formatMoney(data.payslip.lthAmt || 0);
+
+                    document.getElementById('absentDaysTable').innerText = data.payslip.absentDays;
+
+                    document.getElementById('halfDaysTable').innerText = data.payslip.halfDays;
+
+                    document.getElementById('lateToHalfTable').innerText = data.payslip.lateToHalfDays;
+
+                    const totalDeductions =
+                        Number(data.payslip.tds || 0) +
+                        Number(data.payslip.absentAmt || 0) +
+                        Number(data.payslip.halfAmt || 0) +
+                        Number(data.payslip.lthAmt || 0);
+
+                    document.getElementById('grossSalary').innerText =
+                        formatMoney(data.employee.salary);
+
+                    document.getElementById('totalDeductions').innerText =
+                        formatMoney(totalDeductions);
+
+                    document.getElementById('netSalaryTop').innerText =
+                        formatMoney(data.payslip.totalSalary);
+
+                    document.getElementById('netSalaryBottom').innerText =
+                        formatMoney(data.payslip.totalSalary);
+
+                    document.getElementById('salaryDate').innerText =
+                        data.payslip.salaryDate;
+
+                    /* WORDS */
+
+                    document.getElementById('amountWords').innerText =
+                        numberToWords(data.payslip.totalSalary) + ' Only';
+
+                    /* QR */
+
+                    new QRCode(document.getElementById('qrcode'), {
+
+                        text: data.payslip.verificationCode,
+
+                        width: 70,
+                        height: 70
+                    });
+
+                });
+
+        }
+
+        /* ==================================================
+           LOGOUT
+        ================================================== */
+
+        function logout() {
+
+            fetch(`${API_URL}?action=logout&token=${token}`)
+                .then(res => res.json())
+                .then(data => {
+
+                    localStorage.clear();
+
+                    window.location.href = 'login.html';
+
+                });
+
+        }
+
+        /* ==================================================
+            MASK BANK ACCOUNT
+        ================================================== */
+
+        function maskBankAccount(account) {
+
+            account = account.toString();
+
+            if (account.length <= 4) {
+                return account;
+            }
+
+            const last4 = account.slice(-4);
+
+            return 'X'.repeat(account.length - 4) + last4;
+        }
+
+        /* ==================================================
+           PDF DOWNLOAD
+        ================================================== */
+
+        function downloadPDF() {
+
+            const element = document.getElementById("payslip");
+
+            const empid = document.getElementById('employeeID').innerText;
+
+            const opt = {
+
+                margin: [0, 0, 0, 0],
+
+                filename: `JKP_Payslip_${empid}_${month}.pdf`,
+
+                image: {
+                    type: 'jpeg',
+                    quality: 1
+                },
+
+                html2canvas: {
+                    scale: 2,
+                    useCORS: true,
+                    scrollY: 0
+                },
+
+                jsPDF: {
+                    unit: 'mm',
+                    format: 'a4',
+                    orientation: 'portrait'
+                },
+
+                pagebreak: {
+                    mode: []
+                }
+            };
+
+            html2pdf()
+                .set(opt)
+                .from(element)
+                .toPdf()
+                .get('pdf')
+                .then(function (pdf) {
+
+                    const totalPages = pdf.internal.getNumberOfPages();
+
+                    if (totalPages > 1) {
+                        pdf.deletePage(totalPages);
+                    }
+
+                })
+                .save();
+        }
+
+        /* ==================================================
+           MONEY FORMAT
+        ================================================== */
+
+        function formatMoney(amount) {
+
+            return '₹' + Number(amount).toLocaleString('en-IN', {
+                minimumFractionDigits: 2
+            });
+        }
+
+        /* ==================================================
+           NUMBER TO WORDS
+        ================================================== */
+
+        function numberToWords(num) {
+
+            const a = ['', 'One ', 'Two ', 'Three ', 'Four ', 'Five ', 'Six ', 'Seven ', 'Eight ', 'Nine ', 'Ten ', 'Eleven ', 'Twelve ', 'Thirteen ', 'Fourteen ', 'Fifteen ', 'Sixteen ', 'Seventeen ', 'Eighteen ', 'Nineteen '];
+
+            const b = ['', '', 'Twenty', 'Thirty', 'Forty', 'Fifty', 'Sixty', 'Seventy', 'Eighty', 'Ninety'];
+
+            if ((num = num.toString()).length > 9) return 'Overflow';
+
+            let n = ('000000000' + num)
+                .substr(-9)
+                .match(/^(\d{2})(\d{2})(\d{2})(\d{3})$/);
+
+            if (!n) return;
+
+            let str = '';
+
+            str += (n[1] != 0) ?
+                (a[Number(n[1])] || b[n[1][0]] + ' ' + a[n[1][1]]) + 'Crore ' : '';
+
+            str += (n[2] != 0) ?
+                (a[Number(n[2])] || b[n[2][0]] + ' ' + a[n[2][1]]) + 'Lakh ' : '';
+
+            str += (n[3] != 0) ?
+                (a[Number(n[3])] || b[n[3][0]] + ' ' + a[n[3][1]]) + 'Thousand ' : '';
+
+            str += (n[4] != 0) ?
+                (a[Number(n[4][0])] || b[n[4][0]] + ' ' + a[n[4][1]]) + 'Hundred ' : '';
+
+            return str.trim();
+        }
+
+    </script>
+
+</body>
+
+</html>

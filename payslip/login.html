@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>JKP Employee Login</title>
+
+    <script src="https://unpkg.com/html5-qrcode"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #0f172a;
+            --bg-soft: #111827;
+            --card: #ffffff;
+            --text: #0f172a;
+            --muted: #64748b;
+            --line: #e2e8f0;
+
+            --primary: #2563eb;
+            --primary2: #7c3aed;
+            --gradient: linear-gradient(135deg, #2563eb, #7c3aed);
+
+            --success: #16a34a;
+            --danger: #dc2626;
+            --warn: #d97706;
+
+            --radius: 20px;
+            --shadow: 0 10px 25px rgba(0, 0, 0, 0.10);
+            --shadow-hover: 0 15px 35px rgba(0, 0, 0, 0.18);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            width: 100%;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            color: #fff;
+        }
+
+        /* ---------- LOGIN CARD ---------- */
+
+        .loginCard {
+            width: 100%;
+            max-width: 420px;
+            background: #fff;
+            color: #000;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+            animation: fadeUp .5s ease;
+            transition: .3s ease;
+        }
+
+        .loginCard:hover {
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-3px);
+        }
+
+        /* ---------- LOGO ---------- */
+        .logo-wrap {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .logo {
+            width: 230px;
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            object-fit: contain;
+            filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.15));
+            transition: .3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.03);
+        }
+
+        /* ---------- TITLES ---------- */
+
+        .title {
+            margin-top: -12px;
+            font-size: 25px;
+            font-weight: 800;
+            color: var(--text);
+            line-height: 1.5;
+            text-align: center;
+        }
+
+        .subtitle {
+            font-size: 12px;
+            color: var(--muted);
+            line-height: 1.5;
+            text-align: center;
+        }
+
+        /* ---------- FORM ---------- */
+
+        .field {
+            margin-bottom: 5px;
+        }
+
+        .label {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .input {
+            width: 100%;
+            height: 45px;
+            padding: 0 16px;
+            border-radius: 12px;
+            border: 1px solid #cbd5e1;
+            background: #fff;
+            color: #111827;
+            font-size: 15px;
+            transition: all .25s ease;
+        }
+
+        .input:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: #fff;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.18);
+        }
+
+        /* ---------- BUTTONS ---------- */
+
+        .loginBtn,
+        .verifyToggle,
+        .scanBtn,
+        .verifyBtn {
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all .25s ease;
+        }
+
+        .loginBtn:hover,
+        .verifyToggle:hover,
+        .scanBtn:hover,
+        .verifyBtn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .loginBtn {
+            width: 100%;
+            height: 45px;
+            border-radius: 14px;
+            background: var(--gradient);
+            color: #fff;
+            font-size: 16px;
+            margin-top: 8px;
+        }
+
+        .verifyToggle {
+            width: 100%;
+            height: 45px;
+            border-radius: 14px;
+            background: #1e293b;
+            color: #fff;
+            font-size: 15px;
+            margin-top: 8px;
+        }
+
+        /* ---------- VERIFY SECTION ---------- */
+
+        .verifyBox {
+            display: none;
+            margin-top: 24px;
+            padding-top: 22px;
+            border-top: 1px solid var(--line);
+            animation: fadeUp .4s ease;
+        }
+
+        .verifyTitle {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 16px;
+        }
+
+        .verifyButtons {
+            display: flex;
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        .scanBtn,
+        .verifyBtn {
+            flex: 1;
+            height: 45px;
+            border-radius: 12px;
+            color: #fff;
+            font-size: 14px;
+        }
+
+        .scanBtn {
+            background: #0f172a;
+        }
+
+        .verifyBtn {
+            background: #16a34a;
+        }
+
+        /* ---------- QR READER ---------- */
+
+        #reader {
+            width: 100%;
+            margin-top: 18px;
+            overflow: hidden;
+            border-radius: 16px;
+            border: 1px solid #e2e8f0;
+        }
+
+        /* ---------- MESSAGES ---------- */
+
+        .message {
+            margin-top: 16px;
+            font-size: 14px;
+            font-weight: 600;
+            line-height: 1.6;
+        }
+
+        .error {
+            color: var(--danger);
+        }
+
+        .success {
+            color: var(--success);
+        }
+
+        .loading {
+            margin-top: 14px;
+            color: var(--primary);
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        /* ---------- ANIMATION ---------- */
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ---------- MOBILE ---------- */
+
+        @media(max-width:600px) {
+
+            body {
+                padding: 14px;
+            }
+
+            .loginCard {
+                padding: 24px;
+            }
+
+            .logo {
+                width: 190px;
+            }
+
+            .title {
+                font-size: 28px;
+            }
+
+            .subtitle {
+                font-size: 13px;
+            }
+
+            .input {
+                height: 45px;
+                font-size: 14px;
+            }
+
+            .loginBtn,
+            .verifyToggle {
+                height: 45px;
+                font-size: 15px;
+            }
+
+            .verifyButtons {
+                flex-direction: column;
+            }
+
+            .scanBtn,
+            .verifyBtn {
+                width: 100%;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="loginCard">
+
+        <img src="/img/Picture2 (1).png" class="logo" />
+
+        <h1 class="title">JKP Payslip</h1>
+
+        <!-- <p class="subtitle">
+            Login with your Employee ID and password.
+        </p> -->
+
+        <label class="label">Employee ID</label>
+
+        <input type="text" id="empid" class="input" placeholder="Enter Employee ID" />
+
+        <label class="label">Password</label>
+
+        <input type="password" id="password" class="input" placeholder="Enter Password" style="margin-bottom: 10px;" />
+
+        <div style="display:flex; gap:12px;">
+
+            <select id="monthDropdown" class="input" style="width:50%;"></select>
+
+            <select id="yearDropdown" class="input" style="width:50%;"></select>
+
+        </div>
+
+
+        <button class="loginBtn" onclick="login()">
+            Login
+        </button>
+
+        <button class="verifyToggle" onclick="toggleVerify()">
+            Verify Payslip
+        </button>
+
+        <div id="loading" class="loading"></div>
+
+        <div id="message" class="message"></div>
+
+        <!-- VERIFY SECTION -->
+
+        <div class="verifyBox" id="verifyBox">
+
+            <h2 class="verifyTitle">
+                Verify Payslip
+            </h2>
+
+            <input type="text" id="verifyCode" class="input" placeholder="Enter Verification Code" />
+
+            <div class="verifyButtons">
+
+                <button class="scanBtn" onclick="startScanner()">
+                    Open QR Scanner
+                </button>
+
+                <button class="verifyBtn" onclick="verifyPayslip()">
+                    Verify
+                </button>
+
+            </div>
+
+            <div id="reader"></div>
+
+            <div id="verifyMessage" class="message"></div>
+
+        </div>
+
+    </div>
+
+    <script>
+
+        const API_URL = 'https://script.google.com/macros/s/AKfycbxYe9uonKo23j843TLEfD5k3vLA0Okt1UIz33MuaETdbVF-r_ZI9SQL8DZ-pO-nqAbzMg/exec';
+
+        let scannerStarted = false;
+        let scanner = null;
+
+        /* ==================================================
+           LOGIN
+        ================================================== */
+
+        function login() {
+
+            const empid = document.getElementById('empid').value.trim();
+            const password = document.getElementById('password').value.trim();
+            // const month = document.getElementById('month').value;
+            const selectedMonth =
+                document.getElementById('monthDropdown').value;
+
+            const selectedYear =
+                document.getElementById('yearDropdown').value;
+
+            const month =
+                selectedMonth + '-' + selectedYear.slice(-2);
+
+            const message = document.getElementById('message');
+            const loading = document.getElementById('loading');
+
+            message.innerHTML = '';
+
+            if (!empid || !password) {
+
+                message.innerHTML = `
+        <span class="error">
+        Please enter Employee ID and Password
+        </span>
+        `;
+
+                return;
+            }
+
+            loading.innerHTML = 'Logging in...';
+
+            fetch(`${API_URL}?action=login&empid=${empid}&password=${password}`)
+
+                .then(res => res.json())
+
+                .then(data => {
+
+                    loading.innerHTML = '';
+
+                    if (data.status) {
+
+                        localStorage.setItem('token', data.token);
+                        localStorage.setItem('month', month);
+                        localStorage.setItem('empid', data.empid);
+
+                        message.innerHTML = `
+            <span class="success">
+            Login Successful Redirecting...
+            </span>
+            `;
+
+                        setTimeout(() => {
+
+                            window.location.href = 'payslip.html';
+
+                        }, 1000);
+
+                    } else {
+
+                        message.innerHTML = `
+            <span class="error">
+            ${data.message}
+            </span>
+            `;
+                    }
+
+                })
+
+                .catch(err => {
+
+                    loading.innerHTML = '';
+
+                    message.innerHTML = `
+        <span class="error">
+        Server Error
+        </span>
+        `;
+                });
+
+        }
+
+        /* ==================================================
+           TOGGLE VERIFY
+        ================================================== */
+
+        function toggleVerify() {
+
+            const box = document.getElementById('verifyBox');
+
+            if (box.style.display === 'block') {
+
+                box.style.display = 'none';
+
+            } else {
+
+                box.style.display = 'block';
+            }
+        }
+
+        /* ==================================================
+           VERIFY PAYSLIP
+        ================================================== */
+
+        function verifyPayslip() {
+
+            const code = document.getElementById('verifyCode').value.trim();
+
+            const verifyMessage = document.getElementById('verifyMessage');
+
+            if (!code) {
+
+                verifyMessage.innerHTML = `
+        <span class="error">
+        Please enter verification code
+        </span>
+        `;
+
+                return;
+            }
+
+            verifyMessage.innerHTML = 'Verifying Payslip...';
+
+            fetch(`${API_URL}?action=verifyPayslip&code=${code}`)
+
+                .then(res => res.json())
+
+                .then(data => {
+
+                    if (data.status) {
+
+                        verifyMessage.innerHTML = `
+            <span class="success">
+            Payslip Verified ✅<br><br>
+
+            Employee : ${data.employee}<br>
+            Employee ID : ${data.empid}<br>
+            Month : ${data.month}<br>
+            Total Salary : ₹${data.totalSalary}
+            </span>
+            `;
+
+                    } else {
+
+                        verifyMessage.innerHTML = `
+            <span class="error">
+            Invalid Payslip ❌
+            </span>
+            `;
+                    }
+
+                })
+
+                .catch(err => {
+
+                    verifyMessage.innerHTML = `
+        <span class="error">
+        Verification Failed
+        </span>
+        `;
+                });
+
+        }
+
+        /* ==================================================
+           QR SCANNER
+        ================================================== */
+
+        function startScanner() {
+
+            if (scannerStarted) {
+                return;
+            }
+
+            scannerStarted = true;
+
+            scanner = new Html5Qrcode("reader");
+
+            scanner.start(
+
+                { facingMode: "environment" },
+
+                {
+                    fps: 10,
+                    qrbox: 250
+                },
+
+                (decodedText) => {
+
+                    document.getElementById('verifyCode').value = decodedText;
+
+                    scanner.stop();
+
+                    scannerStarted = false;
+
+                    verifyPayslip();
+                },
+
+                (errorMessage) => { }
+
+            )
+
+                .catch(err => {
+
+                    scannerStarted = false;
+
+                    alert('Camera access denied');
+                });
+
+        }
+
+        /* ==================================================
+   MONTH + YEAR DROPDOWN
+================================================== */
+
+        generateMonthYearDropdown();
+
+        function generateMonthYearDropdown() {
+
+            const monthDropdown =
+                document.getElementById('monthDropdown');
+
+            const yearDropdown =
+                document.getElementById('yearDropdown');
+
+            const months = [
+
+                { value: 'Jan', label: 'January' },
+                { value: 'Feb', label: 'February' },
+                { value: 'Mar', label: 'March' },
+                { value: 'Apr', label: 'April' },
+                { value: 'May', label: 'May' },
+                { value: 'Jun', label: 'June' },
+                { value: 'Jul', label: 'July' },
+                { value: 'Aug', label: 'August' },
+                { value: 'Sep', label: 'September' },
+                { value: 'Oct', label: 'October' },
+                { value: 'Nov', label: 'November' },
+                { value: 'Dec', label: 'December' }
+
+            ];
+
+            /* MONTHS */
+
+            months.forEach(month => {
+
+                const option =
+                    document.createElement('option');
+
+                option.value = month.value;
+                option.textContent = month.label;
+
+                monthDropdown.appendChild(option);
+
+            });
+
+            /* YEARS */
+
+            for (let year = 2026; year <= 2040; year++) {
+
+                const option =
+                    document.createElement('option');
+
+                option.value = year;
+                option.textContent = year;
+
+                yearDropdown.appendChild(option);
+
+            }
+
+            /* AUTO SELECT PREVIOUS MONTH */
+
+            const now = new Date();
+
+            now.setMonth(now.getMonth() - 1);
+
+            const autoMonth =
+                months[now.getMonth()].value;
+
+            const autoYear =
+                now.getFullYear();
+
+            monthDropdown.value = autoMonth;
+
+            yearDropdown.value = autoYear;
+        }
+    </script>
+
+</body>
+
+</html>

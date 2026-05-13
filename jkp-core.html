@@ -557,6 +557,49 @@
                     <div class="k">Late → Half</div>
                     <div class="v" id="cardLateHalf">0</div>
                 </div>
+                <div class="card-stat pay-slip-card" onclick="window.open('/payslip/login.html', '_blank')">
+
+                    <div class="pay-slip-content">
+                        <div class="pay-icon">📄</div>
+                        <div class="pay-text">Get Pay Slip</div>
+                    </div>
+
+                </div>
+                <style>
+                    .pay-slip-card {
+                        cursor: pointer;
+                        background: linear-gradient(135deg, #4f46e5, #7c3aed);
+                        color: white;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        border-radius: 20px;
+                        height: 100px;
+                        transition: all 0.3s ease;
+                        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+                    }
+
+                    .pay-slip-card:hover {
+                        transform: translateY(-5px) scale(1.03);
+                        box-shadow: 0 8px 20px rgba(124, 58, 237, 0.4);
+                    }
+
+                    .pay-slip-content {
+                        text-align: center;
+                    }
+
+                    .pay-icon {
+                        font-size: 30px;
+                        margin-bottom: 8px;
+                    }
+
+                    .pay-text {
+                        font-size: 18px;
+                        font-weight: 600;
+                        letter-spacing: 0.5px;
+                    }
+                </style>
+
             </div>
 
             <!-- GRID -->
